@@ -41,10 +41,10 @@ public class Pub {
         listeTables.add(table2);
         listeTables.add(table1);
         
-        Client antoine = new Client("Toine", "Antoine", 20, 15, "Rock n Roll !!!", chimaybleue, coca, 3);
-        Client pierremaxime = new Client("PM", "Pierre-Maxime", 21, 16, "On nous en tiendra pas rigueur.", chimaybleue, fanta, 4);
-        Serveur gabrielle = new Serveur("Gabi", "Gabrielle", 19, 3000, "Chaud Devant !");
-        Serveur mathieu = new Serveur("Frere Mathieu", "Mathieu", 25, 50, "Chaud Devant !");
+        Client antoine = new Client("Toine", "Antoine", 20, 15, "Rock n Roll !!!", chimaybleue, coca, 3, SigneClient.tShirtNoir);
+        Client pierremaxime = new Client("PM", "Pierre-Maxime", 21, 16, "On nous en tiendra pas rigueur.", chimaybleue, fanta, 4, SigneClient.tShirtBlanc);
+        Serveur gabrielle = new Serveur("Gabi", "Gabrielle", 19, 3000, "Chaud Devant !", SigneServeur.hauteSeduction);
+        Serveur mathieu = new Serveur("Frere Mathieu", "Mathieu", 25, 50, "Chaud Devant !", SigneServeur.grosBiceps);
         Barman bruno = new Barman("Stef", "Bruno", 56, 95, "A Poil !!");
         Patronne michelle = new Patronne("MichMich", "Michelle", 596, 65, "Par ici la monnaie !!");
         
