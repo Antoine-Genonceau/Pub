@@ -39,6 +39,32 @@ public class Client extends Humain{
                 
     }
     
+    
+    @Override
+    public void boire(Boisson pBoisson){
+        
+        super.boire(pBoisson);
+        
+        if (pBoisson.uniteAlcool == 0 && this.niveauAlcool > 1){
+            
+            this.niveauAlcool = this.niveauAlcool - 1;
+            
+        }
+        
+        else{
+        
+            this.niveauAlcool = this.niveauAlcool + pBoisson.uniteAlcool;      
+        
+        }
+        
+    }
+    
+    
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////***********Fonctions de Base*************//////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    
     public SigneClient getSigne(){
         
         return signe;

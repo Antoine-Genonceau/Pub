@@ -58,11 +58,36 @@ public class Pub {
         listeServeurs.add(mathieu);
         listeServeurs.add(gabrielle);
         
-        Bar garderie = new Bar("La Garderie", listeTables, 1000, stock, michelle, bruno, listeServeurs, listeClients);
+        Caisse caisse = new Caisse(1000);
+        
+        Bar garderie = new Bar("La Garderie", listeTables, caisse, stock, michelle);
+        
+        garderie.embauche(bruno);
+        garderie.embauche(mathieu);
+        garderie.embauche(gabrielle);
+        garderie.entreeClient(antoine);
+        garderie.entreeClient(pierremaxime);
         
         
         
         System.out.println(garderie);
+        
+        antoine.boire(antoine.boissonFav);
+        antoine.boire(coca);
+        
+        ArrayList<Boisson> listeBoisson = new ArrayList<>();
+        
+        listeBoisson.add(coca);        
+        listeBoisson.add(chimaybleue);
+        
+        antoine.payerBoisson(listeBoisson, gabrielle);
+        
+        System.out.println(garderie);
+        
+        
+        
+        
+        
         
         
        

@@ -12,12 +12,15 @@ package pub;
 public class Serveur extends Humain{
     
     SigneServeur signe;
+    Barman barman;
     
     public Serveur(){
     
         super(); 
         
-        signe = SigneServeur.normalBiceps;      
+        signe = SigneServeur.normalBiceps;   
+        
+        barman = new Barman();
     
 }
     
@@ -27,9 +30,33 @@ public class Serveur extends Humain{
         super(pSurnom, pPrenom, pPorteMonnaie, pPopularite, pCri); 
         
         signe = pSigne;
+        
+        barman = new Barman();
                         
     }    
+    
+    public void encaissement(int somme){
+        
+        System.out.println("Serveur payée" + somme);
+        
+        barman.encaissement(somme);
+        
+        
+        
+    }
+    
+    
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////***********Fonctions de Base*************//////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
      
+    
+    public void setBarman(Barman pBarman){
+        
+        barman = pBarman;
+        
+    }
+    
     public SigneServeur getSigne(){
         
         return signe;
@@ -42,7 +69,7 @@ public class Serveur extends Humain{
         
     }
     
-    
+        
     @Override
     public Serveur clone(){        
         

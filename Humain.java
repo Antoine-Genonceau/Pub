@@ -5,6 +5,8 @@
  */
 package pub;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author procy
@@ -39,6 +41,59 @@ public class Humain {
             
     
     }
+    
+    
+    public void boire(Boisson pBoisson){        
+            
+        System.out.println(this.surnom + " a bu la boisson : " + pBoisson.toString());
+        
+    }
+    
+    public void payerBoisson(ArrayList<Boisson> listeBoisson, Serveur serveur){
+        
+        int somme = 0;
+        
+        for (int i = 0; i < listeBoisson.size(); i++){
+            
+            
+            somme = somme +  listeBoisson.get(i).prixVente;
+            
+        
+        }
+               
+        System.out.println("Boisson payée" + somme);
+            
+        this.porteMonnaie = this.porteMonnaie - somme;  
+            
+        serveur.encaissement(somme);        
+          
+    }
+    
+    public void payerBoisson(ArrayList<Boisson> listeBoisson, Barman barman){
+        
+        int somme = 0;
+        
+        for (int i = 0; i < listeBoisson.size(); i++){
+            
+            
+            somme = somme +  listeBoisson.get(i).prixVente;
+            
+        
+        }
+               
+            
+        this.porteMonnaie = this.porteMonnaie - somme;  
+            
+        barman.encaissement(somme);        
+          
+    }
+    
+    
+    
+    
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////***********Fonctions de Base*************//////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
     public void setCri(String pCri){
         

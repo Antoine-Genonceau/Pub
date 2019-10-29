@@ -11,17 +11,58 @@ package pub;
  */
 public class Barman extends Humain{
     
+    Caisse caisse;
+    Stock stock;
+    
     public Barman(){
     
-        super();  
+        super(); 
+        stock = new Stock();
+        caisse = new Caisse();
     
 }
     
     
     public Barman(String pSurnom, String pPrenom, int pPorteMonnaie, int pPopularite, String pCri){
         
-        super(pSurnom, pPrenom, pPorteMonnaie, pPopularite, pCri);    
+        super(pSurnom, pPrenom, pPorteMonnaie, pPopularite, pCri); 
+        stock = new Stock();
+        caisse = new Caisse();
                 
+    }
+    
+    
+    public void encaissement(int somme){
+        
+        caisse.setLiquidite(caisse.getLiquidite() + somme);
+        
+        System.out.println("Barman payée" + somme);
+        
+    }
+    
+    public void decaissement(int somme){
+        
+        caisse.setLiquidite(caisse.getLiquidite() - somme);
+        
+    }
+    
+    
+    
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////***********Fonctions de Base*************//////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    public void setCaisse(Caisse pCaisse){
+        
+        
+        caisse = pCaisse;
+        
+    }
+    
+    public void setStock(Stock pStock){
+        
+        stock = pStock;
+        
     }
     
     @Override
