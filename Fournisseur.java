@@ -28,7 +28,7 @@ public class Fournisseur extends Humain{
     @Override
     public Fournisseur clone(){        
         
-        return new Fournisseur(surnom, prenom, porteMonnaie, popularite, cri);        
+        return new Fournisseur(super.getSurnom(), super.getPrenom(), super.getPorteMonnaie(), super.getPopularite(), super.getCri());        
         
     }
     

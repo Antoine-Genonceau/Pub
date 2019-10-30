@@ -13,8 +13,8 @@ import java.util.ArrayList;
  */
 public class StockBoisson {
     
-    Boisson boisson;
-    int nombre;
+    private Boisson boisson;
+    private int nombre;
     
     public StockBoisson(){
         

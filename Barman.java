@@ -5,14 +5,16 @@
  */
 package pub;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Toine
  */
 public class Barman extends Humain{
     
-    Caisse caisse;
-    Stock stock;
+    private Caisse caisse;
+    private Stock stock;
     
     public Barman(){
     
@@ -46,6 +48,70 @@ public class Barman extends Humain{
         
     }
     
+    public boolean verifBoisson(StockBoisson boisson){
+                      
+        boolean boissonDispo = false;
+        
+        for (int i = 0; i < stock.getStock().size(); i++){
+            
+            if (stock.getStock().get(i).getBoisson() == boisson.getBoisson() && stock.getStock().get(i).getNombre() > boisson.getNombre()){
+                
+                boissonDispo = true;
+                
+            }
+            
+        }
+        
+        return boissonDispo;
+        
+    }
+    
+    public boolean verifBoisson(Commande commande){
+        
+        boolean verifBoisson = true;
+        
+        for (int i = 0; i < commande.getCommande().size(); i++){
+            
+            if (!this.verifBoisson(commande.getCommande().get(i).getStockBoisson())){
+                
+                verifBoisson = false;                
+                
+            }            
+            
+        }     
+       
+        return verifBoisson;
+        
+    }
+    
+    
+    public void chercherBoisson(StockBoisson boisson){
+                
+        for (int i = 0; i < stock.getStock().size(); i++){
+            
+            if (stock.getStock().get(i).getBoisson() == boisson.getBoisson()){
+                
+                stock.getStock().get(i).setNombre(stock.getStock().get(i).getNombre() - boisson.getNombre());
+                
+            }
+            
+        }
+                
+    }
+    
+    
+    
+    
+    public void chercherBoisson(Commande commande){
+                
+        for (int i = 0; i < commande.getCommande().size(); i++){
+            
+            chercherBoisson(commande.getCommande().get(i).getStockBoisson());           
+            
+        }     
+       
+    }
+    
     
     
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -68,7 +134,7 @@ public class Barman extends Humain{
     @Override
     public Barman clone(){        
         
-        return new Barman(surnom, prenom, porteMonnaie, popularite, cri);        
+        return new Barman(super.getSurnom(), super.getPrenom(), super.getPorteMonnaie(), super.getPopularite(), super.getCri());        
         
     }
     

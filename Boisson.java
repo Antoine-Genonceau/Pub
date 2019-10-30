@@ -11,10 +11,10 @@ package pub;
  */
 public class Boisson {
     
-    String nom;
-    int uniteAlcool;    /*si 0 boisson sans alcool*/
-    int prixAchat;
-    int prixVente;
+    private String nom;
+    private int uniteAlcool;    /*si 0 boisson sans alcool*/
+    private int prixAchat;
+    private int prixVente;
     
     public Boisson(){
         

@@ -13,14 +13,14 @@ import java.util.ArrayList;
  */
 public class Bar {
     
-    String nom;
-    ArrayList<Table> tables;
-    Caisse caisse;
-    Stock stock;
-    Patronne patronne;
-    Barman barman;
-    ArrayList<Serveur> serveurs;
-    ArrayList<Client> clients;
+    private String nom;
+    private ArrayList<Table> tables;
+    private Caisse caisse;
+    private Stock stock;
+    private Patronne patronne;
+    private Barman barman;
+    private ArrayList<Serveur> serveurs;
+    private ArrayList<Client> clients;
     
     public Bar(){
         

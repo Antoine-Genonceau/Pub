@@ -11,8 +11,8 @@ package pub;
  */
 public class Serveur extends Humain{
     
-    SigneServeur signe;
-    Barman barman;
+    private SigneServeur signe;
+    private Barman barman;
     
     public Serveur(){
     
@@ -73,7 +73,7 @@ public class Serveur extends Humain{
     @Override
     public Serveur clone(){        
         
-        return new Serveur(surnom, prenom, porteMonnaie, popularite, cri, signe);        
+        return new Serveur(super.getSurnom(), super.getPrenom(), super.getPorteMonnaie(), super.getPopularite(), super.getCri(), signe);        
         
     }
     

@@ -11,8 +11,8 @@ package pub;
  */
 public class Table {
     
-    int nombrePlacesLibres;
-    int numero;
+    private int nombrePlacesLibres;
+    private int numero;
     
     public Table(){
                 

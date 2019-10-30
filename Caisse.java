@@ -11,7 +11,7 @@ package pub;
  */
 public class Caisse {
     
-    int liquidite;
+    private int liquidite;
     
     public Caisse(){
         

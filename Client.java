@@ -11,10 +11,10 @@ package pub;
  */
 public class Client extends Humain{
     
-    Boisson boissonFav;
-    Boisson boissonFavBis;
-    int niveauAlcool;  
-    SigneClient signe;
+    private Boisson boissonFav;
+    private Boisson boissonFavBis;
+    private int niveauAlcool;  
+    private SigneClient signe;
     
     public Client(){
     
@@ -45,7 +45,7 @@ public class Client extends Humain{
         
         super.boire(pBoisson);
         
-        if (pBoisson.uniteAlcool == 0 && this.niveauAlcool > 1){
+        if (pBoisson.getUniteAlcool() == 0 && this.niveauAlcool > 1){
             
             this.niveauAlcool = this.niveauAlcool - 1;
             
@@ -53,7 +53,7 @@ public class Client extends Humain{
         
         else{
         
-            this.niveauAlcool = this.niveauAlcool + pBoisson.uniteAlcool;      
+            this.niveauAlcool = this.niveauAlcool + pBoisson.getUniteAlcool();      
         
         }
         
@@ -115,7 +115,7 @@ public class Client extends Humain{
     @Override
     public Client clone(){        
         
-        return new Client(surnom, prenom, porteMonnaie, popularite, cri, boissonFav, boissonFavBis, niveauAlcool, signe);        
+        return new Client(super.getSurnom(), super.getPrenom(), super.getPorteMonnaie(), super.getPopularite(), super.getCri(), boissonFav, boissonFavBis, niveauAlcool, signe);        
         
     }
     

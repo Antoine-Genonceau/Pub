@@ -27,7 +27,7 @@ public class Patronne extends Humain{
     @Override
     public Patronne clone(){        
         
-        return new Patronne(surnom, prenom, porteMonnaie, popularite, cri);        
+        return new Patronne(super.getSurnom(), super.getPrenom(), super.getPorteMonnaie(), super.getPopularite(), super.getCri());        
         
     }
     

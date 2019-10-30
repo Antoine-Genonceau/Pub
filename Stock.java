@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class Stock {
     
-    ArrayList<StockBoisson> stock;
+    private ArrayList<StockBoisson> stock;
     
     public Stock(){
         

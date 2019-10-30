@@ -72,15 +72,29 @@ public class Pub {
         
         System.out.println(garderie);
         
-        antoine.boire(antoine.boissonFav);
+        antoine.boire(antoine.getBoissonFav());
         antoine.boire(coca);
         
-        ArrayList<Boisson> listeBoisson = new ArrayList<>();
+        ArrayList<StockBoisson> listeBoisson = new ArrayList<>();
         
-        listeBoisson.add(coca);        
-        listeBoisson.add(chimaybleue);
+        listeBoisson.add(cocacola);        
+        listeBoisson.add(stockchimaybleue);
         
-        antoine.payerBoisson(listeBoisson, gabrielle);
+        ArrayList<Humain> humainCoca = new ArrayList<>();
+        
+        humainCoca.add(antoine);
+        humainCoca.add(pierremaxime);
+        
+        
+        CommandeBoisson commandeToineCoca = new CommandeBoisson(cocacola, humainCoca);
+        
+        ArrayList<CommandeBoisson> listeCommandeToine = new ArrayList<>();
+        
+        listeCommandeToine.add(commandeToineCoca);
+        
+        Commande commandeToine = new Commande(listeCommandeToine);
+        
+        antoine.payerBoisson(commandeToine, gabrielle);
         
         System.out.println(garderie);
         

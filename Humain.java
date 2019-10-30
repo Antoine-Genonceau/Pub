@@ -12,11 +12,11 @@ import java.util.ArrayList;
  * @author procy
  */
 public class Humain {
-    String surnom;
-    String prenom;
-    int porteMonnaie;
-    int popularite;
-    String cri;    
+    private String surnom;
+    private String prenom;
+    private int porteMonnaie;
+    private int popularite;
+    private String cri;    
     
     
     public Humain(){
@@ -49,14 +49,14 @@ public class Humain {
         
     }
     
-    public void payerBoisson(ArrayList<Boisson> listeBoisson, Serveur serveur){
+    public void payerBoisson(Commande commande, Serveur serveur){
         
         int somme = 0;
         
-        for (int i = 0; i < listeBoisson.size(); i++){
+        for (int i = 0; i < commande.getCommande().size(); i++){
             
             
-            somme = somme +  listeBoisson.get(i).prixVente;
+            somme = somme +  commande.getCommande().get(i).getStockBoisson().getBoisson().getPrixVente() * commande.getCommande().get(i).getStockBoisson().getNombre();
             
         
         }
@@ -69,14 +69,14 @@ public class Humain {
           
     }
     
-    public void payerBoisson(ArrayList<Boisson> listeBoisson, Barman barman){
+    public void payerBoisson(Commande commande, Barman barman){
         
         int somme = 0;
         
-        for (int i = 0; i < listeBoisson.size(); i++){
+        for (int i = 0; i < commande.getCommande().size(); i++){
             
             
-            somme = somme +  listeBoisson.get(i).prixVente;
+            somme = somme +  commande.getCommande().get(i).getStockBoisson().getBoisson().getPrixVente() * commande.getCommande().get(i).getStockBoisson().getNombre();
             
         
         }
@@ -86,6 +86,52 @@ public class Humain {
             
         barman.encaissement(somme);        
           
+    }
+    
+    public boolean verifPrix(Commande commande){
+        
+        boolean verifPrix = false;
+        
+        int somme = 0;
+        
+        for (int i = 0; i < commande.getCommande().size(); i++){
+            
+            
+            somme = somme +  commande.getCommande().get(i).getStockBoisson().getBoisson().getPrixVente() * commande.getCommande().get(i).getStockBoisson().getNombre();
+            
+        
+        }
+               
+            
+        if (this.porteMonnaie - somme > 0){
+            
+            verifPrix = true;
+            
+        }
+        
+        return verifPrix;
+        
+    }
+    
+    public void acheterBoisson(Commande commande, Barman barman){
+        
+            if (barman.verifBoisson(commande)){
+                
+                barman.chercherBoisson(commande);
+                
+                payerBoisson(commande, barman);
+                
+            }          
+       
+    }
+    
+    public void consommer(Commande commande, Barman barman){
+        
+        boolean verifBoisson = barman.verifBoisson(commande);
+        
+        
+        
+        
     }
     
     
