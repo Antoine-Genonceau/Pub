@@ -12,7 +12,7 @@ package pub;
 public class Serveur extends Humain{
     
     private SigneServeur signe;
-    private Barman barman;
+    private Barman barman;    
     
     public Serveur(){
     

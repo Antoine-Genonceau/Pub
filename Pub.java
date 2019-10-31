@@ -46,7 +46,7 @@ public class Pub {
         Serveur gabrielle = new Serveur("Gabi", "Gabrielle", 19, 3000, "Chaud Devant !", SigneServeur.hauteSeduction);
         Serveur mathieu = new Serveur("Frere Mathieu", "Mathieu", 25, 50, "Chaud Devant !", SigneServeur.grosBiceps);
         Barman bruno = new Barman("Stef", "Bruno", 56, 95, "A Poil !!");
-        Patronne michelle = new Patronne("MichMich", "Michelle", 596, 65, "Par ici la monnaie !!");
+        Patronne michelle = new Patronne("MichMich", "Michelle", 596, 65, "Par ici la monnaie !!", chimaybleue, coca, 3, SigneClient.bague);
         
         ArrayList<Client> listeClients = new ArrayList<>();
         
@@ -72,29 +72,12 @@ public class Pub {
         
         System.out.println(garderie);
         
-        antoine.boire(antoine.getBoissonFav());
-        antoine.boire(coca);
+        ArrayList amisToine = new ArrayList<>();
+               
+        amisToine.add(antoine);
+        amisToine.add(pierremaxime);
         
-        ArrayList<StockBoisson> listeBoisson = new ArrayList<>();
-        
-        listeBoisson.add(cocacola);        
-        listeBoisson.add(stockchimaybleue);
-        
-        ArrayList<Humain> humainCoca = new ArrayList<>();
-        
-        humainCoca.add(antoine);
-        humainCoca.add(pierremaxime);
-        
-        
-        CommandeBoisson commandeToineCoca = new CommandeBoisson(cocacola, humainCoca);
-        
-        ArrayList<CommandeBoisson> listeCommandeToine = new ArrayList<>();
-        
-        listeCommandeToine.add(commandeToineCoca);
-        
-        Commande commandeToine = new Commande(listeCommandeToine);
-        
-        antoine.payerBoisson(commandeToine, gabrielle);
+        antoine.consommer(amisToine, bruno);
         
         System.out.println(garderie);
         

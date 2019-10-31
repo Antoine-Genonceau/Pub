@@ -21,9 +21,55 @@ public class Commande {
         
     }
     
-    public Commande(ArrayList<CommandeBoisson> pCommande){
+    public Commande(ArrayList<CommandeBoisson> listeCommande){
         
-        commande = pCommande;
+        /**Formater liste**/
+        
+        commande = new ArrayList<>();
+        
+        boolean done = false;
+        
+        for (int i = 0; i < listeCommande.size(); i++){            
+                        
+            done = false;
+            
+            for (int j = 0; j < commande.size(); j++){
+            
+                if (listeCommande.get(i).getStockBoisson().getBoisson().equals(commande.get(j).getStockBoisson().getBoisson())){
+                    
+                    commande.get(j).getStockBoisson().setNombre(commande.get(j).getStockBoisson().getNombre() + 1);
+                    
+                    
+                    for (int k = 0; k < listeCommande.get(i).getListeConsomateur().size(); k++){
+                        
+                        System.out.println(listeCommande.get(i).getListeConsomateur());
+                        
+                        commande.get(j).getListeConsomateur().add(listeCommande.get(i).getListeConsomateur().get(k));
+                        
+                    }
+                    
+                    done = true;
+                    
+                }                
+                
+                
+            }
+            
+            
+            
+            if (!done){
+                
+                CommandeBoisson commandeTemp = new CommandeBoisson();
+                
+                commandeTemp.setStockBoisson(listeCommande.get(i).getStockBoisson().clone());
+                
+                commandeTemp.setListeConsomateur((ArrayList<Humain>) listeCommande.get(i).getListeConsomateur().clone());
+            
+                commande.add(commandeTemp);
+                
+            }                 
+            
+        }        
         
     }
     

@@ -131,6 +131,17 @@ public class Barman extends Humain{
         
     }
     
+    public Caisse getCaisse(){
+        
+        return caisse;
+        
+    }
+    
+    public Stock getStock(){
+        
+        return stock;
+        
+    }
     @Override
     public Barman clone(){        
         

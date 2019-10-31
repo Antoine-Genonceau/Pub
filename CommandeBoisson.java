@@ -31,6 +31,101 @@ public class CommandeBoisson {
         
     }
     
+    public CommandeBoisson(Object humain){   
+        
+        
+        listeConsomateur = new ArrayList<>();
+                
+        stockBoisson = new StockBoisson(); 
+        
+        System.out.println("Commande Boisson Humain");
+        
+        if (humain.getClass() == Client.class){
+            
+            
+            
+        }
+        
+    }
+    
+    public void setCommandeBoisson(Client client){   
+        
+        
+        listeConsomateur = new ArrayList<>();
+        
+        listeConsomateur.add(client);
+        
+        stockBoisson = new StockBoisson(client.getBoissonFav(), 1); 
+        
+        System.out.println("Commande Boisson Client");
+        
+    }
+    
+    public void setCommandeBoisson(Serveur serveur){
+        
+        listeConsomateur = new ArrayList<>();
+        
+        listeConsomateur.add(serveur);
+        
+        Boisson eau = new Boisson("eau", 0, 0, 0);
+        
+        stockBoisson = new StockBoisson(eau, 0);
+        
+    }
+    
+    public void setCommandeBoisson(Patronne patronne){
+        
+        listeConsomateur = new ArrayList<>();
+        
+        listeConsomateur.add(patronne);
+        
+        stockBoisson = new StockBoisson(patronne.getBoissonFav(), 1);
+        
+    }
+    
+    public void setCommandeBoisson(Barman barman){
+        
+        listeConsomateur = new ArrayList<>();
+        
+        listeConsomateur.add(barman);
+        
+        Boisson eau = new Boisson("eau", 0, 0, 0);
+        
+        int max = 0;
+        
+        Boisson boissonMax = eau;
+        
+        for (int i = 0; i < barman.getStock().getStock().size(); i++){
+            
+            if (barman.getStock().getStock().get(i).getBoisson().getUniteAlcool() == 0){
+                
+                if (barman.getStock().getStock().get(i).getNombre() > max){
+                    
+                    max = barman.getStock().getStock().get(i).getNombre();
+                    
+                    boissonMax = barman.getStock().getStock().get(i).getBoisson();
+                    
+                }
+                
+            }
+            
+        }
+        
+        if (boissonMax == eau){
+            
+            stockBoisson = new StockBoisson(boissonMax, 0);
+            
+        }
+        
+        
+        else{
+        
+            stockBoisson = new StockBoisson(boissonMax, 1);
+        
+        }
+        
+    }
+    
     
     public void setStockBoisson(StockBoisson pStockBoisson){
         
@@ -72,7 +167,7 @@ public class CommandeBoisson {
     @Override
     public String toString(){
         
-        return "Commande de : " + stockBoisson.toString() + " Pour " + listeConsomateur.toString();
+        return "Commande de : "+ stockBoisson.getNombre() + " " + stockBoisson.getBoisson() + " Pour " + listeConsomateur.toString();
         
     }
 }

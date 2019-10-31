@@ -7,6 +7,7 @@ package pub;
 
 import java.util.ArrayList;
 
+
 /**
  *
  * @author procy
@@ -46,6 +47,20 @@ public class Humain {
     public void boire(Boisson pBoisson){        
             
         System.out.println(this.surnom + " a bu la boisson : " + pBoisson.toString());
+        
+    }
+    
+    public void boire(Commande commande){
+        
+        for (int i = 0; i < commande.getCommande().size(); i++){
+            
+            for (int j = 0; j < commande.getCommande().get(i).getListeConsomateur().size(); j++){
+                
+                commande.getCommande().get(i).getListeConsomateur().get(j).boire(commande.getCommande().get(i).getStockBoisson().getBoisson());
+                
+            }           
+            
+        }       
         
     }
     
@@ -125,16 +140,95 @@ public class Humain {
        
     }
     
-    public void consommer(Commande commande, Barman barman){
+    public void consommer(ArrayList<Humain> listeConsomateur, Barman barman){
         
-        boolean verifBoisson = barman.verifBoisson(commande);
+        Commande commande = new Commande();
         
+        commande = creationCommande(listeConsomateur);
+        
+        System.out.println("Creation OK");
+        
+        System.out.println("Commande : " + commande);
+        
+        if (barman.verifBoisson(commande)){
+            
+            if (verifPrix(commande)){
+                
+                acheterBoisson(commande, barman);
+                
+                boire(commande);
+                
+            }
+            
+            else{
+                
+                System.out.println("Pas assez d'argent !!");
+                
+            }
+            
+            
+        }
+        
+        
+        else{
+            
+            System.out.println("Pas en stock !!");
+            
+        }
         
         
         
     }
-    
-    
+
+    public Commande creationCommande(ArrayList listeConsomateur){
+        
+        ArrayList<CommandeBoisson> listeCommande = new ArrayList<>();
+        
+        CommandeBoisson commandeBoissonTemp = new CommandeBoisson();
+        
+        for (int i = 0; i < listeConsomateur.size(); i++){           
+            
+            
+            Class<?> classe = listeConsomateur.get(i).getClass();            
+            
+            
+            if (classe == Client.class){
+                
+                commandeBoissonTemp.setCommandeBoisson((Client) listeConsomateur.get(i));
+                
+            }
+            
+            if (classe == Serveur.class){
+                
+                commandeBoissonTemp.setCommandeBoisson((Serveur) listeConsomateur.get(i));
+                
+            }
+            
+            if (classe == Barman.class){
+                
+                commandeBoissonTemp.setCommandeBoisson((Barman) listeConsomateur.get(i));
+                
+            }
+            
+            if (classe == Patronne.class){
+                
+                commandeBoissonTemp.setCommandeBoisson((Patronne) listeConsomateur.get(i));
+                
+            }            
+            
+            
+            System.out.println("|"+ commandeBoissonTemp +"|");
+            
+            listeCommande.add(commandeBoissonTemp);
+            
+        }
+        
+        System.out.println("Sortie");
+        
+        return new Commande(listeCommande);
+         
+    }
+       
     
     
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
