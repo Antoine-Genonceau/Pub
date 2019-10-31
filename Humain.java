@@ -145,11 +145,7 @@ public class Humain {
         Commande commande = new Commande();
         
         commande = creationCommande(listeConsomateur);
-        
-        System.out.println("Creation OK");
-        
-        System.out.println("Commande : " + commande);
-        
+                
         if (barman.verifBoisson(commande)){
             
             if (verifPrix(commande)){
@@ -194,36 +190,48 @@ public class Humain {
             
             if (classe == Client.class){
                 
-                commandeBoissonTemp.setCommandeBoisson((Client) listeConsomateur.get(i));
+                CommandeBoisson commandeBoissonClientTemp = new CommandeBoisson();
+                
+                commandeBoissonClientTemp.setCommandeBoisson((Client) listeConsomateur.get(i));
+                
+                commandeBoissonTemp = commandeBoissonClientTemp.clone();
                 
             }
             
             if (classe == Serveur.class){
                 
-                commandeBoissonTemp.setCommandeBoisson((Serveur) listeConsomateur.get(i));
+                CommandeBoisson commandeBoissonServeurTemp = new CommandeBoisson();
+                
+                commandeBoissonServeurTemp.setCommandeBoisson((Client) listeConsomateur.get(i));
+                
+                commandeBoissonTemp = commandeBoissonServeurTemp.clone();
                 
             }
             
             if (classe == Barman.class){
                 
-                commandeBoissonTemp.setCommandeBoisson((Barman) listeConsomateur.get(i));
+                CommandeBoisson commandeBoissonBarmanTemp = new CommandeBoisson();
+                
+                commandeBoissonBarmanTemp.setCommandeBoisson((Client) listeConsomateur.get(i));
+                
+                commandeBoissonTemp = commandeBoissonBarmanTemp.clone();
                 
             }
             
             if (classe == Patronne.class){
                 
-                commandeBoissonTemp.setCommandeBoisson((Patronne) listeConsomateur.get(i));
+                CommandeBoisson commandeBoissonPatronneTemp = new CommandeBoisson();
+                
+                commandeBoissonPatronneTemp.setCommandeBoisson((Client) listeConsomateur.get(i));
+                
+                commandeBoissonTemp = commandeBoissonPatronneTemp.clone();
                 
             }            
             
             
-            System.out.println("|"+ commandeBoissonTemp +"|");
-            
             listeCommande.add(commandeBoissonTemp);
             
         }
-        
-        System.out.println("Sortie");
         
         return new Commande(listeCommande);
          

@@ -37,11 +37,7 @@ public class Serveur extends Humain{
     
     public void encaissement(int somme){
         
-        System.out.println("Serveur payée" + somme);
-        
-        barman.encaissement(somme);
-        
-        
+        barman.encaissement(somme);       
         
     }
     

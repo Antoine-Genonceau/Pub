@@ -38,8 +38,6 @@ public class Barman extends Humain{
         
         caisse.setLiquidite(caisse.getLiquidite() + somme);
         
-        System.out.println("Barman payée" + somme);
-        
     }
     
     public void decaissement(int somme){

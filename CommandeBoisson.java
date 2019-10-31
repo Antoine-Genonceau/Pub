@@ -38,8 +38,6 @@ public class CommandeBoisson {
                 
         stockBoisson = new StockBoisson(); 
         
-        System.out.println("Commande Boisson Humain");
-        
         if (humain.getClass() == Client.class){
             
             
@@ -56,8 +54,6 @@ public class CommandeBoisson {
         listeConsomateur.add(client);
         
         stockBoisson = new StockBoisson(client.getBoissonFav(), 1); 
-        
-        System.out.println("Commande Boisson Client");
         
     }
     

@@ -196,7 +196,7 @@ public class Bar {
     @Override
     public String toString(){
         
-        return "\n\nNom : " + nom + "\n\n" + "Tables : \n" + tables.toString() + "\n\n" + "Caisse : \n" + caisse.toString() + "\n\n" + "Stock : \n" + stock.toString() + "\n\n" + "Patronne : \n" + patronne.toString() + "\n\n" + "Barman :\n" + barman.toString() + "\n\n" + "Serveurs : \n" + serveurs.toString() + "\n\n" + "Clients : \n" + clients.toString();
+        return "\n\nNom : " + nom + "\n\n" + "Tables : \n" + tables.toString() + "\n\n" + "Caisse : \n" + caisse.toString() + "\n\n" + "Stock : \n" + stock.toString() + "\n\n" + "Patronne : \n" + patronne.toString() + "\n\n" + "Barman :\n" + barman.toString() + "\n\n" + "Serveurs : \n" + serveurs.toString() + "\n\n" + "Clients : \n" + clients.toString() + "\n\n";
         
     }
     

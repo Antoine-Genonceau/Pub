@@ -42,8 +42,6 @@ public class Commande {
                     
                     for (int k = 0; k < listeCommande.get(i).getListeConsomateur().size(); k++){
                         
-                        System.out.println(listeCommande.get(i).getListeConsomateur());
-                        
                         commande.get(j).getListeConsomateur().add(listeCommande.get(i).getListeConsomateur().get(k));
                         
                     }
