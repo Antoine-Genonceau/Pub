@@ -128,31 +128,44 @@ public class Humain {
         
     }
     
-    public void acheterBoisson(Commande commande, Barman barman){
-        
-            if (barman.verifBoisson(commande)){
+    public void acheterBoisson(Commande commande, Barman barman){      
+                            
+            barman.chercherBoisson(commande);
                 
-                barman.chercherBoisson(commande);
-                
-                payerBoisson(commande, barman);
-                
-            }          
-       
+            payerBoisson(commande, barman);               
+                           
     }
     
     public void consommer(ArrayList<Humain> listeConsomateur, Barman barman){
         
         Commande commande = new Commande();
         
+        Commande commandeDispo = new Commande();
+        
+        Commande commandeNonDispo = new Commande();
+        
         commande = creationCommande(listeConsomateur);
                 
-        if (barman.verifBoisson(commande)){
+        Commande tabCommande[] = new Commande[2];
+        
+        tabCommande = barman.verifBoisson(commande);
+        
+        commandeDispo = tabCommande[0];
+        
+        commandeNonDispo = tabCommande[1];
+        
+        
+        
+        
+        if (commandeNonDispo.getCommande().size() == 0){
             
-            if (verifPrix(commande)){
+            System.out.println("Ok j'ai Tout !");
+            
+            if (verifPrix(commandeDispo)){
                 
-                acheterBoisson(commande, barman);
+                acheterBoisson(commandeDispo, barman);
                 
-                boire(commande);
+                boire(commandeDispo);
                 
             }
             
@@ -160,17 +173,80 @@ public class Humain {
                 
                 System.out.println("Pas assez d'argent !!");
                 
-            }
-            
+            } 
             
         }
-        
         
         else{
             
-            System.out.println("Pas en stock !!");
+            System.out.println("Désolé J'ai pas de : " + commandeNonDispo + "Mais j'ai bien : " + commandeDispo);
+            
+            Commande commandeBis = new Commande();
+            
+            commandeBis = creationCommandeBis(commandeNonDispo);
+            
+            Commande commandeNew = new Commande();
+            
+            commandeNew.getCommande().addAll(commandeBis.getCommande());
+            commandeNew.getCommande().addAll(commandeDispo.getCommande());
+            
+        
+            Commande commandeDispoBis = new Commande();
+        
+            Commande commandeNonDispoBis = new Commande();        
+                            
+            Commande tabCommandeBis[] = new Commande[2];
+        
+            tabCommandeBis = barman.verifBoisson(commandeNew);
+        
+            commandeDispoBis = tabCommandeBis[0];
+        
+            commandeNonDispoBis = tabCommandeBis[1];
+            
+            System.out.println("Bon alors mets moi :" + commandeNew);
+            
+            if (commandeNonDispoBis.getCommande().size() == 0){
+            
+                System.out.println("Ok j'ai Tout !");
+            
+                if (verifPrix(commandeDispoBis)){
+                
+                    acheterBoisson(commandeDispoBis, barman);
+                
+                    boire(commandeDispoBis);
+                
+                }
+            
+                else{
+                
+                    System.out.println("Pas assez d'argent !!");
+                
+                } 
+                
+            }
+                
+                
+            else{
+                    System.out.println("Désolé J'ai pas de : " + commandeNonDispoBis + "Mais j'ai bien : " + commandeDispoBis);
+                    
+                    System.out.println("Ok Tant Pis");
+                        
+                        
+                        }
+            
+        
+            
+            
+            
+            
+            
+            
             
         }
+            
+                
+        
+        
         
         
         
@@ -237,6 +313,77 @@ public class Humain {
          
     }
        
+    public Commande creationCommandeBis(Commande commande){
+        
+        ArrayList<CommandeBoisson> listeCommande = new ArrayList<>();
+        
+        ArrayList<Humain> listeConsomateur = new ArrayList<>();
+        
+        for (int i = 0; i < commande.getCommande().size(); i++){
+            
+            for (int j = 0; j < commande.getCommande().get(i).getListeConsomateur().size(); j++){
+            
+            listeConsomateur.add(commande.getCommande().get(i).getListeConsomateur().get(j));
+            
+            }
+        }
+                        
+        CommandeBoisson commandeBoissonTemp = new CommandeBoisson();
+        
+        for (int i = 0; i < listeConsomateur.size(); i++){           
+            
+            
+            Class<?> classe = listeConsomateur.get(i).getClass();            
+            
+            
+            if (classe == Client.class){
+                
+                CommandeBoisson commandeBoissonClientTemp = new CommandeBoisson();
+                
+                commandeBoissonClientTemp.setCommandeBoissonBis((Client) listeConsomateur.get(i));
+                
+                commandeBoissonTemp = commandeBoissonClientTemp.clone();
+                
+            }
+            
+            if (classe == Serveur.class){
+                
+                CommandeBoisson commandeBoissonServeurTemp = new CommandeBoisson();
+                
+                commandeBoissonServeurTemp.setCommandeBoissonBis((Client) listeConsomateur.get(i));
+                
+                commandeBoissonTemp = commandeBoissonServeurTemp.clone();
+                
+            }
+            
+            if (classe == Barman.class){
+                
+                CommandeBoisson commandeBoissonBarmanTemp = new CommandeBoisson();
+                
+                commandeBoissonBarmanTemp.setCommandeBoissonBis((Client) listeConsomateur.get(i));
+                
+                commandeBoissonTemp = commandeBoissonBarmanTemp.clone();
+                
+            }
+            
+            if (classe == Patronne.class){
+                
+                CommandeBoisson commandeBoissonPatronneTemp = new CommandeBoisson();
+                
+                commandeBoissonPatronneTemp.setCommandeBoissonBis((Client) listeConsomateur.get(i));
+                
+                commandeBoissonTemp = commandeBoissonPatronneTemp.clone();
+                
+            }            
+            
+            
+            listeCommande.add(commandeBoissonTemp);
+            
+        }
+        
+        return new Commande(listeCommande);
+         
+    }
     
     
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -316,5 +463,6 @@ public class Humain {
         return "Surnom : " + surnom + " | Prenom : " + prenom + " | Porte Monnaie : " + porteMonnaie + " | Popularite : " + popularite + " | Cri : " + cri;
         
     }
+    
     
 }

@@ -122,6 +122,52 @@ public class CommandeBoisson {
         
     }
     
+    public void setCommandeBoissonBis(Client client){   
+        
+        
+        listeConsomateur = new ArrayList<>();
+        
+        listeConsomateur.add(client);
+        
+        stockBoisson = new StockBoisson(client.getBoissonFavBis(), 1); 
+        
+    }
+    
+    public void setCommandeBoissonBis(Serveur serveur){
+        
+        listeConsomateur = new ArrayList<>();
+        
+        listeConsomateur.add(serveur);
+        
+        Boisson eau = new Boisson("eau", 0, 0, 0);
+        
+        stockBoisson = new StockBoisson(eau, 0);
+        
+    }
+    
+    public void setCommandeBoissonBis(Patronne patronne){
+        
+        listeConsomateur = new ArrayList<>();
+        
+        listeConsomateur.add(patronne);
+        
+        stockBoisson = new StockBoisson(patronne.getBoissonFavBis(), 1);
+        
+    }
+    
+    public void setCommandeBoissonBis(Barman barman){
+        
+        listeConsomateur = new ArrayList<>();
+        
+        listeConsomateur.add(barman);
+        
+        Boisson eau = new Boisson("eau", 0, 0, 0);
+        
+        
+        stockBoisson = new StockBoisson(eau, 1);      
+                
+    }
+    
     
     public void setStockBoisson(StockBoisson pStockBoisson){
         

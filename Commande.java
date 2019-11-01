@@ -71,6 +71,7 @@ public class Commande {
         
     }
     
+    
     public void setCommande(ArrayList<CommandeBoisson> pCommande){
         
         commande = (ArrayList<CommandeBoisson>) pCommande.clone();

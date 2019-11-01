@@ -23,7 +23,7 @@ public class Pub {
         Boisson fanta = new Boisson("fanta", 0, 1, 3);
         StockBoisson stockfanta = new StockBoisson(fanta, 12);
         Boisson chimaybleue = new Boisson("chimaybleu", 9, 1, 3);
-        StockBoisson stockchimaybleue = new StockBoisson(chimaybleue, 25);
+        StockBoisson stockchimaybleue = new StockBoisson(chimaybleue, 1);
         
         ArrayList<StockBoisson> liste = new ArrayList<>();
         

@@ -46,41 +46,82 @@ public class Barman extends Humain{
         
     }
     
-    public boolean verifBoisson(StockBoisson boisson){
+    public int verifBoisson(StockBoisson boisson){
                       
-        boolean boissonDispo = false;
+        int boissonNonDispo = 0;
         
         for (int i = 0; i < stock.getStock().size(); i++){
-            
-            if (stock.getStock().get(i).getBoisson() == boisson.getBoisson() && stock.getStock().get(i).getNombre() > boisson.getNombre()){
+                                    
+            if (stock.getStock().get(i).getBoisson().equals(boisson.getBoisson()) && stock.getStock().get(i).getNombre() < boisson.getNombre()){
                 
-                boissonDispo = true;
+                boissonNonDispo++;
                 
             }
             
         }
         
-        return boissonDispo;
+        return boissonNonDispo;
         
     }
     
-    public boolean verifBoisson(Commande commande){
+    public Commande[] verifBoisson(Commande commande){
         
-        boolean verifBoisson = true;
+        Commande tabVerif[] = new Commande[2];
         
-        for (int i = 0; i < commande.getCommande().size(); i++){
+        Commande commandeDispo = new Commande();
+        
+        commandeDispo = commande;
+        
+        Commande commandeNonDispo = new Commande();
+        
+        for (int i = 0; i < commande.getCommande().size(); i++){         
+                        
+            CommandeBoisson commandeBoissonNonDispo = new CommandeBoisson();           
+                    
+            int boissonNonDispo = verifBoisson(commande.getCommande().get(i).getStockBoisson());
+               
+            if (boissonNonDispo > 0){
             
-            if (!this.verifBoisson(commande.getCommande().get(i).getStockBoisson())){
+                commandeBoissonNonDispo.getStockBoisson().setBoisson(commande.getCommande().get(i).getStockBoisson().getBoisson().clone());
+            
+            }
+             
+            for(int j = 0; j < boissonNonDispo; j++){                
                 
-                verifBoisson = false;                
+                commandeBoissonNonDispo.getStockBoisson().setNombre(commandeBoissonNonDispo.getStockBoisson().getNombre() + 1);
                 
-            }            
+                commandeBoissonNonDispo.getListeConsomateur().add(commandeDispo.getCommande().get(i).getListeConsomateur().get(0));
+                
+                commandeDispo.getCommande().get(i).getStockBoisson().setNombre(commandeDispo.getCommande().get(i).getStockBoisson().getNombre() - 1);
+                
+                commandeDispo.getCommande().get(i).getListeConsomateur().remove(0);    
+               
+                
+            }        
+            
+            if (commandeDispo.getCommande().get(i).getStockBoisson().getNombre() == 0){
+                
+                commandeDispo.getCommande().remove(i);
+                
+            }
+            
+            if (commandeBoissonNonDispo.getStockBoisson().getNombre() > 0){
+            
+                commandeNonDispo.getCommande().add(commandeBoissonNonDispo);
+            
+            }
             
         }     
-       
-        return verifBoisson;
         
-    }
+        tabVerif[0] = commandeDispo;
+        
+        tabVerif[1] = commandeNonDispo;
+        
+        
+        
+        return tabVerif;
+        
+    } 
     
     
     public void chercherBoisson(StockBoisson boisson){
