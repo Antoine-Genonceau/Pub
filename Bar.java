@@ -68,6 +68,7 @@ public class Bar {
         
         pBarman.setCaisse(caisse);
         pBarman.setStock(stock);
+        pBarman.setPatronne(patronne);
         
         barman = pBarman;
         

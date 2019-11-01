@@ -18,11 +18,29 @@ public class Pub {
      */
     public static void main(String[] args) {
         
-        Boisson coca = new Boisson("Coca", 0, 2, 5);
-        StockBoisson cocacola = new StockBoisson(coca, 3);
-        Boisson fanta = new Boisson("fanta", 0, 1, 3);
-        StockBoisson stockfanta = new StockBoisson(fanta, 12);
         Boisson chimaybleue = new Boisson("chimaybleu", 9, 1, 3);
+        Boisson coca = new Boisson("Coca", 0, 2, 5);
+        Boisson fanta = new Boisson("fanta", 0, 1, 3);
+        Caisse caisseFournisseur = new Caisse(3000);
+        
+        
+        StockBoisson cocacolaFournisseur = new StockBoisson(coca, 3);
+        StockBoisson stockfantaFournisseur = new StockBoisson(fanta, 12);        
+        StockBoisson stockchimaybleueFournisseur = new StockBoisson(chimaybleue, 1);
+        
+        ArrayList<StockBoisson> listeFournisseur = new ArrayList<>();
+        
+        listeFournisseur.add(cocacolaFournisseur);
+        listeFournisseur.add(stockfantaFournisseur);
+        listeFournisseur.add(stockchimaybleueFournisseur);
+        
+        Stock stockFournisseur = new Stock(listeFournisseur);
+        
+        Fournisseur jeanclaude = new Fournisseur("JC", "Jean-Claude", 500, 200, "Santée !", stockFournisseur, caisseFournisseur);
+        
+        
+        StockBoisson cocacola = new StockBoisson(coca, 3);
+        StockBoisson stockfanta = new StockBoisson(fanta, 12);        
         StockBoisson stockchimaybleue = new StockBoisson(chimaybleue, 1);
         
         ArrayList<StockBoisson> liste = new ArrayList<>();
@@ -68,7 +86,7 @@ public class Pub {
         garderie.entreeClient(antoine);
         garderie.entreeClient(pierremaxime);
         
-        
+         
         
         System.out.println(garderie);
         
@@ -81,8 +99,21 @@ public class Pub {
         amisToine.add(mathieu);
         amisToine.add(michelle);
         
+            
+        
+        
         
         antoine.consommer(amisToine, bruno);
+        
+        
+        
+        System.out.println(garderie);
+        
+        Stock stockCommande = bruno.getStock().clone();
+        
+        System.out.println(stockCommande);
+        
+        bruno.envoieCommandeFournisseur(stockCommande, jeanclaude);
         
         System.out.println(garderie);
         

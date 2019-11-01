@@ -15,12 +15,14 @@ public class Barman extends Humain{
     
     private Caisse caisse;
     private Stock stock;
+    private Patronne patronne;
     
     public Barman(){
     
         super(); 
         stock = new Stock();
         caisse = new Caisse();
+        patronne = new Patronne();
     
 }
     
@@ -30,6 +32,7 @@ public class Barman extends Humain{
         super(pSurnom, pPrenom, pPorteMonnaie, pPopularite, pCri); 
         stock = new Stock();
         caisse = new Caisse();
+        patronne = new Patronne();
                 
     }
     
@@ -152,6 +155,13 @@ public class Barman extends Humain{
        
     }
     
+    public void envoieCommandeFournisseur(Stock pStock, Fournisseur fournisseur){
+        
+        
+        fournisseur.commande(pStock, stock, patronne);        
+        
+        
+    }
     
     
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -171,6 +181,12 @@ public class Barman extends Humain{
         
     }
     
+    public void setPatronne(Patronne pPatronne){
+        
+        patronne = pPatronne;
+        
+    }
+    
     public Caisse getCaisse(){
         
         return caisse;
@@ -182,6 +198,13 @@ public class Barman extends Humain{
         return stock;
         
     }
+    
+    public Patronne getPatronne(){
+        
+        return patronne;
+        
+    }
+    
     @Override
     public Barman clone(){        
         
