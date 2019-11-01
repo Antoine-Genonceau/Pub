@@ -54,7 +54,7 @@ public class Barman extends Humain{
                                     
             if (stock.getStock().get(i).getBoisson().equals(boisson.getBoisson()) && stock.getStock().get(i).getNombre() < boisson.getNombre()){
                 
-                boissonNonDispo++;
+                boissonNonDispo = boisson.getNombre() - stock.getStock().get(i).getNombre();
                 
             }
             
@@ -76,7 +76,8 @@ public class Barman extends Humain{
         
         for (int i = 0; i < commande.getCommande().size(); i++){         
                         
-            CommandeBoisson commandeBoissonNonDispo = new CommandeBoisson();           
+            CommandeBoisson commandeBoissonNonDispo = new CommandeBoisson();         
+            
                     
             int boissonNonDispo = verifBoisson(commande.getCommande().get(i).getStockBoisson());
                
@@ -85,7 +86,7 @@ public class Barman extends Humain{
                 commandeBoissonNonDispo.getStockBoisson().setBoisson(commande.getCommande().get(i).getStockBoisson().getBoisson().clone());
             
             }
-             
+           
             for(int j = 0; j < boissonNonDispo; j++){                
                 
                 commandeBoissonNonDispo.getStockBoisson().setNombre(commandeBoissonNonDispo.getStockBoisson().getNombre() + 1);

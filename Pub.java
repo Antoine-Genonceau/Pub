@@ -76,6 +76,11 @@ public class Pub {
                
         amisToine.add(antoine);
         amisToine.add(pierremaxime);
+        amisToine.add(bruno);
+        amisToine.add(gabrielle);
+        amisToine.add(mathieu);
+        amisToine.add(michelle);
+        
         
         antoine.consommer(amisToine, bruno);
         

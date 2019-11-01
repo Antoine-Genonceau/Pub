@@ -278,7 +278,7 @@ public class Humain {
                 
                 CommandeBoisson commandeBoissonServeurTemp = new CommandeBoisson();
                 
-                commandeBoissonServeurTemp.setCommandeBoisson((Client) listeConsomateur.get(i));
+                commandeBoissonServeurTemp.setCommandeBoisson((Serveur) listeConsomateur.get(i));
                 
                 commandeBoissonTemp = commandeBoissonServeurTemp.clone();
                 
@@ -288,7 +288,7 @@ public class Humain {
                 
                 CommandeBoisson commandeBoissonBarmanTemp = new CommandeBoisson();
                 
-                commandeBoissonBarmanTemp.setCommandeBoisson((Client) listeConsomateur.get(i));
+                commandeBoissonBarmanTemp.setCommandeBoisson((Barman) listeConsomateur.get(i));
                 
                 commandeBoissonTemp = commandeBoissonBarmanTemp.clone();
                 
@@ -298,7 +298,7 @@ public class Humain {
                 
                 CommandeBoisson commandeBoissonPatronneTemp = new CommandeBoisson();
                 
-                commandeBoissonPatronneTemp.setCommandeBoisson((Client) listeConsomateur.get(i));
+                commandeBoissonPatronneTemp.setCommandeBoisson((Patronne) listeConsomateur.get(i));
                 
                 commandeBoissonTemp = commandeBoissonPatronneTemp.clone();
                 
@@ -350,7 +350,7 @@ public class Humain {
                 
                 CommandeBoisson commandeBoissonServeurTemp = new CommandeBoisson();
                 
-                commandeBoissonServeurTemp.setCommandeBoissonBis((Client) listeConsomateur.get(i));
+                commandeBoissonServeurTemp.setCommandeBoissonBis((Serveur) listeConsomateur.get(i));
                 
                 commandeBoissonTemp = commandeBoissonServeurTemp.clone();
                 
@@ -360,7 +360,7 @@ public class Humain {
                 
                 CommandeBoisson commandeBoissonBarmanTemp = new CommandeBoisson();
                 
-                commandeBoissonBarmanTemp.setCommandeBoissonBis((Client) listeConsomateur.get(i));
+                commandeBoissonBarmanTemp.setCommandeBoissonBis((Barman) listeConsomateur.get(i));
                 
                 commandeBoissonTemp = commandeBoissonBarmanTemp.clone();
                 
@@ -370,7 +370,7 @@ public class Humain {
                 
                 CommandeBoisson commandeBoissonPatronneTemp = new CommandeBoisson();
                 
-                commandeBoissonPatronneTemp.setCommandeBoissonBis((Client) listeConsomateur.get(i));
+                commandeBoissonPatronneTemp.setCommandeBoissonBis((Patronne) listeConsomateur.get(i));
                 
                 commandeBoissonTemp = commandeBoissonPatronneTemp.clone();
                 

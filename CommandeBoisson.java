@@ -209,7 +209,21 @@ public class CommandeBoisson {
     @Override
     public String toString(){
         
-        return "Commande de : "+ stockBoisson.getNombre() + " " + stockBoisson.getBoisson() + " Pour " + listeConsomateur.toString();
+        return "Commande de : "+ stockBoisson.getNombre() + " " + stockBoisson.getBoisson().getNom() + " Pour " + toStringConsomateur(listeConsomateur);
+        
+    }
+    
+    public String toStringConsomateur(ArrayList<Humain> humain){
+        
+        String string = new String();
+        
+        for (int i = 0; i<humain.size(); i++){
+            
+            string = string + ", " + humain.get(i).getSurnom();
+            
+        }
+        
+        return string;
         
     }
 }
