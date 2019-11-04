@@ -38,7 +38,7 @@ public class Fournisseur extends Humain{
     }
     
     public void commande(Stock stockDemande, Stock stockApprovision, Patronne pPatronne){
-        
+                
         Stock nonDispo = new Stock();
         
         Stock correspondantDispo = new Stock();
@@ -60,8 +60,10 @@ public class Fournisseur extends Humain{
             }            
             
         }
-        
+                
         for (int i = 0; i < stockDemande.getStock().size(); i++){
+            
+            
             
             boolean done = false;
             
@@ -72,12 +74,15 @@ public class Fournisseur extends Humain{
                     
                     int diff = correspondantDispo.getStock().get(i).getNombre() - stockDemande.getStock().get(i).getNombre();
                     
+                    System.out.println("boisson demande: " + stockDemande.getStock().get(i) + "   Boisson stock Fourni: " + correspondantDispo.getStock().get(i) + "   Boisson bar: " +stockApprovision.getStock().get(j) + "   Diff: " + diff);
+                    
                     if (diff >= 0){                  
                         
                         stockApprovision.getStock().get(j).setNombre(stockApprovision.getStock().get(j).getNombre() + stockDemande.getStock().get(i).getNombre());
                         
                         correspondantDispo.getStock().get(i).setNombre(diff);
                         
+                       
                     }
                     
                     else{
@@ -94,9 +99,11 @@ public class Fournisseur extends Humain{
                         
                         else{
                         
-                        stockApprovision.getStock().get(j).setNombre(stockApprovision.getStock().get(j).getNombre() + stockDemande.getStock().get(i).getNombre() - diff);
+                        stockApprovision.getStock().get(j).setNombre(stockApprovision.getStock().get(j).getNombre() + stock.getStock().get(i).getNombre());
                         
-                        correspondantDispo.getStock().get(i).setNombre(0);                                 
+                        correspondantDispo.getStock().get(i).setNombre(0); 
+                        
+                        stockBoissonNonDispo.setNombre(- diff);
                                                 
                         }
                         
@@ -157,10 +164,12 @@ public class Fournisseur extends Humain{
                 
             
             
-            
+           
             
         }
         
+
+                
         for (int i = 0; i < stock.getStock().size(); i++){
             
             for (int j  = 0; j < correspondantDispo.getStock().size(); j++){

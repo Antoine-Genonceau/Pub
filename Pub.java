@@ -45,7 +45,6 @@ public class Pub {
         
         ArrayList<StockBoisson> liste = new ArrayList<>();
         
-        liste.add(cocacola);
         liste.add(stockfanta);
         liste.add(stockchimaybleue);
         
@@ -103,19 +102,20 @@ public class Pub {
         
         
         
-        antoine.consommer(amisToine, bruno);
-        
-        
-        
-        System.out.println(garderie);
+        antoine.consommer(amisToine, gabrielle);
         
         Stock stockCommande = bruno.getStock().clone();
         
-        System.out.println(stockCommande);
+        stockCommande.getStock().add(cocacola);
+        
+        stockCommande.getStock().get(2).setNombre(2);
+        
         
         bruno.envoieCommandeFournisseur(stockCommande, jeanclaude);
         
         System.out.println(garderie);
+        
+        System.out.println("caisse jc: " + jeanclaude.getCaisse());
         
         
         

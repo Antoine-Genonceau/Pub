@@ -26,10 +26,18 @@ public class Patronne extends Client{
     
     public void receptionFournisseur(Stock stockNonDispo, Caisse caisse, int prix){
         
+        System.out.println("stockNonDispo" + stockNonDispo);
+        
         this.setPorteMonnaie(this.getPorteMonnaie() - prix);
         
         caisse.setLiquidite(caisse.getLiquidite() + prix);
         
+    }
+    
+    public void acheterBoisson(Commande commande, Barman barman){      
+                            
+            barman.chercherBoisson(commande);
+            
     }
     
     @Override

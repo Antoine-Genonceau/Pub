@@ -41,7 +41,15 @@ public class Stock {
     @Override
     public Stock clone(){
         
-        return new Stock((ArrayList<StockBoisson>) stock.clone());
+        ArrayList<StockBoisson> list = new ArrayList<>();
+        
+        for (int i = 0; i<stock.size(); i++){
+        
+        list.add(stock.get(i).clone());
+        
+        }               
+        
+        return new Stock(list);
         
     }
     

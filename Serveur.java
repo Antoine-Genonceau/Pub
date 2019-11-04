@@ -53,6 +53,12 @@ public class Serveur extends Humain{
         
     }
     
+    public Barman getBarman(){
+        
+        return barman;
+        
+    }
+    
     public SigneServeur getSigne(){
         
         return signe;
