@@ -21,6 +21,7 @@ public class Bar {
     private Barman barman;
     private ArrayList<Serveur> serveurs;
     private ArrayList<Client> clients;
+    private BlackList blacklist;
     
     public Bar(){
         
@@ -32,6 +33,7 @@ public class Bar {
         barman = new Barman();
         serveurs = new ArrayList<>();
         clients = new ArrayList<>();
+        blacklist = new BlackList();
         
         
         
@@ -47,11 +49,12 @@ public class Bar {
         barman = new Barman();
         serveurs = new ArrayList<>();
         clients = new ArrayList<>();
+        blacklist = new BlackList();
         
     }
     
     /*Uniquement pour le clonage*/
-    public Bar(String pNom, ArrayList<Table> pTables, Caisse pCaisse, Stock pStock, Patronne pPatronne, Barman pBarman, ArrayList<Serveur> pServeurs, ArrayList<Client> pClients){
+    public Bar(String pNom, ArrayList<Table> pTables, Caisse pCaisse, Stock pStock, Patronne pPatronne, Barman pBarman, ArrayList<Serveur> pServeurs, ArrayList<Client> pClients, BlackList pBlackList){
         
         nom = pNom;
         tables = pTables;
@@ -61,6 +64,13 @@ public class Bar {
         barman = pBarman;
         serveurs = pServeurs;
         clients = pClients;
+        blacklist = pBlackList;
+        
+    }
+    
+    public void achatPatronne(Patronne patronne){
+        
+        patronne.setBar(this);
         
     }
     
@@ -69,6 +79,7 @@ public class Bar {
         pBarman.setCaisse(caisse);
         pBarman.setStock(stock);
         pBarman.setPatronne(patronne);
+        pBarman.setBlackList(blacklist);
         
         barman = pBarman;
         
@@ -85,6 +96,12 @@ public class Bar {
     public void entreeClient(Client pClient){
         
         clients.add(pClient);
+        
+    }
+    
+    public void virerClient(Client pClient, Serveur pServeur){
+        
+        clients.remove(pClient);
         
     }
     
@@ -184,7 +201,7 @@ public class Bar {
     @Override
     public Bar clone(){
         
-        return new Bar(nom, (ArrayList<Table>) tables.clone(), caisse.clone(), stock.clone(), patronne.clone(), barman.clone(), (ArrayList<Serveur>) serveurs.clone(), (ArrayList<Client>) clients.clone());
+        return new Bar(nom, (ArrayList<Table>) tables.clone(), caisse.clone(), stock.clone(), patronne.clone(), barman.clone(), (ArrayList<Serveur>) serveurs.clone(), (ArrayList<Client>) clients.clone(), blacklist);
         
     }
     

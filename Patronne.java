@@ -5,11 +5,15 @@
  */
 package pub;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Toine
  */
 public class Patronne extends Client{
+    
+    private Bar bar;
     
     public Patronne(){
     
@@ -38,6 +42,46 @@ public class Patronne extends Client{
                             
             barman.chercherBoisson(commande);
             
+    }
+    
+    public void exclureClient(Client client){
+        
+        boolean done = false;
+        
+        int i = 0;
+        
+        while(!done && i < bar.getServeurs().size()){
+            
+            if (bar.getServeurs().get(i).getSigne().getValeur() == "gros"){
+                
+                bar.virerClient(client, bar.getServeurs().get(i));
+                
+            }           
+ 
+            i = i + 1;            
+        }           
+        
+    }
+    
+    public ArrayList<Humain> reclamationTG(){
+        
+        ArrayList<Humain> liste = new ArrayList<>();
+        
+                
+        for (int i = 0; i < bar.getClients().size(); i++){
+            
+            liste.add(bar.getClients().get(i));
+            
+        }
+        
+        return liste;
+        
+    }
+    
+    public void setBar(Bar pBar){
+        
+        bar = pBar;
+        
     }
     
     @Override

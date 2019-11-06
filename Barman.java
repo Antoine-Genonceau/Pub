@@ -16,6 +16,7 @@ public class Barman extends Humain{
     private Caisse caisse;
     private Stock stock;
     private Patronne patronne;
+    private BlackList blacklist;
     
     public Barman(){
     
@@ -23,6 +24,7 @@ public class Barman extends Humain{
         stock = new Stock();
         caisse = new Caisse();
         patronne = new Patronne();
+        blacklist = new BlackList();
     
 }
     
@@ -33,6 +35,7 @@ public class Barman extends Humain{
         stock = new Stock();
         caisse = new Caisse();
         patronne = new Patronne();
+        blacklist = new BlackList();
                 
     }
     
@@ -80,6 +83,85 @@ public class Barman extends Humain{
         return boissonNonDispo;
         
     }
+    
+    public boolean verifBlackListed(Humain humain){
+        
+        boolean blacklisted = false;
+        Class<?> classe = humain.getClass();          
+                
+        if (classe == Client.class){
+            
+            for (int i = 0; i < blacklist.getListeNoire().size(); i++){
+                
+                if (humain.equals(blacklist.getListeNoire().get(i).getClient())){
+                    
+                    blacklisted = true;
+                    
+                }
+                
+            }
+            
+        }      
+        
+        return blacklisted;
+        
+    }
+    
+    public ArrayList<Humain> reclamationTG(){
+        
+        return patronne.reclamationTG();        
+        
+    }
+    
+    public void prevenirPatronne(Client client){
+        
+        patronne.exclureClient(client);
+        
+    }
+    
+    public void rappelClient(Client client){
+        
+        for (int i = 0; i < blacklist.getListeNoire().size(); i++){
+            
+            if (blacklist.getListeNoire().get(i).getClient().equals(client)){
+                
+                blacklist.getListeNoire().get(i).setRappel(blacklist.getListeNoire().get(i).getRappel() + 1);
+                
+                /*prevenir patronne si > 3*/
+                
+            }
+            
+        }
+        
+        
+    }
+    
+    public Commande verifBlackList(Commande commande){
+        
+        for (int i = 0; i < commande.getCommande().size(); i++){
+            
+            for (int j = 0; j < commande.getCommande().get(i).getListeConsomateur().size(); j++){
+                
+                if (verifBlackListed(commande.getCommande().get(i).getListeConsomateur().get(j))){
+                    
+                    System.out.println(commande.getCommande().get(i).getListeConsomateur().get(j) + " ne peut plus boire");
+                    
+                    commande.getCommande().get(i).getListeConsomateur().remove(j);
+                    
+                    commande.getCommande().get(i).getStockBoisson().setNombre(commande.getCommande().get(i).getStockBoisson().getNombre() - 1);
+                    
+                    rappelClient((Client) commande.getCommande().get(i).getListeConsomateur().get(j));
+                    
+                }
+                
+            }
+            
+        }
+       
+        return commande;
+        
+    }
+    
     
     public Commande[] verifBoisson(Commande commande){
         
@@ -181,6 +263,13 @@ public class Barman extends Humain{
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////***********Fonctions de Base*************//////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    public void setBlackList(BlackList pBlackList){
+        
+        
+        blacklist = pBlackList;
+        
+    }
     
     public void setCaisse(Caisse pCaisse){
         

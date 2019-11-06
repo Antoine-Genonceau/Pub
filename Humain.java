@@ -162,15 +162,6 @@ public class Humain {
         
         commandeNonDispo = tabCommande[1];
         
-        if(commandeDispo.getCommande().size() == 0){
-            
-            System.out.println("Désolé j'ai rien de tout ça, coco");
-            
-            System.out.println("Ok tant pis");
-            
-        }
-        
-        
         if (commandeNonDispo.getCommande().size() == 0){
             
             System.out.println("Ok j'ai Tout !");
@@ -241,23 +232,34 @@ public class Humain {
                 
                 
             else{
-                    System.out.println("Désolé J'ai pas de : " + commandeNonDispoBis + "Mais j'ai bien : " + commandeDispoBis);
-                    
-                    System.out.println("Ok mets moi juste : " + commandeDispoBis);
-                    
-                    if (verifPrix(commandeDispoBis)){
-                
-                        acheterBoisson(commandeDispoBis, serveur);
-                
-                        boire(commandeDispoBis);
-                
-                    }
+                                        
+                    if(commandeDispoBis.getCommande().size() == 0){
             
-                    else{
+                        System.out.println("Désolé j'ai rien de tout ça, coco");
+            
+                         System.out.println("Ok tant pis");
+            
+                        }
+                    
+                    else
+                        
+                        System.out.println("Désolé J'ai pas de : " + commandeNonDispoBis + "Mais j'ai bien : " + commandeDispoBis);
+                    
+                        System.out.println("Ok mets moi juste : " + commandeDispoBis);
+                    
+                        if (verifPrix(commandeDispoBis)){
                 
-                        System.out.println("Pas assez d'argent !!");
+                            acheterBoisson(commandeDispoBis, serveur.getBarman());
                 
-                    } 
+                            boire(commandeDispoBis);
+                
+                        }
+            
+                        else{
+                
+                            System.out.println("Pas assez d'argent !!");
+                
+                        } 
                         
                         
                         }
@@ -284,15 +286,8 @@ public class Humain {
         
         commandeNonDispo = tabCommande[1];
         
-        if(commandeDispo.getCommande().size() == 0){
-            
-            System.out.println("Désolé j'ai rien de tout ça, coco");
-            
-            System.out.println("Ok tant pis");
-            
-        }
         
-        
+                
         if (commandeNonDispo.getCommande().size() == 0){
             
             System.out.println("Ok j'ai Tout !");
@@ -363,26 +358,38 @@ public class Humain {
                 
                 
             else{
-                    System.out.println("Désolé J'ai pas de : " + commandeNonDispoBis + "Mais j'ai bien : " + commandeDispoBis);
-                    
-                    System.out.println("Ok mets moi juste : " + commandeDispoBis);
-                    
-                    if (verifPrix(commandeDispoBis)){
-                
-                        acheterBoisson(commandeDispoBis, barman);
-                
-                        boire(commandeDispoBis);
-                
-                    }
+                                        
+                    if(commandeDispoBis.getCommande().size() == 0){
             
-                    else{
+                        System.out.println("Désolé j'ai rien de tout ça, coco");
+            
+                         System.out.println("Ok tant pis");
+            
+                        }
+                    
+                    else
+                        
+                        System.out.println("Désolé J'ai pas de : " + commandeNonDispoBis + "Mais j'ai bien : " + commandeDispoBis);
+                    
+                        System.out.println("Ok mets moi juste : " + commandeDispoBis);
+                    
+                        if (verifPrix(commandeDispoBis)){
                 
-                        System.out.println("Pas assez d'argent !!");
+                            acheterBoisson(commandeDispoBis, barman);
                 
-                    } 
+                            boire(commandeDispoBis);
+                
+                        }
+            
+                        else{
+                
+                            System.out.println("Pas assez d'argent !!");
+                
+                        } 
                         
                         
                         }
+                }
             
         
             
@@ -399,6 +406,16 @@ public class Humain {
         
         
         
+        
+    
+    
+    public void tourneeGenerale(Barman barman){
+        
+        ArrayList<Humain> listeConsomateur = new ArrayList<>();
+        
+        listeConsomateur = barman.reclamationTG();   
+        
+        consommer(listeConsomateur, barman);
         
     }
 

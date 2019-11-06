@@ -79,6 +79,7 @@ public class Pub {
         
         Bar garderie = new Bar("La Garderie", listeTables, caisse, stock, michelle);
         
+        garderie.achatPatronne(michelle);
         garderie.embauche(bruno);
         garderie.embauche(mathieu);
         garderie.embauche(gabrielle);
@@ -117,9 +118,10 @@ public class Pub {
         
         System.out.println("caisse jc: " + jeanclaude.getCaisse());
         
+               
+        antoine.tourneeGenerale(bruno);
         
-        
-        
+        System.out.println(garderie);
         
         
         
