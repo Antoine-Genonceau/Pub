@@ -5,6 +5,8 @@
  */
 package pub;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Toine
@@ -13,11 +15,13 @@ public class Table {
     
     private int nombrePlacesLibres;
     private int numero;
+    private ArrayList<Humain> personnes;
     
     public Table(){
                 
-        nombrePlacesLibres = 0;
+        nombrePlacesLibres = 100;
         numero = 0;           /*les tables numéro 0 doivent etre inutilisable*/
+        personnes = new ArrayList<>();
         
     }
     
@@ -25,6 +29,7 @@ public class Table {
                 
         nombrePlacesLibres = pNombrePlacesLibres;
         numero = pNumero;
+        personnes = new ArrayList<>();
     }
     
     public void setNumero(int pNumero){
@@ -47,6 +52,11 @@ public class Table {
     public int getNumero(){
         
         return numero;
+    }
+    
+    public ArrayList<Humain> getPersonnes(){
+        
+        return personnes;
     }
     
     @Override

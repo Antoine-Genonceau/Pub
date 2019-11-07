@@ -121,13 +121,20 @@ public class Barman extends Humain{
     
     public void rappelClient(Client client){
         
+        
+        
         for (int i = 0; i < blacklist.getListeNoire().size(); i++){
             
             if (blacklist.getListeNoire().get(i).getClient().equals(client)){
                 
                 blacklist.getListeNoire().get(i).setRappel(blacklist.getListeNoire().get(i).getRappel() + 1);
                 
-                /*prevenir patronne si > 3*/
+                if (blacklist.getListeNoire().get(i).getRappel() > 3){
+                    
+                    prevenirPatronne(client);
+                    
+                                        
+                }
                 
             }
             
@@ -146,11 +153,11 @@ public class Barman extends Humain{
                     
                     System.out.println(commande.getCommande().get(i).getListeConsomateur().get(j) + " ne peut plus boire");
                     
+                    rappelClient((Client) commande.getCommande().get(i).getListeConsomateur().get(j));
+                    
                     commande.getCommande().get(i).getListeConsomateur().remove(j);
                     
                     commande.getCommande().get(i).getStockBoisson().setNombre(commande.getCommande().get(i).getStockBoisson().getNombre() - 1);
-                    
-                    rappelClient((Client) commande.getCommande().get(i).getListeConsomateur().get(j));
                     
                 }
                 

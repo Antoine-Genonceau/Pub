@@ -16,6 +16,7 @@ public class Client extends Humain{
     private int niveauAlcool;  
     private SigneClient signe;
     
+    
     public Client(){
     
         super();
@@ -24,7 +25,7 @@ public class Client extends Humain{
         boissonFavBis = new Boisson();
         niveauAlcool = 0;    
         signe = SigneClient.tShirtBlanc;
-    
+        
 }
     
     
@@ -36,6 +37,7 @@ public class Client extends Humain{
         boissonFavBis = pBoissonFavBis;
         niveauAlcool = pNiveauAlcool; 
         signe = pSigne;
+        
                 
     }
     
@@ -87,6 +89,7 @@ public class Client extends Humain{
         return boissonFav;
     }
     
+    
     public void setSigne(SigneClient pSigne){
         
         signe = pSigne;
@@ -132,6 +135,12 @@ public class Client extends Humain{
         return super.toString() + " | Boisson Favorite : " + boissonFav.getNom() + " | Boisson De Secours : " + boissonFavBis.getNom() + " | Alcoolemie : " + niveauAlcool + " | Signe Distinctif : " + signe.toString();
         
     }
+    
+    @Override
+    public void finalize()
+     {
+          System.out.println("Objet nettoyé de la mémoire");   
+     }
     
     
     

@@ -71,6 +71,7 @@ public class Bar {
     public void achatPatronne(Patronne patronne){
         
         patronne.setBar(this);
+        patronne.setAccess(true);
         
     }
     
@@ -82,6 +83,7 @@ public class Bar {
         pBarman.setBlackList(blacklist);
         
         barman = pBarman;
+        pBarman.setAccess(true);
         
     }
     
@@ -91,11 +93,16 @@ public class Bar {
         
         serveurs.add(pServeur);
         
+        pServeur.setAccess(true);
+        
+        
     }
     
     public void entreeClient(Client pClient){
         
         clients.add(pClient);
+        
+        pClient.setAccess(true);
         
     }
     
@@ -103,6 +110,8 @@ public class Bar {
         
         clients.remove(pClient);
         
+        pClient.setAccess(false);
+                
     }
     
     
@@ -156,6 +165,11 @@ public class Bar {
         
         nom = pNom;
         
+    }
+    
+    public BlackList getBlackList(){
+        
+        return blacklist;
     }
     
     public ArrayList<Client> getClients(){

@@ -17,7 +17,9 @@ public class Humain {
     private String prenom;
     private int porteMonnaie;
     private int popularite;
-    private String cri;    
+    private String cri;   
+    private boolean access;
+    private Table table;
     
     
     public Humain(){
@@ -26,21 +28,44 @@ public class Humain {
         porteMonnaie=0;
         popularite=0;
         cri = new String();
+        access = false;
+        Table debout = new Table();
+        table = debout;
         
         
     }
     
     public Humain(String pSurnom, String pPrenom, int pPorteMonnaie, int pPopularite, String pCri){
-    
-        
+            
         surnom = pSurnom;
         prenom = pPrenom;
         porteMonnaie = pPorteMonnaie;
         popularite = pPopularite;
         cri = pCri;
+        access = false;
+        Table debout = new Table();
+        table = debout;   
+
+    }
     
+    private void runChoisirTable(Table pTable){
+        
+        if (pTable.getNombrePlacesLibres() > 0){
             
-    
+            table = pTable;
+            
+            pTable.getPersonnes().add(this);
+            
+            pTable.setNombrePlacesLibres(pTable.getNombrePlacesLibres() - 1);
+            
+        }
+        
+        else{
+            
+            System.out.println("Cette table n'est pas disponible !");
+            
+        }
+        
     }
     
     
@@ -142,7 +167,7 @@ public class Humain {
                            
     }
     
-    public void consommer(ArrayList<Humain> listeConsomateur, Serveur serveur){
+    private void runConsommer(ArrayList<Humain> listeConsomateur, Serveur serveur){
         
        
         
@@ -156,7 +181,7 @@ public class Humain {
                 
         Commande tabCommande[] = new Commande[2];
         
-        tabCommande = serveur.getBarman().verifBoisson(commande);
+        tabCommande = serveur.getBarman().verifBoisson(serveur.getBarman().verifBlackList(commande));
         
         commandeDispo = tabCommande[0];
         
@@ -268,7 +293,7 @@ public class Humain {
         
     }
     
-    public void consommer(ArrayList<Humain> listeConsomateur, Barman barman){
+    private void runConsommer(ArrayList<Humain> listeConsomateur, Barman barman){
         
         Commande commande = new Commande();
         
@@ -280,7 +305,7 @@ public class Humain {
                 
         Commande tabCommande[] = new Commande[2];
         
-        tabCommande = barman.verifBoisson(commande);
+        tabCommande = barman.verifBoisson(barman.verifBlackList(commande));
         
         commandeDispo = tabCommande[0];
         
@@ -400,16 +425,9 @@ public class Humain {
             
             
         }
-            
-                
-        
-        
-        
-        
-        
     
     
-    public void tourneeGenerale(Barman barman){
+    private void runTourneeGenerale(Barman barman){
         
         ArrayList<Humain> listeConsomateur = new ArrayList<>();
         
@@ -585,6 +603,12 @@ public class Humain {
         
         surnom = pSurnom;
         
+    }    
+    
+    public void setAccess(boolean bool){
+        
+        access = bool;
+        
     }
     
     public String getCri(){
@@ -617,6 +641,71 @@ public class Humain {
         
     }
     
+    public void consommer(ArrayList<Humain> listeConsomateur, Barman barman){
+        
+        if (access){
+            
+            runConsommer(listeConsomateur, barman);  
+        
+        }
+        
+        else{
+            
+            System.out.println("Degage !!!!!!!!!!!!!!!!!!!");
+            
+        }
+        
+    }
+    
+    public void consommer(ArrayList<Humain> listeConsomateur, Serveur serveur){
+        
+        if (access){
+            
+            runConsommer(listeConsomateur, serveur);  
+        
+        }
+        
+        else{
+            
+            System.out.println("Degage !!!!!!!!!!!!!!!!!!!");
+            
+        }
+        
+    }
+    
+    public void tourneeGenerale(Barman barman){
+        
+        if (access){
+            
+            runTourneeGenerale(barman);  
+        
+        }
+        
+        else{
+            
+            System.out.println("Degage !!!!!!!!!!!!!!!!!!!");
+            
+        }
+        
+        
+    }
+    
+    public void choisirTable(Table table){
+        
+        if (access){
+            
+            runChoisirTable(table);  
+        
+        }
+        
+        else{
+            
+            System.out.println("Degage !!!!!!!!!!!!!!!!!!!");
+            
+        }
+        
+    }
+    
     
     public boolean equals(Humain pHumain){        
         
@@ -630,6 +719,8 @@ public class Humain {
         return "Surnom : " + surnom + " | Prenom : " + prenom + " | Porte Monnaie : " + porteMonnaie + " | Popularite : " + popularite + " | Cri : " + cri;
         
     }
+    
+    
     
     
 }

@@ -27,7 +27,7 @@ public class BlackListed {
     
         client = pClient;
         
-        rappel = 3;
+        rappel = 0;
     
     }
     
@@ -65,7 +65,7 @@ public class BlackListed {
     @Override
     public String toString(){
         
-        return client.getPrenom() + " à été rapellé à l'ordre " + (rappel - 2) + " fois ";
+        return client.getPrenom() + " rapelles à l'ordre : " + rappel;
         
     }
     

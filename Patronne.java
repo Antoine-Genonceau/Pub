@@ -50,16 +50,25 @@ public class Patronne extends Client{
         
         int i = 0;
         
+                
         while(!done && i < bar.getServeurs().size()){
             
             if (bar.getServeurs().get(i).getSigne().getValeur() == "gros"){
                 
-                bar.virerClient(client, bar.getServeurs().get(i));
-                
+                bar.virerClient(client, bar.getServeurs().get(i));                
+                               
             }           
  
             i = i + 1;            
         }           
+        
+    }
+    
+    public void rappelOrdre(Client client){
+        
+        BlackListed blacklisted = new BlackListed(client);
+        
+        bar.getBlackList().getListeNoire().add(blacklisted);
         
     }
     
