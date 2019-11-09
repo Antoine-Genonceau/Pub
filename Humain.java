@@ -48,6 +48,50 @@ public class Humain {
 
     }
     
+    public void parler(String phrase){
+        
+        Class<?> classe = this.getClass();
+        
+        if (classe == Client.class){
+            
+            System.out.println("<"+this.prenom+"> " + phrase);
+            
+        }
+        
+        else{
+            
+            System.out.println("<" + this.getClass().getSimpleName() + " " + this.prenom + "> " + phrase);
+            
+        }
+        
+    }
+    
+    public void parler(String phrase, Serveur serveur){
+        
+        Class<?> classe = this.getClass();
+        
+        if (classe == Client.class){
+            
+            System.out.println("<"+this.prenom+"> " + phrase);
+            
+        }
+        
+        else{
+            
+            System.out.println("<" + this.getClass().getSimpleName() + " " + this.prenom + "> " + phrase);
+            
+        }
+        
+    }
+    
+    public void presentation(){
+        
+        String presentation = "Salut moi c'est " + this.prenom + ", mais tout le monde m'appelle " + this.surnom + ", je suis " + this.getClass().getSimpleName() + ".";
+        
+        this.parler(presentation);
+        
+    }
+    
     public void initPopularite(){
         
         int popRole = 0;
@@ -132,7 +176,7 @@ public class Humain {
     
     public void boire(Boisson pBoisson){        
             
-        System.out.println(this.surnom + " a bu la boisson : " + pBoisson.toString());
+        System.out.println(this.surnom + " a bu la boisson : " + pBoisson.getNom());
         
         this.updatePopularite(pBoisson);        
         
@@ -183,11 +227,16 @@ public class Humain {
             
         
         }
-               
+         
+        barman.parler(somme + " € s’il te plaît");
             
         this.porteMonnaie = this.porteMonnaie - somme;  
+        
+        this.parler("Voila !");
             
-        barman.encaissement(somme);        
+        barman.encaissement(somme); 
+        
+        barman.parler("Merci");
           
     }
     
@@ -246,6 +295,8 @@ public class Humain {
                 
         Commande tabCommande[] = new Commande[2];
         
+        this.parler("Je voudrais " + commande, serveur);
+        
         tabCommande = serveur.getBarman().verifBoisson(serveur.getBarman().verifBlackList(commande));
         
         commandeDispo = tabCommande[0];
@@ -254,7 +305,7 @@ public class Humain {
         
         if (commandeNonDispo.getCommande().size() == 0){
             
-            System.out.println("Ok j'ai Tout !");
+            serveur.parler("Ok j'ai Tout !");
             
             if (verifPrix(commandeDispo)){
                 
@@ -266,7 +317,7 @@ public class Humain {
             
             else{
                 
-                System.out.println("Pas assez d'argent !!");
+                this.parler("Mince, j'ai pas assez d'argent !!", serveur);
                 
             } 
             
@@ -274,7 +325,7 @@ public class Humain {
         
         else{
             
-            System.out.println("Désolé J'ai pas de : " + commandeNonDispo + "Mais j'ai bien : " + commandeDispo);
+            serveur.parler("Désolé J'ai pas de : " + commandeNonDispo + "Mais j'ai bien : " + commandeDispo);
             
             Commande commandeBis = new Commande();
             
@@ -298,11 +349,11 @@ public class Humain {
         
             commandeNonDispoBis = tabCommandeBis[1];
             
-            System.out.println("Bon alors mets moi :" + commandeNew);
+            this.parler("Bon alors mets moi :" + commandeNew, serveur);
             
             if (commandeNonDispoBis.getCommande().size() == 0){
             
-                System.out.println("Ok j'ai Tout !");
+                serveur.parler("Ok j'ai Tout !");
             
                 if (verifPrix(commandeDispoBis)){
                 
@@ -314,7 +365,7 @@ public class Humain {
             
                 else{
                 
-                    System.out.println("Pas assez d'argent !!");
+                    this.parler("Mince, j'ai pas assez d'argent !!", serveur);
                 
                 } 
                 
@@ -325,17 +376,17 @@ public class Humain {
                                         
                     if(commandeDispoBis.getCommande().size() == 0){
             
-                        System.out.println("Désolé j'ai rien de tout ça, coco");
+                        serveur.parler("Désolé j'ai rien de tout ça");
             
-                         System.out.println("Ok tant pis");
+                        this.parler("Ok tant pis", serveur);
             
                         }
                     
                     else
                         
-                        System.out.println("Désolé J'ai pas de : " + commandeNonDispoBis + "Mais j'ai bien : " + commandeDispoBis);
+                        serveur.parler("Désolé J'ai pas de : " + commandeNonDispoBis + "Mais j'ai bien : " + commandeDispoBis);
                     
-                        System.out.println("Ok mets moi juste : " + commandeDispoBis);
+                        this.parler("Ok mets moi juste : " + commandeDispoBis, serveur);
                     
                         if (verifPrix(commandeDispoBis)){
                 
@@ -347,7 +398,7 @@ public class Humain {
             
                         else{
                 
-                            System.out.println("Pas assez d'argent !!");
+                            this.parler("Pas assez d'argent !!", serveur);
                 
                         } 
                         
@@ -370,6 +421,8 @@ public class Humain {
                 
         Commande tabCommande[] = new Commande[2];
         
+        this.parler("Je voudrais " + commande);
+        
         tabCommande = barman.verifBoisson(barman.verifBlackList(commande));
         
         commandeDispo = tabCommande[0];
@@ -380,7 +433,7 @@ public class Humain {
                 
         if (commandeNonDispo.getCommande().size() == 0){
             
-            System.out.println("Ok j'ai Tout !");
+            barman.parler("Ok j'ai Tout !");
             
             if (verifPrix(commandeDispo)){
                 
@@ -392,7 +445,7 @@ public class Humain {
             
             else{
                 
-                System.out.println("Pas assez d'argent !!");
+                this.parler("Pas assez d'argent !!");
                 
             } 
             
@@ -400,7 +453,7 @@ public class Humain {
         
         else{
             
-            System.out.println("Désolé J'ai pas de : " + commandeNonDispo + "Mais j'ai bien : " + commandeDispo);
+            barman.parler("Désolé J'ai pas de : " + commandeNonDispo + "Mais j'ai bien : " + commandeDispo);
             
             Commande commandeBis = new Commande();
             
@@ -424,11 +477,11 @@ public class Humain {
         
             commandeNonDispoBis = tabCommandeBis[1];
             
-            System.out.println("Bon alors mets moi :" + commandeNew);
+            this.parler("Bon alors mets moi :" + commandeNew);
             
             if (commandeNonDispoBis.getCommande().size() == 0){
             
-                System.out.println("Ok j'ai Tout !");
+                barman.parler("Ok j'ai Tout !");
             
                 if (verifPrix(commandeDispoBis)){
                 
@@ -440,7 +493,7 @@ public class Humain {
             
                 else{
                 
-                    System.out.println("Pas assez d'argent !!");
+                    this.parler("Pas assez d'argent !!");
                 
                 } 
                 
@@ -451,17 +504,17 @@ public class Humain {
                                         
                     if(commandeDispoBis.getCommande().size() == 0){
             
-                        System.out.println("Désolé j'ai rien de tout ça, coco");
+                        barman.parler("Désolé j'ai rien de tout ça");
             
-                         System.out.println("Ok tant pis");
+                        this.parler("Ok tant pis");
             
                         }
                     
                     else
                         
-                        System.out.println("Désolé J'ai pas de : " + commandeNonDispoBis + "Mais j'ai bien : " + commandeDispoBis);
+                        barman.parler("Désolé J'ai pas de : " + commandeNonDispoBis + "Mais j'ai bien : " + commandeDispoBis);
                     
-                        System.out.println("Ok mets moi juste : " + commandeDispoBis);
+                        this.parler("Ok mets moi juste : " + commandeDispoBis);
                     
                         if (verifPrix(commandeDispoBis)){
                 
@@ -473,7 +526,7 @@ public class Humain {
             
                         else{
                 
-                            System.out.println("Pas assez d'argent !!");
+                            this.parler("Pas assez d'argent !!");
                 
                         } 
                         
@@ -498,9 +551,27 @@ public class Humain {
         
         ArrayList<Humain> listeConsomateur = new ArrayList<>();
         
-        listeConsomateur = barman.reclamationTG();   
+        listeConsomateur = barman.reclamationTG();  
         
+        barman.annonceTG();
+
+        for (int i = 0; i < listeConsomateur.size(); i++){
+            
+            Class<?> classe = listeConsomateur.get(i).getClass();
+        
+            if (classe == Client.class){
+            
+                listeConsomateur.get(i).parler(listeConsomateur.get(i).getCri());
+            
+            }
+        
+        }
+        
+        barman.getPatronne().parler("tout va bien, les affaires reprennent");
+              
         consommer(listeConsomateur, barman);
+        
+        
         
     }
 

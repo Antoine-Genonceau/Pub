@@ -39,6 +39,19 @@ public class Barman extends Humain{
                 
     }
     
+    @Override
+    public void parler(String phrase){
+           
+        System.out.println("<" + this.getClass().getSimpleName() + " " + this.getPrenom() + "> " + phrase + ", coco.");
+        
+    }
+    
+    public void annonceTG(){
+           
+        System.out.println("<" + this.getClass().getSimpleName() + " " + this.getPrenom() + "> " + "TOURNEE GENERALE !!!");
+        
+    }
+    
     
     public void encaissement(int somme){
         

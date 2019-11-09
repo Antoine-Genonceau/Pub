@@ -41,6 +41,44 @@ public class Client extends Humain{
                 
     }
     
+    public void parler(String phrase, Serveur serveur){
+        
+        String extention = "";
+        
+        if (this.getSigne().getType() == "tee-shirt"){
+            
+            if (serveur.getSigne().getType() == "Seduction"){
+                
+                extention = ", ma jolie";
+                
+            }
+            
+        }
+        
+        else{
+            
+            if (serveur.getSigne().getType() == "biceps"){
+                
+                extention = ", beau gosse";
+                
+            }
+            
+        }
+        
+        
+        this.parler(phrase + extention);
+        
+    }
+    
+    @Override
+    public void presentation(){
+        
+        String presentation = "Salut moi c'est " + this.getPrenom() + ", mais tout le monde m'appelle " + this.getSurnom() + ", je suis " + this.getClass().getSimpleName() + ", et je porte " + this.getSigne().getGenre() + " " + this.getSigne().toString() + ".";
+        
+        this.parler(presentation);
+        
+    }
+    
     
     @Override
     public void boire(Boisson pBoisson){

@@ -123,49 +123,6 @@ public class Pub {
         
         System.out.println(garderie);
         
-        System.out.println(garderie.getBlackList().getListeNoire());
-        
-        michelle.rappelOrdre(antoine);
-        
-        System.out.println(garderie.getBlackList().getListeNoire());
-        
-        antoine.consommer(amisToine, gabrielle);
-        
-        System.out.println(garderie.getBlackList().getListeNoire());
-        
-        antoine.consommer(amisToine, gabrielle);
-        
-        System.out.println(garderie.getBlackList().getListeNoire());
-        
-        antoine.consommer(amisToine, gabrielle);
-        
-        System.out.println(garderie.getBlackList().getListeNoire());
-        
-        antoine.consommer(amisToine, gabrielle);
-        
-        System.out.println(garderie.getBlackList().getListeNoire());
-        
-        antoine.consommer(amisToine, bruno);
-        
-        pierremaxime.choisirTable(table2);
-        
-        System.out.println(table2);
-        
-        bruno.choisirTable(table2);
-        
-        System.out.println(table2);
-        
-        gabrielle.choisirTable(table2);
-        
-        System.out.println(table2);
-        
-        michelle.choisirTable(table2);
-        
-        System.out.println(table2);
-        
-        mathieu.choisirTable(table2);
-        
-        System.out.println(table2.getPersonnes());
         
         
     }

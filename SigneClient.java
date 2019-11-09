@@ -11,26 +11,28 @@ package pub;
  */
 public enum SigneClient {
     
-    tShirtNoir("tee-shirt", "noir", "Tee-Shirt Noir"),
-    tShirtBlanc("tee-shirt", "blanc", "Tee-Shirt Blanc"),
-    tShirtVert("tee-shirt", "vert", "Tee-Shirt Vert"),
-    tShirtRouge("tee-shirt", "rouge", "Tee-Shirt Rouge"),
-    tShirtBleu("tee-shirt", "bleu", "Tee-Shirt Bleu"),
-    bracellet("bijoux", "bracellet", "Bracellet"),
-    bague("bijoux", "bague", "Bague"), 
-    collier("bijoux", "collier", "Collier"), 
-    boucleOreille("bijoux", "boucleOreille", "Boucles d'oreilles"),
-    montre("bijoux", "montre", "Montre");
+    tShirtNoir("tee-shirt", "noir", "Tee-Shirt Noir", "un"),
+    tShirtBlanc("tee-shirt", "blanc", "Tee-Shirt Blanc", "un"),
+    tShirtVert("tee-shirt", "vert", "Tee-Shirt Vert", "un"),
+    tShirtRouge("tee-shirt", "rouge", "Tee-Shirt Rouge", "un"),
+    tShirtBleu("tee-shirt", "bleu", "Tee-Shirt Bleu", "un"),
+    bracellet("bijoux", "bracellet", "Bracellet", "un"),
+    bague("bijoux", "bague", "Bague", "une"), 
+    collier("bijoux", "collier", "Collier", "un"), 
+    boucleOreille("bijoux", "boucleOreille", "Boucles d'oreilles", "des"),
+    montre("bijoux", "montre", "Montre", "une");
     
     private String type = "";
     private String valeur = "";
     private String toString = "";
+    private String genre = "";
     
-    SigneClient(String pType, String pValeur, String pToString){
+    SigneClient(String pType, String pValeur, String pToString, String pGenre){
         
         type = pType;
         valeur = pValeur;
         toString = pToString;
+        genre = pGenre;
         
     }
     
@@ -43,6 +45,12 @@ public enum SigneClient {
     public String getValeur(){
         
         return valeur;
+        
+    }
+    
+    public String getGenre(){
+        
+        return genre;
         
     }
     

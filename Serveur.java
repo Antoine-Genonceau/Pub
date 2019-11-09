@@ -35,6 +35,7 @@ public class Serveur extends Humain{
                         
     }    
     
+        
     public void encaissement(int somme){
         
         barman.encaissement(somme);       

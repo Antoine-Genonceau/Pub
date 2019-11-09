@@ -99,7 +99,15 @@ public class Commande {
     @Override
     public String toString(){
         
-        return commande.toString();
+        String commandeTS = new String();
+        
+        for (int i = 0; i < commande.size(); i++){
+            
+            commandeTS = commandeTS + " " + commande.get(i).getStockBoisson().getNombre() + " " + commande.get(i).getStockBoisson().getBoisson().getNom();
+            
+        }
+        
+        return commandeTS + " ";
         
     }
     
