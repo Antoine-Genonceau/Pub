@@ -29,9 +29,9 @@ public class Barman extends Humain{
 }
     
     
-    public Barman(String pSurnom, String pPrenom, int pPorteMonnaie, int pPopularite, String pCri){
+    public Barman(String pSurnom, String pPrenom, int pPorteMonnaie, String pCri){
         
-        super(pSurnom, pPrenom, pPorteMonnaie, pPopularite, pCri); 
+        super(pSurnom, pPrenom, pPorteMonnaie, pCri); 
         stock = new Stock();
         caisse = new Caisse();
         patronne = new Patronne();
@@ -318,7 +318,7 @@ public class Barman extends Humain{
     @Override
     public Barman clone(){        
         
-        return new Barman(super.getSurnom(), super.getPrenom(), super.getPorteMonnaie(), super.getPopularite(), super.getCri());        
+        return new Barman(super.getSurnom(), super.getPrenom(), super.getPorteMonnaie(), super.getCri());        
         
     }
     

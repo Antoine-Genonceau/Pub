@@ -27,9 +27,9 @@ public class Fournisseur extends Humain{
 }
     
     
-    public Fournisseur(String pSurnom, String pPrenom, int pPorteMonnaie, int pPopularite, String pCri, Stock pStock, Caisse pCaisse){
+    public Fournisseur(String pSurnom, String pPrenom, int pPorteMonnaie, String pCri, Stock pStock, Caisse pCaisse){
         
-        super(pSurnom, pPrenom, pPorteMonnaie, pPopularite, pCri);
+        super(pSurnom, pPrenom, pPorteMonnaie, pCri);
         
         stock = pStock;
         
@@ -226,7 +226,7 @@ public class Fournisseur extends Humain{
     @Override
     public Fournisseur clone(){        
         
-        return new Fournisseur(super.getSurnom(), super.getPrenom(), super.getPorteMonnaie(), super.getPopularite(), super.getCri(), stock, caisse);        
+        return new Fournisseur(super.getSurnom(), super.getPrenom(), super.getPorteMonnaie(), super.getCri(), stock, caisse);        
         
     }
     

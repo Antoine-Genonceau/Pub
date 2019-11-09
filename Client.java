@@ -29,9 +29,9 @@ public class Client extends Humain{
 }
     
     
-    public Client(String pSurnom, String pPrenom, int pPorteMonnaie, int pPopularite, String pCri, Boisson pBoissonFav, Boisson pBoissonFavBis, int pNiveauAlcool, SigneClient pSigne){
+    public Client(String pSurnom, String pPrenom, int pPorteMonnaie, String pCri, Boisson pBoissonFav, Boisson pBoissonFavBis, int pNiveauAlcool, SigneClient pSigne){
         
-        super(pSurnom, pPrenom, pPorteMonnaie, pPopularite, pCri);
+        super(pSurnom, pPrenom, pPorteMonnaie, pCri);
         
         boissonFav = pBoissonFav;
         boissonFavBis = pBoissonFavBis;
@@ -118,7 +118,7 @@ public class Client extends Humain{
     @Override
     public Client clone(){        
         
-        return new Client(super.getSurnom(), super.getPrenom(), super.getPorteMonnaie(), super.getPopularite(), super.getCri(), boissonFav, boissonFavBis, niveauAlcool, signe);        
+        return new Client(super.getSurnom(), super.getPrenom(), super.getPorteMonnaie(), super.getCri(), boissonFav, boissonFavBis, niveauAlcool, signe);        
         
     }
     

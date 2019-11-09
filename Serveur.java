@@ -25,9 +25,9 @@ public class Serveur extends Humain{
 }
     
     
-    public Serveur(String pSurnom, String pPrenom, int pPorteMonnaie, int pPopularite, String pCri, SigneServeur pSigne){
+    public Serveur(String pSurnom, String pPrenom, int pPorteMonnaie, String pCri, SigneServeur pSigne){
         
-        super(pSurnom, pPrenom, pPorteMonnaie, pPopularite, pCri); 
+        super(pSurnom, pPrenom, pPorteMonnaie, pCri); 
         
         signe = pSigne;
         
@@ -75,7 +75,7 @@ public class Serveur extends Humain{
     @Override
     public Serveur clone(){        
         
-        return new Serveur(super.getSurnom(), super.getPrenom(), super.getPorteMonnaie(), super.getPopularite(), super.getCri(), signe);        
+        return new Serveur(super.getSurnom(), super.getPrenom(), super.getPorteMonnaie(), super.getCri(), signe);        
         
     }
     

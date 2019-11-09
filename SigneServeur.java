@@ -14,23 +14,25 @@ public enum SigneServeur {
     
     
     
-    grosBiceps("biceps", "gros", "Colosse"),
-    petitBiceps("biceps", "petit", "Crevette"),
-    normalBiceps("biceps", "normal", "Bien batît"),
-    hauteSeduction("Seduction", "Haute", "Canon"),
-    moyenneSeduction("Seduction", "Haute", "Mignonne"),
-    basseSeduction("Seduction", "Haute", "Gentille");
+    grosBiceps("biceps", "gros", "Colosse", 100),
+    petitBiceps("biceps", "petit", "Crevette", 1),
+    normalBiceps("biceps", "normal", "Bien batît", 10),
+    hauteSeduction("Seduction", "Haute", "Canon", 100),
+    moyenneSeduction("Seduction", "Haute", "Mignonne", 10),
+    basseSeduction("Seduction", "Haute", "Gentille", 1);
     
     private String type = "";
     private String valeur = "";
     private String toString = "";
+    private int coeff = 0;
    
   
-    SigneServeur(String pType, String pValeur, String pToString){
+    SigneServeur(String pType, String pValeur, String pToString, int pCoeff){
         
         type = pType;
         valeur = pValeur;
         toString = pToString;
+        coeff = pCoeff;
         
     }
     
@@ -43,6 +45,12 @@ public enum SigneServeur {
     public String getValeur(){
         
         return valeur;
+        
+    }
+    
+    public int getCoeff(){
+        
+        return coeff;
         
     }
     

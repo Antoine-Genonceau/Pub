@@ -26,26 +26,87 @@ public class Humain {
         surnom = new String();
         prenom = new String();
         porteMonnaie=0;
-        popularite=0;
         cri = new String();
         access = false;
         Table debout = new Table();
         table = debout;
+        initPopularite();
         
         
     }
     
-    public Humain(String pSurnom, String pPrenom, int pPorteMonnaie, int pPopularite, String pCri){
+    public Humain(String pSurnom, String pPrenom, int pPorteMonnaie, String pCri){
             
         surnom = pSurnom;
         prenom = pPrenom;
         porteMonnaie = pPorteMonnaie;
-        popularite = pPopularite;
         cri = pCri;
         access = false;
         Table debout = new Table();
-        table = debout;   
+        table = debout; 
+        initPopularite();
 
+    }
+    
+    public void initPopularite(){
+        
+        int popRole = 0;
+        
+         Class<?> classe = this.getClass();            
+            
+            
+            if (classe == Client.class){
+                
+                popRole = 1;
+                
+            }
+            
+            if (classe == Serveur.class){
+                
+                popRole = 10;
+            }
+            
+            if (classe == Barman.class){
+                
+                popRole = 100;
+                
+            }
+            
+            if (classe == Patronne.class){
+                
+                popRole = 1000;
+                
+            }  
+            
+            if (classe == Fournisseur.class){
+                
+                popRole = 10;
+                
+            }
+                     
+        
+        
+        popularite = (porteMonnaie / 10)*popRole;        
+    
+        
+    }
+    
+    public void updatePopularite(Boisson boisson){
+        
+        popularite = popularite + 10 * boisson.getUniteAlcool();        
+               
+    }
+    
+    public void updatePopularite(int ardoise){
+        
+        popularite = popularite + 10 * ardoise;        
+               
+    }
+    
+    public void updatePopulariteTournee(){
+        
+        popularite = popularite*3;        
+               
     }
     
     private void runChoisirTable(Table pTable){
@@ -72,6 +133,8 @@ public class Humain {
     public void boire(Boisson pBoisson){        
             
         System.out.println(this.surnom + " a bu la boisson : " + pBoisson.toString());
+        
+        this.updatePopularite(pBoisson);        
         
     }
     
@@ -102,6 +165,8 @@ public class Humain {
         }
          
         this.porteMonnaie = this.porteMonnaie - somme;  
+        
+        this.updatePopularite(somme);
             
         serveur.encaissement(somme);        
           
@@ -428,6 +493,8 @@ public class Humain {
     
     
     private void runTourneeGenerale(Barman barman){
+        
+        this.updatePopulariteTournee();
         
         ArrayList<Humain> listeConsomateur = new ArrayList<>();
         

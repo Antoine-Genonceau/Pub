@@ -22,9 +22,9 @@ public class Patronne extends Client{
 }
     
     
-    public Patronne(String pSurnom, String pPrenom, int pPorteMonnaie, int pPopularite, String pCri, Boisson pBoissonFav, Boisson pBoissonFavBis, int pNiveauAlcool, SigneClient pSigne){
+    public Patronne(String pSurnom, String pPrenom, int pPorteMonnaie, String pCri, Boisson pBoissonFav, Boisson pBoissonFavBis, int pNiveauAlcool, SigneClient pSigne){
         
-        super(pSurnom, pPrenom, pPorteMonnaie, pPopularite, pCri, pBoissonFav, pBoissonFavBis, pNiveauAlcool, pSigne);    
+        super(pSurnom, pPrenom, pPorteMonnaie, pCri, pBoissonFav, pBoissonFavBis, pNiveauAlcool, pSigne);    
                 
     }
     
@@ -72,6 +72,20 @@ public class Patronne extends Client{
         
     }
     
+    public void checkEtatClient(){
+        
+        for(int i = 0; i < bar.getClients().size(); i++){
+            
+            if (bar.getClients().get(i).getNiveauAlcool() > 50){
+                
+                rappelOrdre(bar.getClients().get(i));
+                
+            }
+            
+        }
+        
+    }
+    
     public ArrayList<Humain> reclamationTG(){
         
         ArrayList<Humain> liste = new ArrayList<>();
@@ -96,7 +110,7 @@ public class Patronne extends Client{
     @Override
     public Patronne clone(){        
         
-        return new Patronne(super.getSurnom(), super.getPrenom(), super.getPorteMonnaie(), super.getPopularite(), super.getCri(), super.getBoissonFav(), super.getBoissonFavBis(), super.getNiveauAlcool(), super.getSigne());        
+        return new Patronne(super.getSurnom(), super.getPrenom(), super.getPorteMonnaie(), super.getCri(), super.getBoissonFav(), super.getBoissonFavBis(), super.getNiveauAlcool(), super.getSigne());        
         
     }
     
