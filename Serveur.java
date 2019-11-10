@@ -36,7 +36,11 @@ public class Serveur extends Humain{
     }    
     
         
-    public void encaissement(int somme){
+    public void encaissement(int somme,Commande commande){
+        
+        this.parler("Tiens " + barman.getPrenom() + " " + somme + " € pour " + commande);
+        
+        barman.parler("Merci ! Je te sors ça tout de suite !");
         
         barman.encaissement(somme);       
         

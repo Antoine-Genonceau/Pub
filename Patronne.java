@@ -30,7 +30,7 @@ public class Patronne extends Client{
     
     public void receptionFournisseur(Stock stockNonDispo, Caisse caisse, int prix){
         
-        System.out.println("stockNonDispo" + stockNonDispo);
+        this.parler("Merci, voici le reglement !");
         
         this.setPorteMonnaie(this.getPorteMonnaie() - prix);
         
@@ -55,7 +55,9 @@ public class Patronne extends Client{
             
             if (bar.getServeurs().get(i).getSigne().getValeur() == "gros"){
                 
-                bar.virerClient(client, bar.getServeurs().get(i));                
+                bar.virerClient(client, bar.getServeurs().get(i)); 
+                
+                this.parler(bar.getServeurs().get(i).getPrenom() + " vire moi " + client.getPrenom());
                                
             }           
  
@@ -67,6 +69,8 @@ public class Patronne extends Client{
     public void rappelOrdre(Client client){
         
         BlackListed blacklisted = new BlackListed(client);
+        
+        this.parler("Arretez de servir " + client.getPrenom());
         
         bar.getBlackList().getListeNoire().add(blacklisted);
         

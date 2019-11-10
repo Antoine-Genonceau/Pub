@@ -163,6 +163,8 @@ public class Humain {
             
             pTable.setNombrePlacesLibres(pTable.getNombrePlacesLibres() - 1);
             
+            System.out.println(this.prenom + " s'assois table " + pTable.getNumero());
+            
         }
         
         else{
@@ -211,9 +213,15 @@ public class Humain {
         this.porteMonnaie = this.porteMonnaie - somme;  
         
         this.updatePopularite(somme);
-            
-        serveur.encaissement(somme);        
-          
+        
+        serveur.parler("Ok ça fait " + somme + " €");
+        
+        this.parler("Voila !");
+        
+        serveur.parler("Merci");
+        
+        serveur.encaissement(somme, commande); 
+        
     }
     
     public void payerBoisson(Commande commande, Barman barman){
@@ -273,8 +281,8 @@ public class Humain {
                            
     }
     
-    public void acheterBoisson(Commande commande, Serveur serveur){      
-                            
+    public void acheterBoisson(Commande commande, Serveur serveur){     
+        
             serveur.getBarman().chercherBoisson(commande);
                 
             payerBoisson(commande, serveur);               
@@ -297,6 +305,8 @@ public class Humain {
         
         this.parler("Je voudrais " + commande, serveur);
         
+        serveur.parler(serveur.getBarman().getPrenom() + ", il nous reste " + commande + " ?");
+        
         tabCommande = serveur.getBarman().verifBoisson(serveur.getBarman().verifBlackList(commande));
         
         commandeDispo = tabCommande[0];
@@ -304,6 +314,8 @@ public class Humain {
         commandeNonDispo = tabCommande[1];
         
         if (commandeNonDispo.getCommande().size() == 0){
+            
+            serveur.getBarman().parler("Yes on a tout " + serveur.getPrenom() + "!");
             
             serveur.parler("Ok j'ai Tout !");
             
@@ -325,7 +337,9 @@ public class Humain {
         
         else{
             
-            serveur.parler("Désolé J'ai pas de : " + commandeNonDispo + "Mais j'ai bien : " + commandeDispo);
+            serveur.getBarman().parler("Ah non,"+ serveur.getPrenom() +", il manque :" + commandeNonDispo);
+            
+            serveur.parler("Désolé il nous manque : " + commandeNonDispo);
             
             Commande commandeBis = new Commande();
             
@@ -336,12 +350,15 @@ public class Humain {
             commandeNew.getCommande().addAll(commandeBis.getCommande());
             commandeNew.getCommande().addAll(commandeDispo.getCommande());
             
+            this.parler("Bon alors mets moi :" + commandeNew, serveur);
         
             Commande commandeDispoBis = new Commande();
         
             Commande commandeNonDispoBis = new Commande();        
                             
             Commande tabCommandeBis[] = new Commande[2];
+            
+            serveur.parler(serveur.getBarman().getPrenom() + ", il nous reste " + commandeNew + " ?");
         
             tabCommandeBis = serveur.getBarman().verifBoisson(commandeNew);
         
@@ -349,9 +366,10 @@ public class Humain {
         
             commandeNonDispoBis = tabCommandeBis[1];
             
-            this.parler("Bon alors mets moi :" + commandeNew, serveur);
-            
+                        
             if (commandeNonDispoBis.getCommande().size() == 0){
+                
+                serveur.getBarman().parler("Yes on a tout " + serveur.getPrenom() + "!");
             
                 serveur.parler("Ok j'ai Tout !");
             
@@ -375,22 +393,26 @@ public class Humain {
             else{
                                         
                     if(commandeDispoBis.getCommande().size() == 0){
+                        
+                        serveur.getBarman().parler("Désolé j'ai rien de tout ça");
             
-                        serveur.parler("Désolé j'ai rien de tout ça");
+                        serveur.parler("Désolé on a rien de tout ça");
             
                         this.parler("Ok tant pis", serveur);
             
                         }
                     
-                    else
+                    else{
                         
-                        serveur.parler("Désolé J'ai pas de : " + commandeNonDispoBis + "Mais j'ai bien : " + commandeDispoBis);
-                    
+                        serveur.getBarman().parler("Ah non,"+ serveur.getPrenom() +", il manque :" + commandeNonDispoBis);
+            
+                        serveur.parler("Désolé il nous manque : " + commandeNonDispoBis);
+                        
                         this.parler("Ok mets moi juste : " + commandeDispoBis, serveur);
                     
                         if (verifPrix(commandeDispoBis)){
                 
-                            acheterBoisson(commandeDispoBis, serveur.getBarman());
+                            acheterBoisson(commandeDispoBis, serveur);
                 
                             boire(commandeDispoBis);
                 
@@ -402,6 +424,7 @@ public class Humain {
                 
                         } 
                         
+                    }
                         
                         }
             
@@ -453,7 +476,7 @@ public class Humain {
         
         else{
             
-            barman.parler("Désolé J'ai pas de : " + commandeNonDispo + "Mais j'ai bien : " + commandeDispo);
+            barman.parler("Désolé il nous manque : " + commandeNonDispo);
             
             Commande commandeBis = new Commande();
             
@@ -463,6 +486,8 @@ public class Humain {
             
             commandeNew.getCommande().addAll(commandeBis.getCommande());
             commandeNew.getCommande().addAll(commandeDispo.getCommande());
+            
+            this.parler("Bon alors mets moi :" + commandeNew);
             
         
             Commande commandeDispoBis = new Commande();
@@ -477,8 +502,7 @@ public class Humain {
         
             commandeNonDispoBis = tabCommandeBis[1];
             
-            this.parler("Bon alors mets moi :" + commandeNew);
-            
+                      
             if (commandeNonDispoBis.getCommande().size() == 0){
             
                 barman.parler("Ok j'ai Tout !");
@@ -512,7 +536,7 @@ public class Humain {
                     
                     else
                         
-                        barman.parler("Désolé J'ai pas de : " + commandeNonDispoBis + "Mais j'ai bien : " + commandeDispoBis);
+                        barman.parler("Désolé il nous manque : " + commandeNonDispoBis);
                     
                         this.parler("Ok mets moi juste : " + commandeDispoBis);
                     
@@ -568,7 +592,7 @@ public class Humain {
         }
         
         barman.getPatronne().parler("tout va bien, les affaires reprennent");
-              
+        
         consommer(listeConsomateur, barman);
         
         

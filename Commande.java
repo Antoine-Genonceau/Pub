@@ -96,6 +96,20 @@ public class Commande {
         
     }
     
+    public String afficheConsomateurs(ArrayList<Humain> liste){
+        
+        String chaine = "";
+        
+        for(int i = 0 ; i < liste.size(); i++){
+            
+            chaine = chaine + " " + liste.get(i).getPrenom();
+            
+        }
+        
+        return chaine;
+        
+    }
+    
     @Override
     public String toString(){
         

@@ -65,6 +65,14 @@ public class Barman extends Humain{
         
     }
     
+    public void decaissementVersPatronne(int somme){
+        
+        caisse.setLiquidite(caisse.getLiquidite() - somme);
+        
+        patronne.setPorteMonnaie(patronne.getPorteMonnaie() + somme);
+        
+    }
+    
     public int verifBoisson(StockBoisson boisson){
                       
         int boissonNonDispo = 0;
@@ -164,7 +172,7 @@ public class Barman extends Humain{
                 
                 if (verifBlackListed(commande.getCommande().get(i).getListeConsomateur().get(j))){
                     
-                    System.out.println(commande.getCommande().get(i).getListeConsomateur().get(j) + " ne peut plus boire");
+                    this.parler("Désolé mais " + commande.getCommande().get(i).getListeConsomateur().get(j) + " ne peut plus boire !");
                     
                     rappelClient((Client) commande.getCommande().get(i).getListeConsomateur().get(j));
                     

@@ -65,7 +65,7 @@ public class CommandeBoisson {
         
         Boisson eau = new Boisson("eau", 0, 0, 0);
         
-        stockBoisson = new StockBoisson(eau, 0);
+        stockBoisson = new StockBoisson(eau, 1);
         
     }
     
@@ -141,7 +141,7 @@ public class CommandeBoisson {
         
         Boisson eau = new Boisson("eau", 0, 0, 0);
         
-        stockBoisson = new StockBoisson(eau, 0);
+        stockBoisson = new StockBoisson(eau, 1);
         
     }
     

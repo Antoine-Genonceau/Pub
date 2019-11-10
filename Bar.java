@@ -73,6 +73,8 @@ public class Bar {
         patronne.setBar(this);
         patronne.setAccess(true);
         
+        System.out.println("Entree de " + patronne.getPrenom());
+        
     }
     
     public void embauche(Barman pBarman){
@@ -84,6 +86,7 @@ public class Bar {
         
         barman = pBarman;
         pBarman.setAccess(true);
+        System.out.println("Entree de " + barman.getPrenom());
         
     }
     
@@ -95,6 +98,7 @@ public class Bar {
         
         pServeur.setAccess(true);
         
+        System.out.println("Entree de " + pServeur.getPrenom());
         
     }
     
@@ -104,6 +108,8 @@ public class Bar {
         
         pClient.setAccess(true);
         
+        System.out.println("Entree de " + pClient.getPrenom());
+        
     }
     
     public void virerClient(Client pClient, Serveur pServeur){
@@ -111,6 +117,8 @@ public class Bar {
         clients.remove(pClient);
         
         pClient.setAccess(false);
+        
+        System.out.println("Sortie de " + pClient.getPrenom());
                 
     }
     

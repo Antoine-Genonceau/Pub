@@ -74,8 +74,7 @@ public class Fournisseur extends Humain{
                     
                     int diff = correspondantDispo.getStock().get(i).getNombre() - stockDemande.getStock().get(i).getNombre();
                     
-                    System.out.println("boisson demande: " + stockDemande.getStock().get(i) + "   Boisson stock Fourni: " + correspondantDispo.getStock().get(i) + "   Boisson bar: " +stockApprovision.getStock().get(j) + "   Diff: " + diff);
-                    
+                                        
                     if (diff >= 0){                  
                         
                         stockApprovision.getStock().get(j).setNombre(stockApprovision.getStock().get(j).getNombre() + stockDemande.getStock().get(i).getNombre());
@@ -193,6 +192,8 @@ public class Fournisseur extends Humain{
         }
         
         facture = facture - rabais;
+        
+        this.parler("Voila ça fait " + facture + " s'il te plait !");
         
         pPatronne.receptionFournisseur(nonDispo, caisse, facture);
                 

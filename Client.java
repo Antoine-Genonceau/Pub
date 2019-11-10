@@ -45,7 +45,7 @@ public class Client extends Humain{
         
         String extention = "";
         
-        if (this.getSigne().getType() == "tee-shirt"){
+        if (this.getSigne().getType() == "tee-shirt" && this.getNiveauAlcool() > 20){
             
             if (serveur.getSigne().getType() == "Seduction"){
                 
@@ -57,7 +57,7 @@ public class Client extends Humain{
         
         else{
             
-            if (serveur.getSigne().getType() == "biceps"){
+            if (serveur.getSigne().getType() == "biceps" && this.getNiveauAlcool() > 20){
                 
                 extention = ", beau gosse";
                 
@@ -70,6 +70,7 @@ public class Client extends Humain{
         
     }
     
+   
     @Override
     public void presentation(){
         

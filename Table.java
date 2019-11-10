@@ -23,6 +23,7 @@ public class Table {
         numero = 0;           /*les tables numéro 0 doivent etre inutilisable*/
         personnes = new ArrayList<>();
         
+        
     }
     
     public Table(int pNombrePlacesLibres, int pNumero){
@@ -30,6 +31,7 @@ public class Table {
         nombrePlacesLibres = pNombrePlacesLibres;
         numero = pNumero;
         personnes = new ArrayList<>();
+        
     }
     
     public void setNumero(int pNumero){
