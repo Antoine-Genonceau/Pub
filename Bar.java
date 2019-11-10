@@ -66,6 +66,20 @@ public class Bar {
         
     }
     
+    public Bar(String pNom, ArrayList<Table> pTables, Caisse pCaisse, Stock pStock){
+        
+        nom = pNom;
+        tables = pTables;
+        caisse = pCaisse;
+        stock = pStock;
+        patronne = new Patronne();
+        barman = new Barman();
+        serveurs = new ArrayList<>();
+        clients = new ArrayList<>();
+        blacklist = new BlackList();
+        
+    }
+    
     /*Uniquement pour le clonage*/
     public Bar(String pNom, ArrayList<Table> pTables, Caisse pCaisse, Stock pStock, Patronne pPatronne, Barman pBarman, ArrayList<Serveur> pServeurs, ArrayList<Client> pClients, BlackList pBlackList){
         
@@ -87,12 +101,14 @@ public class Bar {
      * @param patronne 
      */
     
-    public void achatPatronne(Patronne patronne){
+    public void achatPatronne(Patronne pPatronne){
         
-        patronne.setBar(this);
-        patronne.setAccess(true);
+        pPatronne.setBar(this);
+        pPatronne.setAccess(true);
         
-        System.out.println("Entree de " + patronne.getPrenom());
+        patronne = pPatronne;
+        
+        System.out.println("Entree de " + pPatronne.getPrenom());
         
     }
     
