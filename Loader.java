@@ -59,9 +59,9 @@ public class Loader {
         Serveur jeannielongo = new Serveur("ninie", "Jeannie", 230, "Par ici la monnaie !!", SigneServeur.basseSeduction);
         Client bono = new Client("Dieu", "Bono", 10000, "Rock n Roll !!!", guinness, chimaybleue, 28, SigneClient.tShirtNoir);
         Client arthurrimbaud = new Client("Le poete au semelles de vent", "Arthur", 10, "Vive les ardennes !!!", chimaybleue, orval, 18, SigneClient.tShirtBlanc);
-        Client andywarhol = new Client("", "Bono", 90, "Rock n Roll !!!", guinness, chimaybleue, 28, SigneClient.tShirtVert);
+        Client andywarhol = new Client("Le quatres couleurs", "Andy", 90, "Rock n Roll !!!", cocacola, guinness, 28, SigneClient.tShirtVert);
         Client scarlettjohansson = new Client("L'actrice", "scarlett", 1000, "Moteur, action !", cocacola, grenadine, 0, SigneClient.bague);
-        Client antonCorbijn = new Client("Pellicule-Man", "Anton", 500, "Souriez... Wistiti !", chimaybleue, grenadine, 0, SigneClient.tShirtBlanc);
+        Client antonCorbijn = new Client("Pellicule-Man", "Anton", 500, "Souriez... Wistiti !", guinness, grenadine, 0, SigneClient.tShirtBlanc);
         Client arethafranklin = new Client("Lady Soul", "aretha", 1000, "Respect !", grenadine, cocacola, 0, SigneClient.collier);
         Client georgesand = new Client("Amantine", "george", 160, "Qui aurait un timbre ?", orval, cocacola, 32, SigneClient.tShirtRouge);
         Client emilezola = new Client("Aurore-Man", "Emile", 580, "J'accuse !", orval, chimaybleue, 16, SigneClient.tShirtBlanc);
@@ -133,7 +133,10 @@ public class Loader {
         
         System.out.println(lesixroses);
    
+        ArrayList<Humain> listeConsomateur = new ArrayList<>();
+        listeConsomateur.add(zinedinezidane);
         
+        bono.consommer(listeConsomateur, jeannielongo);
         
         
         

@@ -65,6 +65,12 @@ public class Patronne extends Client{
             barman.chercherBoisson(commande);
             
     }
+    
+    public void acheterBoisson(Commande commande, Serveur serveur){      
+                            
+            serveur.getBarman().chercherBoisson(commande);
+            
+    }
  
     /**
      * La patronne exclu un client pour cela elle regarde si un des serveurs

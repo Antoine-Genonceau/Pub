@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * Un nom
  * Des tables
  * Une caisse
- * Un stock
+ * Un stock (qui contient forcement de l'eau)
  * Une blacklist
  * Une patronne
  * Un barman
@@ -48,6 +48,12 @@ public class Bar {
         clients = new ArrayList<>();
         blacklist = new BlackList();
         
+        Boisson eau = new Boisson("eau", 0, 0, 0);
+        
+        StockBoisson stockEau = new StockBoisson(eau, 100000);
+        
+        stock.getStock().add(stockEau);
+        
         
         
     }
@@ -64,6 +70,12 @@ public class Bar {
         clients = new ArrayList<>();
         blacklist = new BlackList();
         
+        Boisson eau = new Boisson("eau", 0, 0, 0);
+        
+        StockBoisson stockEau = new StockBoisson(eau, 100000);
+        
+        stock.getStock().add(stockEau);
+        
     }
     
     public Bar(String pNom, ArrayList<Table> pTables, Caisse pCaisse, Stock pStock){
@@ -77,6 +89,12 @@ public class Bar {
         serveurs = new ArrayList<>();
         clients = new ArrayList<>();
         blacklist = new BlackList();
+        
+        Boisson eau = new Boisson("eau", 0, 0, 0);
+        
+        StockBoisson stockEau = new StockBoisson(eau, 100000);
+        
+        stock.getStock().add(stockEau);
         
     }
     
@@ -92,6 +110,12 @@ public class Bar {
         serveurs = pServeurs;
         clients = pClients;
         blacklist = pBlackList;
+        
+        Boisson eau = new Boisson("eau", 0, 0, 0);
+        
+        StockBoisson stockEau = new StockBoisson(eau, 100000);
+        
+        stock.getStock().add(stockEau);
         
     }
     
