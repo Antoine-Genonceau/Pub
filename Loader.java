@@ -136,7 +136,7 @@ public class Loader {
         ArrayList<Humain> listeConsomateur = new ArrayList<>();
         listeConsomateur.add(zinedinezidane);
         
-        bono.consommer(listeConsomateur, jeannielongo);
+        bono.consommer(listeConsomateur, zinedinezidane);
         
         
         
