@@ -10,6 +10,8 @@ import java.util.ArrayList;
 /**
  *
  * @author Toine
+ * 
+ * Une CommandeBoisson contient un StockBoisson et une liste de consomateurs correspondants
  */
 public class CommandeBoisson {
     
@@ -46,6 +48,12 @@ public class CommandeBoisson {
         
     }
     
+    /**
+     * Un client commande sa boisson favorite
+     * 
+     * @param client 
+     */
+    
     public void setCommandeBoisson(Client client){   
         
         
@@ -56,6 +64,12 @@ public class CommandeBoisson {
         stockBoisson = new StockBoisson(client.getBoissonFav(), 1); 
         
     }
+    
+    /**
+     * Un serveur commande de l'eau
+     * 
+     * @param serveur 
+     */
     
     public void setCommandeBoisson(Serveur serveur){
         
@@ -69,6 +83,12 @@ public class CommandeBoisson {
         
     }
     
+    /**
+     * La patronne commande sa boisson favorite
+     * 
+     * @param patronne 
+     */
+    
     public void setCommandeBoisson(Patronne patronne){
         
         listeConsomateur = new ArrayList<>();
@@ -78,6 +98,12 @@ public class CommandeBoisson {
         stockBoisson = new StockBoisson(patronne.getBoissonFav(), 1);
         
     }
+    
+    /**
+     * Le barman commande la boisson sans alcool la plus presente en stock
+     * 
+     * @param barman 
+     */
     
     public void setCommandeBoisson(Barman barman){
         
@@ -122,6 +148,12 @@ public class CommandeBoisson {
         
     }
     
+    /**
+     * En second choix un client choisit sa boisson de secours
+     * 
+     * @param client 
+     */
+    
     public void setCommandeBoissonBis(Client client){   
         
         
@@ -132,6 +164,12 @@ public class CommandeBoisson {
         stockBoisson = new StockBoisson(client.getBoissonFavBis(), 1); 
         
     }
+    
+    /**
+     * En second choix le serveur choisit de l'eau
+     * 
+     * @param serveur 
+     */
     
     public void setCommandeBoissonBis(Serveur serveur){
         
@@ -145,6 +183,12 @@ public class CommandeBoisson {
         
     }
     
+    /**
+     * En second choix la patronne choisit sa boisson de secours
+     * 
+     * @param patronne 
+     */
+    
     public void setCommandeBoissonBis(Patronne patronne){
         
         listeConsomateur = new ArrayList<>();
@@ -154,6 +198,12 @@ public class CommandeBoisson {
         stockBoisson = new StockBoisson(patronne.getBoissonFavBis(), 1);
         
     }
+    
+    /**
+     * En second choix le barman choisit de l'eau
+     * 
+     * @param barman 
+     */
     
     public void setCommandeBoissonBis(Barman barman){
         
@@ -167,6 +217,10 @@ public class CommandeBoisson {
         stockBoisson = new StockBoisson(eau, 1);      
                 
     }
+    
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////***********Fonctions de Base*************//////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
     
     public void setStockBoisson(StockBoisson pStockBoisson){

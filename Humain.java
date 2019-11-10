@@ -11,6 +11,13 @@ import java.util.ArrayList;
 /**
  *
  * @author procy
+ * 
+ * L'objet Humain est la classe mère de tous les personnages
+ * 
+ * Un humain peut se présenter, parler, boire, payer, offrir un verre à d'autres humains
+ * 
+ * Il a aussi un droit d'access au bar, il en a bessoin pour pouvoir effectuer des actions dans un bar
+ * 
  */
 public class Humain {
     private String surnom;
@@ -48,6 +55,13 @@ public class Humain {
 
     }
     
+    /**
+     * Lorsqu'un humain parle on commence par "Fonction prenom" ou "prenom" si c'est un client
+     * 
+     * @param phrase le pharse que dit le client
+     *  
+     **/
+    
     public void parler(String phrase){
         
         Class<?> classe = this.getClass();
@@ -84,6 +98,12 @@ public class Humain {
         
     }
     
+    /**
+     * 
+     * Presentation de base d'un humain
+     * 
+     */
+    
     public void presentation(){
         
         String presentation = "Salut moi c'est " + this.prenom + ", mais tout le monde m'appelle " + this.surnom + ", je suis " + this.getClass().getSimpleName() + ".";
@@ -91,6 +111,12 @@ public class Humain {
         this.parler(presentation);
         
     }
+    
+    /**
+     * 
+     * initialisation de la popularite
+     * 
+     */
     
     public void initPopularite(){
         
@@ -135,11 +161,23 @@ public class Humain {
         
     }
     
+    /**
+     * Plus un humain boit de boisson alcoolise plus il est populaire
+     * 
+     * @param boisson boisson bu
+     */
+    
     public void updatePopularite(Boisson boisson){
         
         popularite = popularite + 10 * boisson.getUniteAlcool();        
                
     }
+    
+    /**
+     * Plus un humain paye plus il est populaire
+     * 
+     * @param ardoise montant payé
+     */
     
     public void updatePopularite(int ardoise){
         
@@ -147,11 +185,23 @@ public class Humain {
                
     }
     
+    /**
+     * 
+     * quand quelqu'un paye une tournee généralle sa popularite triple
+     * 
+     */
+    
     public void updatePopulariteTournee(){
         
         popularite = popularite*3;        
                
     }
+    
+    /**
+     * Un humain peut choisir une table, si une plce est libre il s'assoit
+     * 
+     * @param pTable table choisit
+     */
     
     private void runChoisirTable(Table pTable){
         
@@ -175,6 +225,11 @@ public class Humain {
         
     }
     
+    /**
+     * Un humain paut boire une boisson
+     * 
+     * @param pBoisson boisson bu
+     */
     
     public void boire(Boisson pBoisson){        
             
@@ -183,6 +238,12 @@ public class Humain {
         this.updatePopularite(pBoisson);        
         
     }
+    
+    /**
+     * Plusieurs humains peuvent boirent ensemble une commande
+     * 
+     * @param commande commande bu
+     */
     
     public void boire(Commande commande){
         
@@ -197,6 +258,13 @@ public class Humain {
         }       
         
     }
+    
+    /**
+     * Un humain peut payer une commande
+     * 
+     * @param commande commande reglée par l'humain
+     * @param serveur serveur auquel l'humain regle la commande
+     */
     
     public void payerBoisson(Commande commande, Serveur serveur){
         
@@ -224,6 +292,13 @@ public class Humain {
         
     }
     
+    /**
+     * Un humain peut payer une commande
+     * 
+     * @param commande commande reglée par l'humain
+     * @param barman barman auquel l'humain regle la commande
+     */
+    
     public void payerBoisson(Commande commande, Barman barman){
         
         int somme = 0;
@@ -247,6 +322,13 @@ public class Humain {
         barman.parler("Merci");
           
     }
+    
+    /**
+     * Un humain vérifie si il est en mesure de payer une commande
+     * 
+     * @param commande commande dont on vérifie la possibilite de payer
+     * @return cette methode retourne un boolean qui indique si oui ou non l'humain est en mesure de payer la commande
+     */
     
     public boolean verifPrix(Commande commande){
         
@@ -273,6 +355,13 @@ public class Humain {
         
     }
     
+    /**
+     * Un humain peut acheter une commande 
+     * 
+     * @param commande commande achetée
+     * @param barman barman au quel l'humain achete la commande
+     */
+    
     public void acheterBoisson(Commande commande, Barman barman){      
                             
             barman.chercherBoisson(commande);
@@ -288,6 +377,13 @@ public class Humain {
             payerBoisson(commande, serveur);               
                            
     }
+    
+    /**
+     * Un humain peut consommer c'est à dire commande à boire pour lui et d'autres humains
+     * 
+     * @param listeConsomateur humains pour lesquels la commande est passée
+     * @param serveur serveur auquel l'humain passe la commande
+     */
     
     private void runConsommer(ArrayList<Humain> listeConsomateur, Serveur serveur){
         
@@ -432,6 +528,13 @@ public class Humain {
         
     }
     
+    /**
+     * Un humain peut consommer c'est à dire commande à boire pour lui et d'autres humains
+     * 
+     * @param listeConsomateur humains pour lesquels la commande est passée
+     * @param barman barman auquel l'humain s'adresse 
+     */
+    
     private void runConsommer(ArrayList<Humain> listeConsomateur, Barman barman){
         
         Commande commande = new Commande();
@@ -568,6 +671,11 @@ public class Humain {
             
         }
     
+    /**
+     * Un humain peut commander une tournee generale
+     * 
+     * @param barman la demande de tournee générale se fait aupres du barman
+     */
     
     private void runTourneeGenerale(Barman barman){
         
@@ -598,6 +706,13 @@ public class Humain {
         
         
     }
+    
+    /**
+     * Une commande est crée en fonction des consomateurs
+     * 
+     * @param listeConsomateur
+     * @return on retourne la commande créée
+     */
 
     public Commande creationCommande(ArrayList listeConsomateur){
         
@@ -659,6 +774,13 @@ public class Humain {
         return new Commande(listeCommande);
          
     }
+    
+    /**
+     * Commande de second choix
+     * 
+     * @param commande correspond à une commande de premier choix qui n'a pu oboutir
+     * @return commande de second choix créée
+     */
        
     public Commande creationCommandeBis(Commande commande){
         

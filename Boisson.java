@@ -8,6 +8,8 @@ package pub;
 /**
  *
  * @author Toine
+ * 
+ * Une boisson à un nom, une unite d'alcool, un prix d'achat et un prix de vente
  */
 public class Boisson {
     

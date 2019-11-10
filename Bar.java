@@ -10,6 +10,19 @@ import java.util.ArrayList;
 /**
  *
  * @author Toine
+ * Un bar contient:
+ * 
+ * Un nom
+ * Des tables
+ * Une caisse
+ * Un stock
+ * Une blacklist
+ * Une patronne
+ * Un barman
+ * Des serveurs
+ * Des clients
+ * 
+ * 
  */
 public class Bar {
     
@@ -68,6 +81,12 @@ public class Bar {
         
     }
     
+    /**
+     * Quand une patronne achete un bar elle obtient l'access au bar et detient le bar 
+     * 
+     * @param patronne 
+     */
+    
     public void achatPatronne(Patronne patronne){
         
         patronne.setBar(this);
@@ -76,6 +95,12 @@ public class Bar {
         System.out.println("Entree de " + patronne.getPrenom());
         
     }
+    
+    /**
+     * Quand un barman est embauché il recoit l'access au bar, le stock, la caisse, la blacklist et a une patronne
+     * 
+     * @param pBarman 
+     */
     
     public void embauche(Barman pBarman){
         
@@ -90,6 +115,12 @@ public class Bar {
         
     }
     
+    /**
+     * Quand un serveur est embauché il recoit l'access au bar, et rencontre le barman référent
+     * 
+     * @param pServeur 
+     */
+    
     public void embauche(Serveur pServeur){
         
         pServeur.setBarman(barman);
@@ -102,6 +133,12 @@ public class Bar {
         
     }
     
+    /**
+     * Quand un client rentre il recoit l'access au bar
+     * 
+     * @param pClient 
+     */
+    
     public void entreeClient(Client pClient){
         
         clients.add(pClient);
@@ -111,6 +148,13 @@ public class Bar {
         System.out.println("Entree de " + pClient.getPrenom());
         
     }
+    
+    /**
+     * Quand un serveur virer un client il lui retire son access au bar
+     * 
+     * @param pClient
+     * @param pServeur 
+     */
     
     public void virerClient(Client pClient, Serveur pServeur){
         

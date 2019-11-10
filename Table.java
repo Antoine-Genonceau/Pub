@@ -10,6 +10,9 @@ import java.util.ArrayList;
 /**
  *
  * @author Toine
+ * 
+ * Objet Table, une table contient 4 places, et un numero, on s'y installe dans l'ordre des aiguilles d'une montre
+ * 
  */
 public class Table {
     
@@ -17,9 +20,11 @@ public class Table {
     private int numero;
     private ArrayList<Humain> personnes;
     
+    
+    
     public Table(){
                 
-        nombrePlacesLibres = 100;
+        nombrePlacesLibres = 4;
         numero = 0;           /*les tables numéro 0 doivent etre inutilisable*/
         personnes = new ArrayList<>();
         
@@ -33,6 +38,18 @@ public class Table {
         personnes = new ArrayList<>();
         
     }
+    
+    public Table(int pNumero){
+                
+        nombrePlacesLibres = 4;
+        numero = pNumero;
+        personnes = new ArrayList<>();
+        
+    }
+    
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////***********Fonctions de Base*************//////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
     public void setNumero(int pNumero){
         

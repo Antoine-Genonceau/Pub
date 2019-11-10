@@ -8,6 +8,8 @@ package pub;
 /**
  *
  * @author Toine
+ * 
+ * Un client à une boisson favorite et une de secours, un niveau d'alcool, et signe distinctif, un tee-shirt pour les hommes et un bijoux pour les femmes
  */
 public class Client extends Humain{
     
@@ -41,6 +43,13 @@ public class Client extends Humain{
                 
     }
     
+    /**
+     * Quand un client s'adresse à un serveur il peut finir ses phrases différemant suivant son sexe et son alcoolemie
+     * 
+     * @param phrase phrase de base
+     * @param serveur serveur auquel le client s'adresse
+     */
+    
     public void parler(String phrase, Serveur serveur){
         
         String extention = "";
@@ -70,6 +79,10 @@ public class Client extends Humain{
         
     }
     
+    /**
+     * Un client se presente en precisant son signe distinctif
+     * 
+     */
    
     @Override
     public void presentation(){
@@ -80,6 +93,11 @@ public class Client extends Humain{
         
     }
     
+    /**
+     * Le client à un niveau d'alcool qui evolue
+     * 
+     * @param pBoisson boisson bu
+     */
     
     @Override
     public void boire(Boisson pBoisson){

@@ -10,6 +10,8 @@ import java.util.ArrayList;
 /**
  *
  * @author Toine
+ * 
+ * La blackliste contient les clients blacklistés
  */
 public class BlackList {
     

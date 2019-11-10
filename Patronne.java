@@ -10,6 +10,10 @@ import java.util.ArrayList;
 /**
  *
  * @author Toine
+ * 
+ * 
+ * La patronne a tous les aspects d'une cliente mais elle possede un bar
+ * 
  */
 public class Patronne extends Client{
     
@@ -27,6 +31,14 @@ public class Patronne extends Client{
         super(pSurnom, pPrenom, pPorteMonnaie, pCri, pBoissonFav, pBoissonFavBis, pNiveauAlcool, pSigne);    
                 
     }
+
+    
+    /**
+     * La patronne recoit la facture du fournisseur et le paye
+     * 
+     * @param stockNonDispo le stock que le fournisseur n'a pas pu lui fournir
+     * @param prix la facture
+     */
     
     public void receptionFournisseur(Stock stockNonDispo, Caisse caisse, int prix){
         
@@ -38,11 +50,28 @@ public class Patronne extends Client{
         
     }
     
+
+     
+    /**
+     * Contrairement autres clients, la patronne ne paye pas ses consomations donc lorsqu'elle achete une commande
+     * le barman lui apporte mais elle ne paye rien
+     * 
+     * @param commande commande de la patronne
+     * @param barman elle s'adresse au barman
+     */
+    
     public void acheterBoisson(Commande commande, Barman barman){      
                             
             barman.chercherBoisson(commande);
             
     }
+ 
+    /**
+     * La patronne exclu un client pour cela elle regarde si un des serveurs
+     * est assez costaud, et le cas échéant elle lui demande de virer le client
+     * 
+     * @param client client soumis à une exclusion
+     */
     
     public void exclureClient(Client client){
         
@@ -66,6 +95,14 @@ public class Patronne extends Client{
         
     }
     
+ 
+    /**
+     * La patronne ordonne de ne plus servir un client 
+     * dans ce cas le client est blacklisté
+     * 
+     * @param client client concerné par le rappel a l'ordre
+     */
+    
     public void rappelOrdre(Client client){
         
         BlackListed blacklisted = new BlackListed(client);
@@ -75,6 +112,11 @@ public class Patronne extends Client{
         bar.getBlackList().getListeNoire().add(blacklisted);
         
     }
+
+    /**
+     * La patronne scan son bar et pour voir si quelqu'un n'a pas trop bu
+     * 
+     */
     
     public void checkEtatClient(){
         
@@ -90,6 +132,15 @@ public class Patronne extends Client{
         
     }
     
+     
+    /**
+     * En cas de tournee générale le barman doit avoir access à la liste de tous les clients 
+     * or celle ci n'est disponible que dans l'objet Bar, il passe donc par la patronne 
+     * qui lui retourne la liste de tous les clients
+     * 
+     * @return liste des clients
+     */
+    
     public ArrayList<Humain> reclamationTG(){
         
         ArrayList<Humain> liste = new ArrayList<>();
@@ -104,6 +155,10 @@ public class Patronne extends Client{
         return liste;
         
     }
+    
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////***********Fonctions de Base*************//////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
     public void setBar(Bar pBar){
         

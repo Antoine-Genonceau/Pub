@@ -8,6 +8,10 @@ package pub;
 /**
  *
  * @author Toine
+ * 
+ * Les serveurs sont des humains qui ont un signe distinctif, taille du biceps pour les hommes, coefficient de seduction pour les femmes
+ * Il ont un barman référent au quel ils s'adressent pour avoir les boisson demandées par les clients et lui remettre l'argent des payments
+ * 
  */
 public class Serveur extends Humain{
     
@@ -24,7 +28,6 @@ public class Serveur extends Humain{
     
 }
     
-    
     public Serveur(String pSurnom, String pPrenom, int pPorteMonnaie, String pCri, SigneServeur pSigne){
         
         super(pSurnom, pPrenom, pPorteMonnaie, pCri); 
@@ -33,15 +36,22 @@ public class Serveur extends Humain{
         
         barman = new Barman();
                         
-    }    
-    
+    }
+
+     
+    /**
+     * Le serveur transmet le payement au barman
+     * 
+     * @param somme montant du payment
+     * @param commande commande correspondante
+     */
         
     public void encaissement(int somme,Commande commande){
         
         this.parler("Tiens " + barman.getPrenom() + " " + somme + " € pour " + commande);
         
         barman.parler("Merci ! Je te sors ça tout de suite !");
-        
+                
         barman.encaissement(somme);       
         
     }

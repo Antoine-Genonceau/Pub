@@ -10,6 +10,8 @@ import java.util.ArrayList;
 /**
  *
  * @author Toine
+ * 
+ * Un Barman gere une caisse et un stock, il detient le la blacklist et à une patronne
  */
 public class Barman extends Humain{
     
@@ -39,6 +41,12 @@ public class Barman extends Humain{
                 
     }
     
+    /**
+     * Le barman fini ses phrases par "coco"
+     * 
+     * @param phrase phrase de base 
+     */
+    
     @Override
     public void parler(String phrase){
            
@@ -46,12 +54,21 @@ public class Barman extends Humain{
         
     }
     
+    /**
+     * Le barman anonce les tournee generales
+     */
+    
     public void annonceTG(){
            
         System.out.println("<" + this.getClass().getSimpleName() + " " + this.getPrenom() + "> " + "TOURNEE GENERALE !!!");
         
     }
     
+    /**
+     * Le barman encaisse 
+     * 
+     * @param somme somme ajoutée dans la caisse
+     */
     
     public void encaissement(int somme){
         
@@ -59,11 +76,23 @@ public class Barman extends Humain{
         
     }
     
+    /**
+     * Le barman decaisse 
+     * 
+     * @param somme somme retirée la caisse
+     */
+    
     public void decaissement(int somme){
         
         caisse.setLiquidite(caisse.getLiquidite() - somme);
         
     }
+    
+    /**
+     * Le barman transmet une partie de la caisse à sa patronne
+     * 
+     * @param somme transmise à la patronne 
+     */
     
     public void decaissementVersPatronne(int somme){
         
@@ -72,6 +101,13 @@ public class Barman extends Humain{
         patronne.setPorteMonnaie(patronne.getPorteMonnaie() + somme);
         
     }
+    
+    /**
+     * le barman verifie si le stock contient bien les boissons demandées
+     * 
+     * @param boisson boisons demandées
+     * @return retourne le nombre de boissons non disponibles
+     */
     
     public int verifBoisson(StockBoisson boisson){
                       
@@ -105,6 +141,13 @@ public class Barman extends Humain{
         
     }
     
+    /**
+     * Le barman verifie si un humain est blacklisté 
+     * 
+     * @param humain humain correspondant
+     * @return indique si oui ou non l'humain est blacklisté
+     */
+    
     public boolean verifBlackListed(Humain humain){
         
         boolean blacklisted = false;
@@ -128,17 +171,35 @@ public class Barman extends Humain{
         
     }
     
+    /**
+     * Le barman demande la liste des clients en cas de tournee generale
+     * 
+     * @return retourne la liste des client
+     */
+    
     public ArrayList<Humain> reclamationTG(){
         
         return patronne.reclamationTG();        
         
     }
     
+    /**
+     * Le barman indique à la patronne qu'un client blacklisté insiste pour qu'on lui serve à boire
+     * 
+     * @param client client faissant de la resistance
+     */
+    
     public void prevenirPatronne(Client client){
         
         patronne.exclureClient(client);
         
     }
+    
+    /**
+     * Le barman rappel à l'ordre un client blacklisté qui insiste pour boire
+     * 
+     * @param client client blacklisté demandant à boire
+     */
     
     public void rappelClient(Client client){
         
@@ -163,6 +224,13 @@ public class Barman extends Humain{
         
         
     }
+    
+    /**
+     * Le barman vérifie si une commande contient des clients blacklistés
+     * 
+     * @param commande commande correspondante
+     * @return retourne la commande sans les boisson destinées à des clients blacklistés
+     */
     
     public Commande verifBlackList(Commande commande){
         
@@ -190,6 +258,12 @@ public class Barman extends Humain{
         
     }
     
+    /**
+     * Le barman vérifie la disponibilitée des boissons d'une commande 
+     * 
+     * @param commande commande correspondante
+     * @return retourne une commande contenant les boissons disponible et une autre contenant les boisson non disponibles sous forme d'un tableau de deux éléments
+     */
     
     public Commande[] verifBoisson(Commande commande){
         
@@ -251,6 +325,11 @@ public class Barman extends Humain{
         
     } 
     
+    /**
+     * Le barman retire Les boisson achetées de son stock
+     * 
+     * @param boisson boissons achetées
+     */
     
     public void chercherBoisson(StockBoisson boisson){
                 
@@ -266,7 +345,12 @@ public class Barman extends Humain{
                 
     }
     
-    
+    /**
+     * Le barman retire les boissons contenues dans une commande de son stock
+     * 
+     * 
+     * @param commande commande achetée
+     */
     
     
     public void chercherBoisson(Commande commande){
@@ -278,6 +362,13 @@ public class Barman extends Humain{
         }     
        
     }
+    
+    /**
+     * Le barman passe une commande au fournisseur
+     * 
+     * @param pStock stock demandé
+     * @param fournisseur fournisseur contacté
+     */
     
     public void envoieCommandeFournisseur(Stock pStock, Fournisseur fournisseur){
         

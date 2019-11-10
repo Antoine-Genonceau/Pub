@@ -8,6 +8,8 @@ package pub;
 /**
  *
  * @author Toine
+ * 
+ * Le fournisseur à un stock et une caisse, il ressoit une commande d'un barman et est payé par la patronne
  */
 public class Fournisseur extends Humain{
     
@@ -36,6 +38,14 @@ public class Fournisseur extends Humain{
         caisse = pCaisse;
                 
     }
+    
+    /**
+     * Le fournisseur satisfait une commande en livrant un bar, il informe la patronne de ce qu'il n'a pas pu livrer
+     * 
+     * @param stockDemande stock demandé par le barman
+     * @param stockApprovision stock du barman
+     * @param pPatronne patronne du barman
+     */
     
     public void commande(Stock stockDemande, Stock stockApprovision, Patronne pPatronne){
                 
@@ -198,6 +208,10 @@ public class Fournisseur extends Humain{
         pPatronne.receptionFournisseur(nonDispo, caisse, facture);
                 
     }    
+    
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////***********Fonctions de Base*************//////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
     
     public Stock getStock(){
