@@ -15,6 +15,7 @@ public class Loader {
     
     public void CreationLeSixRoses(){
         
+        
         Boisson chimaybleue = new Boisson("chimaybleu", 9, 2, 5);
         Boisson jupiler = new Boisson("jupiler", 4, 1, 3);
         Boisson orval = new Boisson("orval", 6, 2, 5);
@@ -136,8 +137,19 @@ public class Loader {
         ArrayList<Humain> listeConsomateur = new ArrayList<>();
         listeConsomateur.add(zinedinezidane);
         
-        bono.consommer(listeConsomateur, zinedinezidane);
+        bono.tourneeGenerale(jacqueschirac);
+        bono.tourneeGenerale(jacqueschirac);
+        bono.tourneeGenerale(jacqueschirac);
+        System.out.println(lesixroses);
         
+        mariecurie.checkEtatClient();
+        bono.tourneeGenerale(jacqueschirac);
+        bono.tourneeGenerale(jacqueschirac);
+        bono.tourneeGenerale(jacqueschirac);
+        System.out.println(lesixroses.getBlackList().getListeNoire());
+        bono.tourneeGenerale(jacqueschirac);
+        bono.tourneeGenerale(jacqueschirac);
+        bono.tourneeGenerale(jacqueschirac);
         
         
     }
