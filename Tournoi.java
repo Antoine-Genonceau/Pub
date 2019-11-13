@@ -18,4 +18,48 @@ public class Tournoi {
     private int cagnotte;
     private boolean inscriptionsOuvertes;
     
+    public Tournoi(){
+        
+        equipes = new ArrayList();
+        cagnotte = 0;
+        inscriptionsOuvertes = true;
+        
+    }
+    
+    public void fermetureInscription(){
+        
+        inscriptionsOuvertes = false;
+        
+        tableau = new Tableau(equipes);
+        
+    }
+    
+    public void ajoutEquipe(Equipe equipe){
+        
+        if(inscriptionsOuvertes){
+            
+            if (!(equipes.contains(equipe))){
+                
+                if(payment(equipe)){
+                    
+                    equipes.add(equipe);
+                    
+                }
+
+            }
+            
+        }
+        
+        else{System.out.println("Inscriptions Closes");}
+        
+    }
+    
+    public boolean payment(Equipe equipe){
+        
+        boolean valide = false;
+        
+        return valide;
+        
+    }
+    
 }

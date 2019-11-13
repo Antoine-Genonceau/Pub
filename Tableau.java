@@ -15,4 +15,30 @@ public class Tableau {
     
     private ArrayList<TableauCase> tableau;
     
+    public Tableau(){
+        
+        
+    }
+    
+    public Tableau(ArrayList<Equipe> equipes){
+        
+        tableau = new ArrayList();
+        
+        for (int i = 0; i < equipes.size(); i++){
+            
+            TableauCase caseTemp = new TableauCase(equipes.get(i), i);
+            
+            tableau.add(caseTemp);           
+            
+            
+        }
+        
+    }
+    
+    public ArrayList<TableauCase> getTableau(){
+        
+        return tableau;
+        
+    }
+    
 }
