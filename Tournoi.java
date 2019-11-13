@@ -26,6 +26,14 @@ public class Tournoi {
         
     }
     
+    public Tournoi(ArrayList<Equipe> pEquipes){
+        
+        equipes = pEquipes;
+        cagnotte = 0;
+        inscriptionsOuvertes = true;
+        
+    }
+    
     public void fermetureInscription(){
         
         inscriptionsOuvertes = false;
@@ -60,6 +68,27 @@ public class Tournoi {
         
         return valide;
         
+    }
+    
+    public void match(Equipe A, Equipe B){
+        
+        tableau.resultatMatch(A, B, 2, 1);
+              
+    }
+    
+    public void deroulementMatchs(){
+        
+        Calendrier calendrier = new Calendrier(equipes);
+        
+        for (int i = 0; i < calendrier.calendrier.size(); i++){
+            
+            match(calendrier.calendrier.get(i)[0], calendrier.calendrier.get(i)[1]);
+            tableau.afficheTab();
+            
+        }
+        
+        tableau.resultatFinal();
+        tableau.afficheTabFinal();
     }
     
 }

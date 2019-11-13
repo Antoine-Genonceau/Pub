@@ -14,7 +14,6 @@ public class Equipe {
     private Joueur joueur1;
     private Joueur joueur2;
     private String nom;
-    private int pointsTournoi;
     private int points;
     
     
@@ -23,6 +22,14 @@ public class Equipe {
         joueur1 = new Joueur();
         joueur2 = new Joueur();
         nom = new String();
+        
+    }
+    
+    public Equipe(String pNom){
+        
+        joueur1 = new Joueur();
+        joueur2 = new Joueur();
+        nom = pNom;
         
     }
     
@@ -62,13 +69,7 @@ public class Equipe {
         return points;
         
     }
-    
-    public int getPointsTournoi(){
         
-        return pointsTournoi;
-        
-    }
-    
     public void setJoueur1(Joueur pJoueur1){
         
         joueur1 = pJoueur1;
@@ -93,11 +94,7 @@ public class Equipe {
         
     }
     
-    public void setPointsTournoi(int pPointsTournoi){
-        
-        pointsTournoi = pPointsTournoi;
-        
-    }
+    
     
     @Override
     public String toString(){

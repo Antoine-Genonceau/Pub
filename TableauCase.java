@@ -19,7 +19,7 @@ public class TableauCase {
         
         equipe = new Equipe();        
         numero = -1;
-        points = 0;
+        points = -1;
         
     }
     
@@ -27,7 +27,7 @@ public class TableauCase {
         
         equipe = pEquipe;        
         numero = pNumero;
-        points = 0;
+        points = -1;
         
     }
     
