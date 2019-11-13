@@ -11,11 +11,8 @@ import java.util.ArrayList;
  *
  * @author Toine
  */
-public class Tournoi {
+public class Tableau {
     
-    private ArrayList<Equipe> equipes;
-    private Tableau tableau;
-    private int cagnotte;
-    private boolean inscriptionsOuvertes;
+    private ArrayList<TableauCase> tableau;
     
 }
