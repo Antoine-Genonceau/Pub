@@ -43,22 +43,44 @@ public class Tournoi {
         
     }
     
-    public void annonceTableau(){
         
-        barman.parler("VOICI LE NOUVEAU TABLEAU :");
-        tableau.afficheTab();
-          
+    public int compteServeur(){
+        
+        int compteur = 0;
+        
+        for (int i = 0; i < equipes.size(); i++){
+            
+            if (equipes.get(i).getJoueur1().getIdentite().getClass() == Serveur.class){                
+                
+                compteur++;
+                
+            }
+            
+            if (equipes.get(i).getJoueur1().getIdentite().getClass() == Serveur.class){
+                
+                compteur++;
+            }
+        }
+        
+        return compteur;
         
     }
     
-    public void annonceTableauFinal(){
+    public boolean autorisation(Equipe equipe){
         
-        barman.parler("VOICI LE TABLEAU FINAL :");
-        tableau.afficheTabFinal();
-          
+        boolean bool = true;
+        
+        if (compteServeur() + equipe.compteServeur() > barman.getPatronne().getBar().getServeurs().size() - 1){
+            
+            bool = false;
+            
+        }        
+        
+        return bool;
         
     }
     
+        
     public void ajoutEquipe(Equipe equipe){
         
                 
@@ -66,19 +88,30 @@ public class Tournoi {
             
             if (!(equipes.contains(equipe))){
                 
-                barman.parler("Ok c'est " + prix + " euros l'inscription");
+                if(autorisation(equipe)){
                 
-                if(payment(equipe)){
+                    barman.parler("Ok c'est " + prix + " euros l'inscription");
+                
+                    if(payment(equipe)){
                     
-                    equipe.getJoueur1().getIdentite().parler("Ok voila l'argent");
+                        equipe.getJoueur1().getIdentite().parler("Ok voila l'argent");
                     
-                    equipes.add(equipe);
+                        equipes.add(equipe);
                     
-                    barman.parler("Merci, vous êtes inscrits");
+                        barman.parler("Merci, vous êtes inscrits");
                     
+                    }
+                
+                    else{equipe.getJoueur1().getIdentite().parler("Ok je reviens quand j'ai l'argent");
+                    
+                    }
+                   
                 }
                 
-                else{equipe.getJoueur1().getIdentite().parler("Ok je reviens quand j'ai l'argent");}
+                else{
+                    
+                    barman.parler("Désolé on a déjà trop de serveurs inscrits au tournoi");
+                }
 
             }
             
@@ -113,11 +146,57 @@ public class Tournoi {
     
     public void match(Equipe A, Equipe B){
         
-        tableau.resultatMatch(A, B, 2, 1);
+        System.out.println("\n" + "Debut du match entre " + A.getNom()+ " et " + B.getNom() + "\n");
+        
+        int scoreA = 0;
+        int scoreB = 0;
+        double rand = 0;
+        
+        while(scoreA != 2 && scoreB != 2){
+            
+            rand = Math.random();
+            
+            
+            if (rand > 0.5){
+                
+                scoreA = scoreA + 1;                
+                System.out.println("\n" + A + " : " + scoreA + "   " + B + " : " + scoreB + "\n");
+                B.tourneeAdversaire(A, barman);
+            
+                
+            }
+            
+            else{
+                
+                scoreB = scoreB + 1;
+                System.out.println("\n" + A + " : " + scoreA + "   " + B + " : " + scoreB + "\n");
+                A.tourneeAdversaire(B, barman);
+            
+                
+            }
+            
+                     
+        }
+        
+        
+               
+        if (scoreA > scoreB){
+            
+            barman.parler("L'équipe " + A + " L'emporte face à l'équipe " + B);
+            
+        }
+        
+        else{
+            
+            barman.parler("L'équipe " + B + " L'emporte face à l'équipe " + A);
+        }
+        
+        tableau.resultatMatch(A, B, scoreA, scoreB);
               
     }
     
-    public void deroulementMatchs(){
+    
+    public void deroulementTournoi(){
         
         barman.parler("LE TOURNOI EST LANCE !");
         
@@ -125,13 +204,17 @@ public class Tournoi {
         
         for (int i = 0; i < calendrier.getClendrier().size(); i++){                      
             
+            barman.parler("Prochain match : " + calendrier.getClendrier().get(i)[0].getNom()+ " VS " + calendrier.getClendrier().get(i)[1].getNom() );
             match(calendrier.getClendrier().get(i)[0], calendrier.getClendrier().get(i)[1]);
-            annonceTableau();
+            tableau.calculTotal();
+            tableau.calculClassement();
+            barman.parler("VOICI LE NOUVEAU TABLEAU :");
+            tableau.afficheTabClassement();
             
         }
         
-        tableau.resultatFinal();
-        annonceTableauFinal();
+        barman.parler("LE TOURNOI EST TERMINE");
+        
         remisePrix();
     }
     

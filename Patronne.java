@@ -182,6 +182,12 @@ public class Patronne extends Client{
         
     }
     
+    public Bar getBar(){
+        
+        return bar;
+        
+    }
+    
     @Override
     public Patronne clone(){        
         

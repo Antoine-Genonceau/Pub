@@ -13,6 +13,12 @@ public class Joueur {
     
     private Humain identite;
     
+    public Joueur(){
+        
+        identite = new Humain();
+        
+    }
+    
     public Joueur(Humain pIdentite){
         
         identite = pIdentite;

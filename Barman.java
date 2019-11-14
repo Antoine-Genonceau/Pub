@@ -64,7 +64,7 @@ public class Barman extends Humain{
             
             if (!(tournois.get(0).getInscriptionsOuvertes())){
             
-                tournois.get(0).deroulementMatchs();
+                tournois.get(0).deroulementTournoi();
             
             }
             

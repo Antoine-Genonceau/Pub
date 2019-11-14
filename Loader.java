@@ -137,12 +137,12 @@ public class Loader {
         ArrayList<Humain> listeConsomateur = new ArrayList<>();
         
         mariecurie.creationTournoi("Tournoi des As", 5);
-        
-        Joueur A1 = new Joueur(bono);
-        Joueur A2 = new Joueur(pattismith);
+         
+        Joueur A1 = new Joueur(thomasvoeckler);
+        Joueur A2 = new Joueur(isabelleautissier);
         Joueur B1 = new Joueur(arthurrimbaud);
-        Joueur B2 = new Joueur(andywarhol);
-        Joueur C1 = new Joueur(emilezola);
+        Joueur B2 = new Joueur(jeannielongo);
+        Joueur C1 = new Joueur(bono);
         Joueur C2 = new Joueur(zinedinezidane);
         Joueur A7 = new Joueur(bono);
         Joueur A8 = new Joueur(bono);

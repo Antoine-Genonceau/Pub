@@ -18,7 +18,13 @@ public class Equipe {
     private String nom;
     private int points;
     
-    
+    public Equipe(){
+        
+        joueur1 = new Joueur();
+        joueur2 = new Joueur();
+        nom = new String();
+        
+    }
         
     public Equipe(String pNom, Joueur pJoueur1, Joueur pJoueur2){
         
@@ -56,6 +62,26 @@ public class Equipe {
             joueur2.getIdentite().consommer(joueurs, barman);
             
         }
+        
+    }
+    
+    public int compteServeur(){
+        
+        int compteur = 0;
+        
+        if (joueur1.getIdentite().getClass() == Serveur.class){                
+                
+                compteur++;
+                
+            }
+            
+        if (joueur2.getIdentite().getClass() == Serveur.class){
+                
+                compteur++;
+            }
+        
+        
+        return compteur;
         
     }
     

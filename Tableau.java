@@ -61,8 +61,6 @@ public class Tableau {
             tableau.get(indexEquipe2).get(indexEquipe1 + 1).setPoints(score2);
             tableau.get(indexEquipe1).get(indexEquipe2 + 1).setPoints(3);
             
-            equipe2.tourneeAdversaire(equipe1, barman);
-            
             equipe1.getJoueur1().getIdentite().setPopularite((equipe1.getJoueur1().getIdentite().getPopularite())*2);
             equipe1.getJoueur2().getIdentite().setPopularite((equipe1.getJoueur2().getIdentite().getPopularite())*2);
             
@@ -73,8 +71,6 @@ public class Tableau {
             
             tableau.get(indexEquipe2).get(indexEquipe1 + 1).setPoints(3);
             tableau.get(indexEquipe1).get(indexEquipe2 + 1).setPoints(score1); 
-            
-            equipe1.tourneeAdversaire(equipe2, barman);
             
             equipe2.getJoueur1().getIdentite().setPopularite((equipe2.getJoueur1().getIdentite().getPopularite())*2);
             equipe2.getJoueur2().getIdentite().setPopularite((equipe2.getJoueur2().getIdentite().getPopularite())*2);
@@ -100,7 +96,8 @@ public class Tableau {
         return gagnant;
     }
         
-    public void resultatFinal(){
+       
+    public void calculTotal(){
         
         int somme = 0;
         
@@ -110,7 +107,7 @@ public class Tableau {
             
             for (int j = 0; j < tableau.size(); j++){
                 
-                if (i != j){
+                if (i != j && tableau.get(i).get(j + 1).getPoints() != -1){
                 
                     somme = somme + tableau.get(i).get(j + 1).getPoints();
                 
@@ -125,19 +122,55 @@ public class Tableau {
         
     }
     
-    public void afficheTabFinal(){
-        
-        afficheTab();
+    public void calculClassement(){
+                
+        int somme = 0;
+        int k;
+        boolean bool;
+        int indiceBest = 0;
         
         for (int i = 0; i < tableau.size(); i++){
             
-            System.out.println(tableau.get(i).get(0).getEquipe().getNom() + " : " + tableau.get(i).get(0).getPoints());
+            tableau.get(i).get(0).setClassement(0);
             
         }
+        
+        for (int i = 0; i < tableau.size(); i++){
+            
+            bool = false;
+            k = 0;
+            
+            while(!bool && k < tableau.size()){
+                
+                if (tableau.get(k).get(0).getClassement() == 0){
+                    
+                    indiceBest = k;
+                    bool = true;
+                    
+                }
+                
+                k++;
+            }           
+                                    
+            for (int j = 0; j < tableau.size(); j++){                
+            
+                if (tableau.get(indiceBest).get(0).getPoints() < tableau.get(j).get(0).getPoints() && tableau.get(j).get(0).getClassement() == 0){
+                    
+                    indiceBest = j;
+                    
+                }
+                
+            
+            }
+            
+            tableau.get(indiceBest).get(0).setClassement(i + 1);
+            
+        }
+        
+        
     }
     
-  
-    public void afficheTab(){
+    public void afficheTabClassement(){
         
         System.out.println("\n");
         
@@ -156,7 +189,7 @@ public class Tableau {
             
         }
         
-        System.out.println(premiereLigne);
+        System.out.println(premiereLigne + "Total     " + "Classement");
         
         
         for (int i = 0; i < tableau.size(); i++){
@@ -197,12 +230,15 @@ public class Tableau {
                 
             }
             
-            System.out.println("\n" + ligne);
+            System.out.println("\n" + ligne + "         " + tableau.get(i).get(0).getPoints() + "         " + tableau.get(i).get(0).getClassement());
             
         }
         
         System.out.println("\n");
     }
+    
+  
+    
     
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////***********Fonctions de Base*************//////////////////////////////////////////

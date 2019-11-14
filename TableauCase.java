@@ -14,13 +14,23 @@ public class TableauCase {
     private Equipe equipe;
     private int numero;
     private int points;
+    private int classement;
     
+    public TableauCase(){
+        
+        equipe = new Equipe();        
+        numero = -1;
+        points = -1;
+        classement = -1;
+        
+    }
     
     public TableauCase(Equipe pEquipe, int pNumero){
         
         equipe = pEquipe;        
         numero = pNumero;
         points = -1;
+        classement = -1;
         
     }
     
@@ -42,6 +52,12 @@ public class TableauCase {
         
     }
     
+    public int getClassement(){
+        
+        return classement;
+        
+    }
+    
     public void setEquipe(Equipe pEquipe){
         
         equipe = pEquipe;
@@ -58,6 +74,12 @@ public class TableauCase {
     public void setPoints(int pPoints){
         
         points = pPoints;
+        
+    }
+    
+    public void setClassement(int pClassement){
+        
+        classement = pClassement;
         
     }
     
