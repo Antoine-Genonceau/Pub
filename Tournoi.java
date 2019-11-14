@@ -39,7 +39,7 @@ public class Tournoi {
         
         inscriptionsOuvertes = false;
         
-        tableau = new Tableau(equipes);
+        tableau = new Tableau(equipes, barman);
         
     }
     
@@ -132,6 +132,28 @@ public class Tournoi {
         
         tableau.resultatFinal();
         annonceTableauFinal();
+        remisePrix();
+    }
+    
+    public void remisePrix(){
+        
+        Equipe gagnant = tableau.getGagnant();
+        
+        barman.parler("Bravo à l'équipe " + gagnant.getNom() + " qui remporte le tournoi " + nom);
+        
+        int recompense = cagnotte / 2;
+        
+        int retourPatronne = cagnotte - recompense;
+        
+        barman.getPatronne().setPorteMonnaie(barman.getPatronne().getPorteMonnaie() + retourPatronne);
+        
+        int sommeJ1 = recompense / 2;
+        int sommeJ2 = recompense - sommeJ1;
+        
+        gagnant.getJoueur1().getIdentite().setPorteMonnaie(gagnant.getJoueur1().getIdentite().getPorteMonnaie() + sommeJ1);
+        gagnant.getJoueur2().getIdentite().setPorteMonnaie(gagnant.getJoueur2().getIdentite().getPorteMonnaie() + sommeJ2);
+        
+        
     }
     
     

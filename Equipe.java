@@ -5,6 +5,8 @@
  */
 package pub;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Toine
@@ -31,6 +33,29 @@ public class Equipe {
         joueur1 = pJoueur1;
         joueur2 = pJoueur2;
         nom = pNom;
+        
+    }
+    
+    public void tourneeAdversaire(Equipe equipeAd, Barman barman){
+        
+        ArrayList<Humain> joueurs = new ArrayList<>();
+        
+        joueurs.add(equipeAd.getJoueur1().getIdentite());
+        joueurs.add(equipeAd.getJoueur2().getIdentite());
+        joueurs.add(joueur1.getIdentite());
+        joueurs.add(joueur2.getIdentite());
+        
+        if (joueur1.getIdentite().getPorteMonnaie() > joueur2.getIdentite().getPorteMonnaie()){
+            
+            joueur1.getIdentite().consommer(joueurs, barman);
+            
+        }
+        
+        else{
+            
+            joueur2.getIdentite().consommer(joueurs, barman);
+            
+        }
         
     }
     

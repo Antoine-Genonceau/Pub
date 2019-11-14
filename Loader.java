@@ -139,11 +139,11 @@ public class Loader {
         mariecurie.creationTournoi("Tournoi des As", 5);
         
         Joueur A1 = new Joueur(bono);
-        Joueur A2 = new Joueur(bono);
-        Joueur B1 = new Joueur(bono);
-        Joueur B2 = new Joueur(bono);
-        Joueur C1 = new Joueur(bono);
-        Joueur C2 = new Joueur(bono);
+        Joueur A2 = new Joueur(pattismith);
+        Joueur B1 = new Joueur(arthurrimbaud);
+        Joueur B2 = new Joueur(andywarhol);
+        Joueur C1 = new Joueur(emilezola);
+        Joueur C2 = new Joueur(zinedinezidane);
         Joueur A7 = new Joueur(bono);
         Joueur A8 = new Joueur(bono);
         Joueur A9 = new Joueur(bono);
@@ -157,6 +157,8 @@ public class Loader {
         C.inscription("Tournoi des As", jacqueschirac);
         jacqueschirac.fermetureInscription();
         jacqueschirac.deroulementTournoi();
+        
+        System.out.println(lesixroses);
         
     }
     

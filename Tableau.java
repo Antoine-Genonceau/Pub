@@ -15,13 +15,16 @@ public class Tableau {
     
     private ArrayList<ArrayList<TableauCase>> tableau;
     private ArrayList<Equipe> listeEquipe;
+    private Barman barman;
     
     public Tableau(){
         
         
     }
     
-    public Tableau(ArrayList<Equipe> equipes){
+    public Tableau(ArrayList<Equipe> equipes, Barman pBarman){
+        
+        barman = pBarman;
         
         tableau = new ArrayList();
         listeEquipe = new ArrayList();
@@ -58,17 +61,45 @@ public class Tableau {
             tableau.get(indexEquipe2).get(indexEquipe1 + 1).setPoints(score2);
             tableau.get(indexEquipe1).get(indexEquipe2 + 1).setPoints(3);
             
+            equipe2.tourneeAdversaire(equipe1, barman);
+            
+            equipe1.getJoueur1().getIdentite().setPopularite((equipe1.getJoueur1().getIdentite().getPopularite())*2);
+            equipe1.getJoueur2().getIdentite().setPopularite((equipe1.getJoueur2().getIdentite().getPopularite())*2);
+            
+            
         }
         
         else{
             
             tableau.get(indexEquipe2).get(indexEquipe1 + 1).setPoints(3);
-            tableau.get(indexEquipe1).get(indexEquipe2 + 1).setPoints(score1);            
+            tableau.get(indexEquipe1).get(indexEquipe2 + 1).setPoints(score1); 
+            
+            equipe1.tourneeAdversaire(equipe2, barman);
+            
+            equipe2.getJoueur1().getIdentite().setPopularite((equipe2.getJoueur1().getIdentite().getPopularite())*2);
+            equipe2.getJoueur2().getIdentite().setPopularite((equipe2.getJoueur2().getIdentite().getPopularite())*2);
             
         }
         
     }
     
+    public Equipe getGagnant(){
+        
+        Equipe gagnant = tableau.get(0).get(0).getEquipe();
+        
+        for (int i = 1; i < tableau.size(); i++){
+            
+            if (tableau.get(i).get(0).getEquipe().getPoints() > gagnant.getPoints()){
+                
+                gagnant = tableau.get(i).get(0).getEquipe();
+                
+            }
+            
+        }
+        
+        return gagnant;
+    }
+        
     public void resultatFinal(){
         
         int somme = 0;
