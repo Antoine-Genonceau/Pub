@@ -31,6 +31,16 @@ public class Patronne extends Client{
         super(pSurnom, pPrenom, pPorteMonnaie, pCri, pBoissonFav, pBoissonFavBis, pNiveauAlcool, pSigne);    
                 
     }
+    
+    public void creationTournoi(String nom, int prix){
+        
+        Tournoi tournoi = new Tournoi(nom, prix, bar.getBarman());  
+        
+        bar.getBarman().getTournois().add(tournoi);
+
+        this.parler("Je declare ouvertes les inscription pour le tournoi " + nom + " les inscriptions sont à " + prix + " euros merci de vous diriger vers " + bar.getBarman().getSurnom() + " pour vous inscrire");
+                        
+    }
 
     
     /**

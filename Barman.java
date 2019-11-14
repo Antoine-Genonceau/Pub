@@ -19,6 +19,7 @@ public class Barman extends Humain{
     private Stock stock;
     private Patronne patronne;
     private BlackList blacklist;
+    private ArrayList<Tournoi> tournois;
     
     public Barman(){
     
@@ -27,6 +28,7 @@ public class Barman extends Humain{
         caisse = new Caisse();
         patronne = new Patronne();
         blacklist = new BlackList();
+        tournois = new ArrayList();
     
 }
     
@@ -38,8 +40,41 @@ public class Barman extends Humain{
         caisse = new Caisse();
         patronne = new Patronne();
         blacklist = new BlackList();
+        tournois = new ArrayList();
                 
     }
+    
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////***********Fonctions Tournoi*************//////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    public void fermetureInscription(){
+        
+        if (tournois.size() != 0){
+            
+            tournois.get(0).fermetureInscription();
+            
+        }
+        
+    }
+    
+    public void deroulementTournoi(){
+        
+        if (tournois.size() != 0 ){
+            
+            if (!(tournois.get(0).getInscriptionsOuvertes())){
+            
+                tournois.get(0).deroulementMatchs();
+            
+            }
+            
+        }
+        
+    }
+    
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////***********Fonctions Bar*****************//////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
     /**
      * Le barman fini ses phrases par "coco"
@@ -406,6 +441,12 @@ public class Barman extends Humain{
     public void setPatronne(Patronne pPatronne){
         
         patronne = pPatronne;
+        
+    }
+    
+    public ArrayList<Tournoi> getTournois(){
+        
+        return tournois;
         
     }
     

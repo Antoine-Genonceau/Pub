@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class Tableau {
     
     private ArrayList<ArrayList<TableauCase>> tableau;
-    ArrayList<Equipe> listeEquipe;
+    private ArrayList<Equipe> listeEquipe;
     
     public Tableau(){
         
@@ -47,12 +47,7 @@ public class Tableau {
         
     }
     
-    public ArrayList<ArrayList<TableauCase>> getTableau(){
         
-        return tableau;
-        
-    }
-    
     public void resultatMatch(Equipe equipe1, Equipe equipe2, int score1, int score2){
         
         int indexEquipe1 = listeEquipe.indexOf(equipe1);
@@ -178,5 +173,20 @@ public class Tableau {
         System.out.println("\n");
     }
     
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////***********Fonctions de Base*************//////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    public ArrayList<Equipe> getListeEquipe(){
+        
+        return listeEquipe;
+        
+    }
+    
+    public ArrayList<ArrayList<TableauCase>> getTableau(){
+        
+        return tableau;
+        
+    }
     
 }

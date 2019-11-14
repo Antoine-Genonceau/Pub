@@ -11,4 +11,18 @@ package pub;
  */
 public class Joueur {
     
+    private Humain identite;
+    
+    public Joueur(Humain pIdentite){
+        
+        identite = pIdentite;
+        
+    }
+    
+    public Humain getIdentite(){
+        
+        return identite;
+        
+    }
+    
 }

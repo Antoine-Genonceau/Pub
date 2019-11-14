@@ -135,22 +135,28 @@ public class Loader {
         System.out.println(lesixroses);
    
         ArrayList<Humain> listeConsomateur = new ArrayList<>();
-        listeConsomateur.add(zinedinezidane);
         
-        bono.tourneeGenerale(jacqueschirac);
-        bono.tourneeGenerale(jacqueschirac);
-        bono.tourneeGenerale(jacqueschirac);
-        System.out.println(lesixroses);
+        mariecurie.creationTournoi("Tournoi des As", 5);
         
-        mariecurie.checkEtatClient();
-        bono.tourneeGenerale(jacqueschirac);
-        bono.tourneeGenerale(jacqueschirac);
-        bono.tourneeGenerale(jacqueschirac);
-        System.out.println(lesixroses.getBlackList().getListeNoire());
-        bono.tourneeGenerale(jacqueschirac);
-        bono.tourneeGenerale(jacqueschirac);
-        bono.tourneeGenerale(jacqueschirac);
+        Joueur A1 = new Joueur(bono);
+        Joueur A2 = new Joueur(bono);
+        Joueur B1 = new Joueur(bono);
+        Joueur B2 = new Joueur(bono);
+        Joueur C1 = new Joueur(bono);
+        Joueur C2 = new Joueur(bono);
+        Joueur A7 = new Joueur(bono);
+        Joueur A8 = new Joueur(bono);
+        Joueur A9 = new Joueur(bono);
         
+        Equipe A = new Equipe("les fous", A1, A2);
+        Equipe B = new Equipe("Sedan", B1, B2);
+        Equipe C = new Equipe("Paris fC", C1, C2);
+        
+        A.inscription("Tournoi des As", jacqueschirac);
+        B.inscription("Tournoi des As", jacqueschirac);        
+        C.inscription("Tournoi des As", jacqueschirac);
+        jacqueschirac.fermetureInscription();
+        jacqueschirac.deroulementTournoi();
         
     }
     

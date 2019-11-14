@@ -19,23 +19,9 @@ public class Pub {
     public static void main(String[] args) {
         
         
-        /*Loader load = new Loader();
+        Loader load = new Loader();
         
-        load.CreationLeSixRoses();*/
-        
-        Equipe A = new Equipe("les fous");
-        Equipe B = new Equipe("Sedan");
-        Equipe C = new Equipe("Paris fC");
-        
-        ArrayList<Equipe> liste = new ArrayList<>();
-        
-        liste.add(A);
-        liste.add(B);
-        liste.add(C);
-        
-        Tournoi PS = new Tournoi(liste);
-        PS.fermetureInscription();
-        PS.deroulementMatchs();
+        load.CreationLeSixRoses();
         
     }
 }

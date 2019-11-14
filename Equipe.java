@@ -17,18 +17,11 @@ public class Equipe {
     private int points;
     
     
-    public Equipe(){
         
-        joueur1 = new Joueur();
-        joueur2 = new Joueur();
-        nom = new String();
+    public Equipe(String pNom, Joueur pJoueur1, Joueur pJoueur2){
         
-    }
-    
-    public Equipe(String pNom){
-        
-        joueur1 = new Joueur();
-        joueur2 = new Joueur();
+        joueur1 = pJoueur1;
+        joueur2 = pJoueur2;
         nom = pNom;
         
     }
@@ -39,6 +32,29 @@ public class Equipe {
         joueur2 = pJoueur2;
         nom = pNom;
         
+    }
+    
+    public void inscription(String nomTournoi, Barman barman){
+        
+        boolean done = false;
+        
+        joueur1.getIdentite().parler("Bonjour on voudrais s'inscrire au tournoi " + nomTournoi + ", on est l'équipe " + nom);
+        
+        for (int i = 0; i < barman.getTournois().size(); i++){
+            
+            if (barman.getTournois().get(i).getNom().equals(nomTournoi)){
+                
+                barman.getTournois().get(i).ajoutEquipe(this);
+                
+                done = true;
+            }
+            
+        }
+        
+        if(!done){
+            
+            barman.parler("Désolé mais ce tournoi n'éxiste pas");
+        }
     }
     
     

@@ -14,7 +14,7 @@ import static java.util.Collections.shuffle;
  */
 public class Calendrier {
     
-    ArrayList<Equipe[]> calendrier;
+    private ArrayList<Equipe[]> calendrier;
     
     public Calendrier(ArrayList<Equipe> listeEquipe){
         
@@ -37,6 +37,12 @@ public class Calendrier {
         
         shuffle(calendrier);
             
+    }
+    
+    public ArrayList<Equipe[]> getClendrier(){
+        
+        return calendrier;
+        
     }
     
 }

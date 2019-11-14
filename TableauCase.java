@@ -15,13 +15,6 @@ public class TableauCase {
     private int numero;
     private int points;
     
-    public TableauCase(){
-        
-        equipe = new Equipe();        
-        numero = -1;
-        points = -1;
-        
-    }
     
     public TableauCase(Equipe pEquipe, int pNumero){
         
