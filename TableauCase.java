@@ -8,6 +8,9 @@ package pub;
 /**
  *
  * @author Toine
+ * 
+ * Une case de tableau contient une Equipe, un numéro d'équipe, un nombre de points, un classement
+ * 
  */
 public class TableauCase {
     

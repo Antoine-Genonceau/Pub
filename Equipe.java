@@ -10,6 +10,9 @@ import java.util.ArrayList;
 /**
  *
  * @author Toine
+ * 
+ * L'objet Equipe est composé de deux joueurs, d'un nom et d'un nombre de points durant une manche
+ * 
  */
 public class Equipe {
     
@@ -42,6 +45,13 @@ public class Equipe {
         
     }
     
+    /**
+     * Offrir un coup a boire à une autre equipe
+     * 
+     * @param equipeAd  equipe à laquelle on offre a boiree
+     * @param barman barman auquel on fait la demande
+     */
+    
     public void tourneeAdversaire(Equipe equipeAd, Barman barman){
         
         ArrayList<Humain> joueurs = new ArrayList<>();
@@ -65,6 +75,12 @@ public class Equipe {
         
     }
     
+    /**
+     * Compte le nombre de serveurs present dans l'équipe
+     * 
+     * @return retourne le nombre de serveur
+     */
+    
     public int compteServeur(){
         
         int compteur = 0;
@@ -84,6 +100,13 @@ public class Equipe {
         return compteur;
         
     }
+    
+    /**
+     * Demande d'inscription à un tournoi
+     * 
+     * @param nomTournoi nom du tournoi auquel l'équipe souhaite s'inscrire
+     * @param barman barman auprès duquel l'équipe effectue sa demande d'inscription
+     */
     
     public void inscription(String nomTournoi, Barman barman){
         

@@ -10,6 +10,9 @@ import java.util.ArrayList;
 /**
  *
  * @author Toine
+ * L'objet tableau contient des cases, une liste d'equipes, un barman responsable du tableau
+ * 
+ * 
  */
 public class Tableau {
     
@@ -50,6 +53,14 @@ public class Tableau {
         
     }
     
+    /**
+     * Mise a jour après reception des résultats d'un match
+     * 
+     * @param equipe1
+     * @param equipe2
+     * @param score1 score equipe1
+     * @param score2 score equipe2
+     */
         
     public void resultatMatch(Equipe equipe1, Equipe equipe2, int score1, int score2){
         
@@ -79,6 +90,12 @@ public class Tableau {
         
     }
     
+    /**
+     * Cherche le gagnat du tournoi
+     * 
+     * @return retourne le gagnant
+     */
+    
     public Equipe getGagnant(){
         
         Equipe gagnant = tableau.get(0).get(0).getEquipe();
@@ -96,7 +113,11 @@ public class Tableau {
         return gagnant;
     }
         
-       
+    /**
+     * Calcul du total de points des différentes équipes
+     * 
+     */   
+    
     public void calculTotal(){
         
         int somme = 0;
@@ -121,6 +142,11 @@ public class Tableau {
         
         
     }
+    
+    /**
+     * Calcul le classement des différents équipes
+     * 
+     */
     
     public void calculClassement(){
                 
@@ -169,6 +195,11 @@ public class Tableau {
         
         
     }
+    
+    /**
+     * Affiche le tableau
+     * 
+     */
     
     public void afficheTabClassement(){
         

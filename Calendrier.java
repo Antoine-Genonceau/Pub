@@ -11,10 +11,18 @@ import static java.util.Collections.shuffle;
 /**
  *
  * @author Toine
+ * Un calendrier contient la liste des matchs devants avoir lieux pour réaliser un tournoi
+ * 
  */
 public class Calendrier {
     
     private ArrayList<Equipe[]> calendrier;
+    
+    /**
+     * Creation du calendrier toutes les equipes doivent se rencontrer
+     * 
+     * @param listeEquipe liste des equipes inscrites au tournoi
+     */
     
     public Calendrier(ArrayList<Equipe> listeEquipe){
         

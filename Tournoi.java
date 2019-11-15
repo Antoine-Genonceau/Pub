@@ -10,6 +10,10 @@ import java.util.ArrayList;
 /**
  *
  * @author Toine
+ * 
+ * L'objet tournoi est créé par la patronne, il a une cagnotte, un prix d'inscription, un barman responsable de son déroulé et du tableau de celui ci
+ * les equipes doivent s'insrcire auprès du barman avant le début du tournoi
+ * 
  */
 public class Tournoi {
     
@@ -32,6 +36,10 @@ public class Tournoi {
         
     }
     
+    /**
+     * Cette methode cloture les inscription au tournoi, et crée alors le tableau du tournoi 
+     * 
+     */
         
     public void fermetureInscription(){
         
@@ -43,6 +51,12 @@ public class Tournoi {
         
     }
     
+    /**
+     * 
+     * cette methode compte le nombre de serveurs inscrits au tournoi
+     * 
+     * @return retourne le nombre de serveurs
+     */
         
     public int compteServeur(){
         
@@ -66,6 +80,14 @@ public class Tournoi {
         
     }
     
+    /**
+     * 
+     * Cette methode indique si une équipe à le droits de s'inscrire au tournoi
+     * 
+     * @param equipe equipe souhaitant s'inscrire
+     * @return autorisation ou non de s'inscrire 
+     */
+    
     public boolean autorisation(Equipe equipe){
         
         boolean bool = true;
@@ -80,6 +102,12 @@ public class Tournoi {
         
     }
     
+    /**
+     * 
+     * Cette methode inscrit sous certaines condition une equipe au tournoi
+     * 
+     * @param equipe equipe souhaitant s'inscrire
+     */
         
     public void ajoutEquipe(Equipe equipe){
         
@@ -123,6 +151,13 @@ public class Tournoi {
         
     }
     
+    /**
+     * Payment d'une équipe pour son inscription au tournoi
+     * 
+     * @param equipe equipe s'inscrivant au tournoi
+     * @return indique si le payment à bien eu lieu
+     */
+    
     public boolean payment(Equipe equipe){
         
         boolean valide = false;
@@ -143,6 +178,13 @@ public class Tournoi {
         return valide;
         
     }
+    
+    /**
+     * Déroulment d'un match entre une equipe A et une equipe B
+     * 
+     * @param A equipe A
+     * @param B equipe B
+     */
     
     public void match(Equipe A, Equipe B){
         
@@ -195,6 +237,10 @@ public class Tournoi {
               
     }
     
+    /**
+     * Deroulement d'un tournoi
+     * 
+     */
     
     public void deroulementTournoi(){
         
@@ -217,6 +263,10 @@ public class Tournoi {
         
         remisePrix();
     }
+    
+    /**
+     * Remise des prix a la suite du tournoi     * 
+     */
     
     public void remisePrix(){
         

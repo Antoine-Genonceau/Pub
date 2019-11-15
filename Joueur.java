@@ -8,6 +8,9 @@ package pub;
 /**
  *
  * @author Toine
+ * 
+ * Un joueur à une identite
+ * 
  */
 public class Joueur {
     
