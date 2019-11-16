@@ -134,7 +134,9 @@ public class Patronne extends Client{
      * 
      */
     
-    public void checkEtatClient(){
+    public boolean checkEtatClient(){
+        
+        boolean done = false;
         
         for(int i = 0; i < bar.getClients().size(); i++){
             
@@ -142,9 +144,13 @@ public class Patronne extends Client{
                 
                 rappelOrdre(bar.getClients().get(i));
                 
+                done = true;
+                
             }
             
         }
+        
+        return done;
         
     }
     

@@ -48,7 +48,7 @@ public class Fournisseur extends Humain{
      */
     
     public void commande(Stock stockDemande, Stock stockApprovision, Patronne pPatronne){
-                
+               
         Stock nonDispo = new Stock();
         
         Stock correspondantDispo = new Stock();
@@ -57,17 +57,29 @@ public class Fournisseur extends Humain{
         
         for (int i = 0; i < stockDemande.getStock().size(); i++){
             
+            boolean done = false;
+            
             facture = facture + stockDemande.getStock().get(i).getNombre() * stockDemande.getStock().get(i).getBoisson().getPrixAchat();
             
             for (int j  = 0; j < stock.getStock().size(); j++){
                 
                 if (stockDemande.getStock().get(i).getBoisson().equals(stock.getStock().get(j).getBoisson())){
                     
-                    correspondantDispo.getStock().add(stock.getStock().get(j).clone());                   
+                    correspondantDispo.getStock().add(stock.getStock().get(j).clone());    
+                    
+                    done = true;
                                         
                 }                
                 
-            }            
+            }    
+            
+            if (!done){
+                
+                StockBoisson zero = new StockBoisson(stockDemande.getStock().get(i).getBoisson(), 0);
+                
+                correspondantDispo.getStock().add(zero);
+                
+            }
             
         }
                 
@@ -203,11 +215,24 @@ public class Fournisseur extends Humain{
         
         facture = facture - rabais;
         
-        this.parler("Voila ça fait " + facture + " s'il te plait !");
+        if (nonDispo.getStock().size() != 0){
+        
+            this.parler("Je n'avait pas " + nonDispo + " en stock");
+        
+        }
+        
+        else{
+            
+            this.parler("J'ai bien apporté tous ce que " + pPatronne.getBar().getBarman().getPrenom() + " m'avais demandé !");
+        }
+        
+        this.parler("Donc ça fait " + facture + " € s'il te plait !");
         
         pPatronne.receptionFournisseur(nonDispo, caisse, facture);
                 
     }    
+    
+    
     
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////***********Fonctions de Base*************//////////////////////////////////////////

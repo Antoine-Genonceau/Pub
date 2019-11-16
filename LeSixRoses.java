@@ -15,8 +15,10 @@ public class LeSixRoses {
     
     public Charge CreationLeSixRoses(){
         
+        ArrayList<Boisson> listeBoissons = new ArrayList<>();
         
-        Boisson chimaybleue = new Boisson("chimaybleu", 9, 2, 5);
+        
+        Boisson chimaybleue = new Boisson("chimaybleue", 9, 2, 5);
         Boisson jupiler = new Boisson("jupiler", 4, 1, 3);
         Boisson orval = new Boisson("orval", 6, 2, 5);
         Boisson leffe = new Boisson("leffe", 6, 2, 4);
@@ -25,6 +27,16 @@ public class LeSixRoses {
         Boisson grenadine = new Boisson("grenadine", 0, 1, 2);
         Boisson cafe = new Boisson("café", 0, 1, 2);
         Boisson guinness = new Boisson("guinness", 0, 1, 2);
+        
+        listeBoissons.add(chimaybleue);
+        listeBoissons.add(jupiler);
+        listeBoissons.add(orval);
+        listeBoissons.add(leffe);
+        listeBoissons.add(cocacola);
+        listeBoissons.add(fanta);
+        listeBoissons.add(grenadine);
+        listeBoissons.add(cafe);
+        listeBoissons.add(guinness);
         
         StockBoisson stockChimaybleue = new StockBoisson(chimaybleue, 500);
         StockBoisson stockJupiler = new StockBoisson(jupiler, 800);
@@ -132,7 +144,7 @@ public class LeSixRoses {
         
         jacqueschirac.envoieCommandeFournisseur(premiereCommande, euroDrink);
         
-        return new Charge(lesixroses, euroDrink);
+        return new Charge(lesixroses, euroDrink, listeBoissons);
         
     }
 }

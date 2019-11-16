@@ -66,7 +66,7 @@ public class Interface {
         }
         
         System.out.println("Que voullez vous faire ?");
-        System.out.println("| Afficher données - 1 | Créer données - 2 | Effectuer une action - 3 ");
+        System.out.println("| Afficher données - 1 | Créer données - 2 | Effectuer une action - 3 |");
         
         entree = keyboard.nextLine();
 
@@ -89,29 +89,29 @@ public class Interface {
     public void afficherDonnée(){
         
         System.out.println("Quelle type de donnée voulez vous afficher ?");
-        System.out.println("| Bar - 1 | Fournisseur - 2 | Serveurs - 3 | Clients - 4 | Barman - 5 | Patronne - 6");
+        System.out.println("| Bar - 1 | Fournisseur - 2 | Serveurs - 3 | Clients - 4 | Barman - 5 | Patronne - 6 |");
         
         entree = keyboard.nextLine();
         
         switch(entree) {
                 
             case "1":
-                charge.bar.toString();
+                System.out.println(charge.bar.toString());
                 break;
             case "2":
-                charge.fournisseur.toString();
+                System.out.println(charge.fournisseur.toString());
                 break;
             case "3":
-                charge.bar.getServeurs();
+                System.out.println(charge.bar.getServeurs());
                 break;
             case "4":
-                charge.bar.getClients();
+                System.out.println(charge.bar.getClients());
                 break;
             case "5":
-                charge.bar.getBarman();
+                System.out.println(charge.bar.getBarman());
                 break;
             case "6":
-                charge.bar.getPatronne();
+                System.out.println(charge.bar.getPatronne());
                 break;
             
             }
@@ -138,7 +138,7 @@ public class Interface {
   
     }
     
-    creationServeur(){
+    public void creationServeur(){
         
         System.out.println("Cretion Serveur :");
         
@@ -184,6 +184,8 @@ public class Interface {
         
         Serveur serveur = new Serveur(surnom, prenom, porteMonnaie, cri, signeServeur);
         
+        charge.bar.embauche(serveur);
+        
         System.out.println("Vous avez créé le serveur " + serveur.toString());
         
     }
@@ -211,12 +213,24 @@ public class Interface {
         String cri = entree;
         
         System.out.println("Boisson Favorie :");
+        for (int i = 0; i < charge.boissons.size(); i++){
+            
+            System.out.print(charge.boissons.get(i).getNom() + " - " +  i +" | ");
+            
+        }
+        System.out.println("");
         entree = keyboard.nextLine();
-        Boisson boissonFav = conversionListeStrVersBoisson(entree);
+        Boisson boissonFav = charge.boissons.get(conversionListeStrVersInt(entree));
         
         System.out.println("Boisson de secours :");
+        for (int i = 0; i < charge.boissons.size(); i++){
+            
+            System.out.print(charge.boissons.get(i).getNom() + " - " +  i +" | ");
+            
+        }
+        System.out.println("");
         entree = keyboard.nextLine();
-        Boisson boissonFavBis = conversionListeStrVersBoisson(entree);
+        Boisson boissonFavBis = charge.boissons.get(conversionListeStrVersInt(entree));
         
         System.out.println("Niveau alcool :");
         entree = keyboard.nextLine();
@@ -244,7 +258,9 @@ public class Interface {
         
         SigneClient signeClient = conversionListeStrVersSigneClient(sexe, signe);
         
-        Client client = new Serveur(surnom, prenom, porteMonnaie, cri, signeClient);
+        Client client = new Client(surnom, prenom, porteMonnaie, cri, boissonFav, boissonFavBis, niveauAlcool, signeClient);
+        
+        charge.bar.entreeClient(client);
         
         System.out.println("Vous avez créé le client " + client.toString());
         
@@ -253,7 +269,128 @@ public class Interface {
     
     public void action(){
         
+        System.out.println("Quelle type d'action voulez vous effectuer ?");
+        System.out.println("| Gestion Bar - 1 | Action Bar - 2 | Action Tournoi -3 |");
         
+        entree = keyboard.nextLine();
+        
+        switch(entree) { 
+                
+            case "1":
+                actionBar();
+                break;
+            case "2":
+                actionHumain();
+                break;
+            case "3":
+                actionTournoi();
+                break;
+                        
+            }
+        
+        
+        
+    }
+    
+    public void actionBar(){
+        
+        System.out.println("Quelle type d'action voulez vous effectuer ?");
+        System.out.println("| Commander des boissons au fournisseur - 1 | Rappeller à l'ordre un client trop alcoolisé - 2 |");
+        
+        entree = keyboard.nextLine();
+        
+        switch(entree) { 
+                
+            case "1":
+                commandeFournisseur();
+                break;
+            case "2":
+                rappelOrdre();
+                break;
+                                    
+            }
+               
+        
+    }
+    
+    public void commandeFournisseur(){
+        
+        System.out.println("Commande :");
+        
+        Stock commande = new Stock();
+        
+        for (int i = 0; i < charge.boissons.size(); i++){
+            
+                       
+            System.out.println("nombre de " + charge.boissons.get(i).getNom() + ":");
+            entree = keyboard.nextLine();
+            
+            StockBoisson stockBoisson = new StockBoisson(charge.boissons.get(i), conversionListeStrVersInt(entree));
+            
+            commande.getStock().add(stockBoisson);
+            
+        }
+        
+        charge.bar.getBarman().envoieCommandeFournisseur(commande, charge.fournisseur);
+        
+    }
+    
+    public void rappelOrdre(){
+        
+        System.out.println("Quelle type de rappel à l'ordre voulez vous effectuer ?");
+        System.out.println("| Automatique - 1 | Manuel - 2 |");
+        
+        entree = keyboard.nextLine();
+        
+        
+        switch(entree) { 
+                
+            case "1":
+                automatique();
+                break;
+            case "2":
+                manuel();
+                break;
+                                    
+            }
+        
+    }
+    
+    public void automatique(){
+        
+        if (!charge.bar.getPatronne().checkEtatClient()){
+            
+            System.out.println("Aucun client n'as bessoin d'être rappellé à l'ordre.");
+            
+        }
+        
+    }
+    
+    public void manuel(){
+        
+        System.out.println("Quel client voulez vous rappeller à l'ordre ?");
+        
+        for (int i = 0; i < charge.bar.getClients().size(); i++){
+            
+            System.out.print(charge.bar.getClients().get(i) + " - " + i + " | ");
+            
+        }
+        
+        entree = keyboard.nextLine();
+        
+        charge.bar.getPatronne().rappelOrdre(charge.bar.getClients().get(conversionListeStrVersInt(entree)));
+        
+    }
+    
+    public void actionHumain(){
+        
+        
+        
+    }
+    
+    public void actionTournoi(){
+        
+       
         
     }
     
@@ -359,6 +496,15 @@ public class Interface {
         
         Boisson boisson = new Boisson();
         
+        for(int i = 0; i < charge.boissons.size(); i++){
+            
+            if (charge.boissons.get(i).getNom().equals(entree)){
+                
+                boisson = charge.boissons.get(i);
+                
+            }
+            
+        }        
         
         return boisson;
     }

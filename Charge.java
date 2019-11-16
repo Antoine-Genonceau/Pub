@@ -5,6 +5,8 @@
  */
 package pub;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Toine
@@ -13,20 +15,23 @@ public class Charge {
     
     Bar bar;
     Fournisseur fournisseur;
+    ArrayList<Boisson> boissons;
     boolean chargement;
     
     public Charge(){
         
         bar = new Bar();
         fournisseur = new Fournisseur();
+        boissons = new ArrayList<>();
         chargement = false;
         
     }
     
-    public Charge(Bar pBar, Fournisseur pFournisseur){
+    public Charge(Bar pBar, Fournisseur pFournisseur, ArrayList<Boisson> pBoissons){
         
         bar = pBar;
         fournisseur = pFournisseur;
+        boissons = pBoissons;
         chargement = true;
         
     }
