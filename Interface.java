@@ -5,6 +5,7 @@
  */
 package pub;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -384,7 +385,332 @@ public class Interface {
     
     public void actionHumain(){
         
+        Humain humain = choixHumain();
         
+        System.out.println("Quelle type d'action voulez vous effectuer ?");
+        System.out.println("| Se présenter - 1 | Commander auprès du barman - 2 | Commander aupres d'un serveur - 3 |");
+        entree = keyboard.nextLine();
+        
+        
+        switch(entree) { 
+                
+            case "1":
+                humain.presentation();
+                break;
+            case "2":
+                commanderBarman(humain);
+                break;
+            case "3":
+                commanderServeur(humain);
+                break;
+            
+                                    
+            }
+        
+        
+    }
+    
+    public void commanderBarman(Humain humain){
+        
+        System.out.println("Quelle genre de commande voulez vous passer ?");
+        System.out.println("| Commander un verre pour soi - 1 | Commander pour soi et d'autres personnes - 2 | Commander pour d'autres personnes - 3 |");
+        
+        entree = keyboard.nextLine();
+        
+        
+        switch(entree) { 
+            
+            case "1":
+                commanderSeul(humain, charge.bar.getBarman());
+                break;
+            case "2":
+                commanderAvec(humain, charge.bar.getBarman());
+                break;
+            case "3":
+                commanderAutres(humain, charge.bar.getBarman());
+                break;
+                                    
+            }
+        
+    }
+    
+    public void commanderServeur(Humain humain){
+        
+        Serveur serveur = new Serveur();
+        
+        serveur = choixServeur();
+        
+        System.out.println("Quelle genre de commande voulez vous passer ?");
+        System.out.println("| Commander un verre pour soi - 1 | Commander pour soi et d'autres personnes - 2 | Commander pour d'autres personnes - 3 |");
+        
+        entree = keyboard.nextLine();
+        
+        
+        switch(entree) { 
+            
+            case "1":
+                commanderSeul(humain, serveur);
+                break;
+            case "2":
+                commanderAvec(humain, serveur);
+                break;
+            case "3":
+                commanderAutres(humain, serveur);
+                break;
+                                    
+            }
+        
+    }
+    
+    public void commanderSeul(Humain humain, Barman barman){
+        
+        ArrayList<Humain> seul = new ArrayList<>();
+        
+        seul.add(humain);
+        
+        humain.consommer(seul, barman);
+        
+    }
+    
+    public void commanderSeul(Humain humain, Serveur serveur){
+        
+        ArrayList<Humain> seul = new ArrayList<>();
+        
+        seul.add(humain);
+        
+        humain.consommer(seul, serveur);
+        
+    }
+    
+    public void commanderAvec(Humain humain, Barman barman){
+        
+        ArrayList<Humain> avec = new ArrayList<>();
+        
+        avec.add(humain);
+        
+        ajoutAutres(avec);
+        
+        humain.consommer(avec, barman);
+        
+    }
+    
+    public void commanderAvec(Humain humain, Serveur serveur){
+        
+        ArrayList<Humain> avec = new ArrayList<>();
+        
+        avec.add(humain);
+        
+        ajoutAutres(avec);
+        
+        humain.consommer(avec, serveur);
+        
+    }
+    
+    public void commanderAutres(Humain humain, Barman barman){
+        
+        ArrayList<Humain> avec = new ArrayList<>();
+        
+        ajoutAutres(avec);
+        
+        humain.consommer(avec, barman);
+        
+    }
+    
+    public void commanderAutres(Humain humain, Serveur serveur){
+        
+        ArrayList<Humain> avec = new ArrayList<>();
+        
+        ajoutAutres(avec);
+        
+        humain.consommer(avec, serveur);
+        
+    }
+    
+    public void ajoutAutres(ArrayList<Humain> liste){
+        
+        entree = "O";
+        
+        while(!(entree.equals("N"))){
+            
+            liste.add(choixHumainConsomateur());
+            
+            System.out.println("Voulez vous offrir un verre à quelqu'un d'autres ? (O = oui / N = non)");
+            
+            entree = keyboard.nextLine();
+            
+        }
+        
+    }
+    
+    public Serveur choixServeur(){
+        
+        System.out.println("Aupres de quel serveur souhaitez vous commander ?");
+        
+        Serveur serveur = new Serveur();
+        
+        for (int i = 0; i < charge.bar.getServeurs().size(); i++){
+            
+            System.out.print(charge.bar.getServeurs().get(i).getPrenom() + " - " + i + " | ");
+            
+        }
+        
+        entree = keyboard.nextLine();
+        
+        serveur = charge.bar.getServeurs().get(conversionListeStrVersInt(entree));
+        
+        return serveur;
+        
+    }
+    
+    public Humain choixHumain(){
+        
+        Humain humain = new Humain();
+        
+        System .out.println("Avec qui voulez vous effectuer une action ?");
+        
+        int num = 0;
+        
+        int lastClient = 0;
+        
+        int lastServeur = 0;
+        
+        System.out.println("Clients :");
+                
+        for (int i = 0; i < charge.bar.getClients().size(); i++){
+            
+            System.out.print(charge.bar.getClients().get(i).getPrenom() + " - " + num + " | ");
+            
+            num++;
+            
+        }
+        
+        lastClient = num - 1;
+        
+        System.out.println("Serveurs :");
+        
+        for (int i = 0; i < charge.bar.getServeurs().size(); i++){
+            
+            System.out.print(charge.bar.getServeurs().get(i).getPrenom() + " - " + num + " | ");
+            
+            num++;
+            
+        }
+        
+        lastServeur = num - 1;
+        
+        System.out.println("Barman :");
+        
+        System.out.print(charge.bar.getBarman().getPrenom() + " - " + num + " | ");
+        
+        System.out.println("Patronne :");
+        
+        System.out.print(charge.bar.getPatronne().getPrenom() + " - " + num + 1 + " | ");
+        
+        entree = keyboard.nextLine();
+        
+        int choix = conversionListeStrVersInt(entree);
+        
+        if (choix <= lastClient){
+            
+            humain = charge.bar.getClients().get(choix);
+            
+        }
+        
+        if (choix <= lastServeur && choix > lastClient){
+            
+            humain = charge.bar.getServeurs().get(choix);
+            
+        }
+        
+        if (choix == num){
+            
+            humain = charge.bar.getBarman();
+            
+        }
+        
+        if (choix == num + 1){
+            
+            humain = charge.bar.getPatronne();
+            
+        }
+                
+        return humain;        
+        
+    }
+    
+     public Humain choixHumainConsomateur(){
+        
+        Humain humain = new Humain();
+        
+        System .out.println("A qui voulez vous offir un verre ?");
+        
+        int num = 0;
+        
+        int lastClient = 0;
+        
+        int lastServeur = 0;
+        
+        System.out.println("Clients :");
+                
+        for (int i = 0; i < charge.bar.getClients().size(); i++){
+            
+            System.out.print(charge.bar.getClients().get(i).getPrenom() + " - " + num + " | ");
+            
+            num++;
+            
+        }
+        
+        lastClient = num - 1;
+        
+        System.out.println("Serveurs :");
+        
+        for (int i = 0; i < charge.bar.getServeurs().size(); i++){
+            
+            System.out.print(charge.bar.getServeurs().get(i).getPrenom() + " - " + num + " | ");
+            
+            num++;
+            
+        }
+        
+        lastServeur = num - 1;
+        
+        System.out.println("Barman :");
+        
+        System.out.print(charge.bar.getBarman().getPrenom() + " - " + num + " | ");
+        
+        System.out.println("Patronne :");
+        
+        System.out.print(charge.bar.getPatronne().getPrenom() + " - " + num + 1 + " | ");
+        
+        entree = keyboard.nextLine();
+        
+        int choix = conversionListeStrVersInt(entree);
+        
+        if (choix <= lastClient){
+            
+            humain = charge.bar.getClients().get(choix);
+            
+        }
+        
+        if (choix <= lastServeur && choix > lastClient){
+            
+            humain = charge.bar.getServeurs().get(choix);
+            
+        }
+        
+        if (choix == num){
+            
+            humain = charge.bar.getBarman();
+            
+        }
+        
+        if (choix == num + 1){
+            
+            humain = charge.bar.getPatronne();
+            
+        }
+                
+        return humain;        
         
     }
     
