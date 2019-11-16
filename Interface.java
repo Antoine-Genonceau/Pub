@@ -11,12 +11,19 @@ import java.util.Scanner;
 /**
  *
  * @author Toine
+ * 
+ * L'objet interface represente l'interaction avec l'utilisateur
  */
 public class Interface {
     
     private Charge charge = new Charge();
     private Scanner keyboard = new Scanner(System.in);
     private String entree = "vide";
+    
+    /**
+     * Cette methode est le coeur de l'interface
+     * 
+     */
     
     public void processus(){
         
@@ -30,6 +37,12 @@ public class Interface {
         
     }
     
+    
+    /**
+     * Chargement des informations
+     * 
+     */
+    
     public void chargerBarLeSixRoses(){
         
         LeSixRoses lesixroses = new LeSixRoses();
@@ -41,7 +54,10 @@ public class Interface {
         
     }
     
-    
+    /**
+     * Menu général on demande à l'utilisateur ce qu'il souhaite faire
+     * 
+     */
     
     
     public void menuGeneral(){      
@@ -51,90 +67,136 @@ public class Interface {
             System.out.println("Bonjour, pour commencer veulliez choisir au bar à charger !");
             System.out.println("| Le six roses - 1 |");
         
-            entree = keyboard.nextLine();
-        
-            switch(entree) {
+            try{
+            
+            switch(scanEntierBorne(1,1)) {
                 
-            case "1":
+            case 1:
                 chargerBarLeSixRoses();
                 break;   
             
             }
         
-        }
+        }           
+                
+        catch(BorneException e){
+                
+                menuGeneral();
+                
+                }
         
         System.out.println("Que voullez vous faire ?");
         System.out.println("| Afficher données - 1 | Créer données - 2 | Effectuer une action - 3 |");
         
         entree = keyboard.nextLine();
+        
+        try{
 
-        switch(entree) {
+        switch(scanEntierBorne(1,3)) {
                 
-            case "1":
-                afficherDonnée();
+            case 1:
+                afficherDonnee();
                 break;
-            case "2":
-                creerDonnée();
+            case 2:
+                creerDonnee();
                 break;
-            case "3":
+            case 3:
                 action();
                 break;
             
             }
         
-    }   
+        }
+        
+        catch(BorneException e){
+            
+            menuGeneral();
+        }
+        
     
-    public void afficherDonnée(){
+        }   
+    }
+    
+    /**
+     * Menu pour afficher des données
+     * 
+     */
+    
+    public void afficherDonnee(){
         
         System.out.println("Quelle type de donnée voulez vous afficher ?");
         System.out.println("| Bar - 1 | Fournisseur - 2 | Serveurs - 3 | Clients - 4 | Barman - 5 | Patronne - 6 |");
         
-        entree = keyboard.nextLine();
+        try{
+            
         
-        switch(entree) {
+        
+        switch(scanEntierBorne(1, 6)) {
                 
-            case "1":
+            case 1:
                 System.out.println(charge.bar.toString());
                 break;
-            case "2":
+            case 2:
                 System.out.println(charge.fournisseur.toString());
                 break;
-            case "3":
+            case 3:
                 System.out.println(charge.bar.getServeurs());
                 break;
-            case "4":
+            case 4:
                 System.out.println(charge.bar.getClients());
                 break;
-            case "5":
+            case 5:
                 System.out.println(charge.bar.getBarman());
                 break;
-            case "6":
+            case 6:
                 System.out.println(charge.bar.getPatronne());
                 break;
             
             }
+        }
         
+        catch(BorneException e){
+            
+            afficherDonnee();
+            
+        }
     }
     
-    public void creerDonnée(){
+    /**
+     * Menu pour créer des données
+     * 
+     */
+    
+    public void creerDonnee(){
         
         System.out.println("Quelle type de donnée voulez vous créer ?");
         System.out.println("| Serveur - 1 | Client - 2 |");
         
-        entree = keyboard.nextLine();
-        
-        switch(entree) { 
+        try{
+            
+        switch(scanEntierBorne(1,2)) { 
                 
-            case "1":
+            case 1:
                 creationServeur();
                 break;
-            case "2":
+            case 2:
                 creationClient();
                 break;
                         
             }
+        
+        }
+        catch(BorneException e){
+            
+            creerDonnee();
+        }
   
     }
+    
+    /**
+     * Cette methode crée un serveur
+     * 
+     */
     
     public void creationServeur(){
         
@@ -187,6 +249,11 @@ public class Interface {
         System.out.println("Vous avez créé le serveur " + serveur.toString());
         
     }
+    
+    /**
+     * Cette methode crée un client
+     * 
+     */
     
     public void creationClient(){
         
@@ -264,52 +331,80 @@ public class Interface {
         
     }
     
+    /**
+     * Menu pour effectuer une action
+     * 
+     */
+    
     
     public void action(){
         
         System.out.println("Quelle type d'action voulez vous effectuer ?");
         System.out.println("| Gestion Bar - 1 | Action Bar - 2 | Action Tournoi -3 |");
         
-        entree = keyboard.nextLine();
+        try{
+            
         
-        switch(entree) { 
+        switch(scanEntierBorne(1,3)) { 
                 
-            case "1":
+            case 1:
                 actionBar();
                 break;
-            case "2":
+            case 2:
                 actionHumain();
                 break;
-            case "3":
+            case 3:
                 actionTournoi();
                 break;
                         
             }
         
-        
+        }
+        catch(BorneException e){
+            
+            action();
+            
+        }
         
     }
+    
+    /**
+     * Menu pour effectuer une action de gestion du bar
+     * 
+     */
     
     public void actionBar(){
         
         System.out.println("Quelle type d'action voulez vous effectuer ?");
         System.out.println("| Commander des boissons au fournisseur - 1 | Rappeller à l'ordre un client trop alcoolisé - 2 |");
         
-        entree = keyboard.nextLine();
+        try{
+            
         
-        switch(entree) { 
+        switch(scanEntierBorne(1,2)) { 
                 
-            case "1":
+            case 1:
                 commandeFournisseur();
                 break;
-            case "2":
+            case 2:
                 rappelOrdre();
                 break;
                                     
             }
+        }
+        catch(BorneException e){
+            
+            actionBar();
+            
+        }
                
         
     }
+    
+    /**
+     * Cette methode permet de passer une commande au fournisseur
+     * 
+     */
     
     public void commandeFournisseur(){
         
@@ -333,26 +428,42 @@ public class Interface {
         
     }
     
+    /**
+     * Cette methode permet de rappeller a l'ordre un client
+     * 
+     */
+    
     public void rappelOrdre(){
         
         System.out.println("Quelle type de rappel à l'ordre voulez vous effectuer ?");
         System.out.println("| Automatique - 1 | Manuel - 2 |");
         
-        entree = keyboard.nextLine();
-        
-        
-        switch(entree) { 
+        try{
+            
+        switch(scanEntierBorne(1,2)) { 
                 
-            case "1":
+            case 1:
                 automatique();
                 break;
-            case "2":
+            case 2:
                 manuel();
                 break;
                                     
             }
         
+        }
+        catch(BorneException e){
+            
+            rappelOrdre();
+            
+        }
+        
     }
+    
+    /**
+     * Rappel à l'ordre automatique 
+     * 
+     */
     
     public void automatique(){
         
@@ -363,6 +474,11 @@ public class Interface {
         }
         
     }
+    
+    /**
+     * Rappel à l'ordre manuel
+     * 
+     */
     
     public void manuel(){
         
@@ -380,6 +496,11 @@ public class Interface {
         
     }
     
+    /**
+     * Menu pour effectuer une action avec un individu present dans le bar
+     * 
+     */
+    
     public void actionHumain(){
         
         Humain humain = choixHumain();
@@ -388,24 +509,33 @@ public class Interface {
         System.out.println("| Se présenter - 1 | Commander auprès du barman - 2 | Commander aupres d'un serveur - 3 |");
         entree = keyboard.nextLine();
         
-        
-        switch(entree) { 
+        try{
+        switch(scanEntierBorne(1,3)) { 
                 
-            case "1":
+            case 1:
                 humain.presentation();
                 break;
-            case "2":
+            case 2:
                 commanderBarman(humain);
                 break;
-            case "3":
+            case 3:
                 commanderServeur(humain);
                 break;
             
                                     
             }
         
-        
+        }
+        catch(BorneException e){
+            
+            actionHumain();
+        }
     }
+    
+    /**
+     * Methode permetant dans passer une commande au barman
+     * @param humain individu passant la commande
+     */
     
     public void commanderBarman(Humain humain){
         
@@ -414,22 +544,33 @@ public class Interface {
         
         entree = keyboard.nextLine();
         
-        
-        switch(entree) { 
+        try{
+        switch(scanEntierBorne(1,3)) { 
             
-            case "1":
+            case 1:
                 commanderSeul(humain, charge.bar.getBarman());
                 break;
-            case "2":
+            case 2:
                 commanderAvec(humain, charge.bar.getBarman());
                 break;
-            case "3":
+            case 3:
                 commanderAutres(humain, charge.bar.getBarman());
                 break;
                                     
             }
-        
+        }
+        catch(BorneException e){
+            
+            commanderBarman(humain);
+            
+        }
     }
+    
+    /**
+     * Methode permetant dans passer une commande à un serveur
+     * 
+     * @param humain individu passant la commande
+     */
     
     public void commanderServeur(Humain humain){
         
@@ -440,24 +581,34 @@ public class Interface {
         System.out.println("Quelle genre de commande voulez vous passer ?");
         System.out.println("| Commander un verre pour soi - 1 | Commander pour soi et d'autres personnes - 2 | Commander pour d'autres personnes - 3 |");
         
-        entree = keyboard.nextLine();
-        
-        
-        switch(entree) { 
+        try{
+        switch(scanEntierBorne(1,3)) { 
             
-            case "1":
+            case 1:
                 commanderSeul(humain, serveur);
                 break;
-            case "2":
+            case 2:
                 commanderAvec(humain, serveur);
                 break;
-            case "3":
+            case 3:
                 commanderAutres(humain, serveur);
                 break;
                                     
             }
+        }
         
+        catch(BorneException e){
+            
+            commanderServeur(humain);
+        }
     }
+    
+    /**
+     * methode permetant à un individu de passer une commande pour lui seul
+     * 
+     * @param humain individu passant la commande
+     * @param barman barman auquel il s'adresse
+     */
     
     public void commanderSeul(Humain humain, Barman barman){
         
@@ -469,6 +620,13 @@ public class Interface {
         
     }
     
+    /**
+     * methode permetant à un individu de passer une commande pour lui seul
+     * 
+     * @param humain individu passant la commande
+     * @param serveur serveur auquel il s'adresse
+     */
+    
     public void commanderSeul(Humain humain, Serveur serveur){
         
         ArrayList<Humain> seul = new ArrayList<>();
@@ -478,6 +636,13 @@ public class Interface {
         humain.consommer(seul, serveur);
         
     }
+    
+    /**
+     * Methode permetant à un individu de passer une commande pour lui et d'autres personnes
+     * 
+     * @param humain individu passant la commande
+     * @param barman barman auquel il s'adresse
+     */
     
     public void commanderAvec(Humain humain, Barman barman){
         
@@ -491,6 +656,13 @@ public class Interface {
         
     }
     
+    /**
+     * Methode permetant à un individu de passer une commande pour lui et d'autres personnes 
+     * 
+     * @param humain individu passant la commande
+     * @param serveur serveur auquel il s'adresse
+     */
+    
     public void commanderAvec(Humain humain, Serveur serveur){
         
         ArrayList<Humain> avec = new ArrayList<>();
@@ -503,6 +675,13 @@ public class Interface {
         
     }
     
+    /**
+     * Methode permetant à un individu de passer une commande pour d'autres personnes 
+     * 
+     * @param humain individu passant la commande
+     * @param barman barman auquel il s'adresse
+     */
+    
     public void commanderAutres(Humain humain, Barman barman){
         
         ArrayList<Humain> avec = new ArrayList<>();
@@ -513,6 +692,13 @@ public class Interface {
         
     }
     
+    /**
+     * Methode permetant à un individu de passer une commande pour d'autres personnes 
+     * 
+     * @param humain individu passant la commande
+     * @param serveur serveur auquel il s'adresse
+     */
+    
     public void commanderAutres(Humain humain, Serveur serveur){
         
         ArrayList<Humain> avec = new ArrayList<>();
@@ -522,6 +708,12 @@ public class Interface {
         humain.consommer(avec, serveur);
         
     }
+    
+    /**
+     * Methode permettant d'ajouter des individu dans une commande
+     * 
+     * @param liste liste d'individus
+     */
     
     public void ajoutAutres(ArrayList<Humain> liste){
         
@@ -538,6 +730,12 @@ public class Interface {
         }
         
     }
+    
+    /**
+     * Methode permettant de choisir le serveur auquel on souhaite passer la commande
+     * 
+     * @return retourne le serveur choisi
+     */
     
     public Serveur choixServeur(){
         
@@ -558,6 +756,12 @@ public class Interface {
         return serveur;
         
     }
+    
+    /**
+     * Methode permetant de choisir l'individu avec lequel on veut effectuer une action
+     * 
+     * @return individu choisi
+     */
     
     public Humain choixHumain(){
         
@@ -635,6 +839,12 @@ public class Interface {
         
     }
     
+    /**
+     * Methode permetant de choisir un individu auquel on souhaite offrir un verre
+     * 
+     * @return  individu choisi
+     */
+    
      public Humain choixHumainConsomateur(){
         
         Humain humain = new Humain();
@@ -711,6 +921,12 @@ public class Interface {
         
     }
      
+     /**
+      * Methode permetant de choisir un individu pour jouer
+      * 
+      * @return retourne l'individu choisit
+      */
+     
      public Humain choixJoueur(){
         
         Humain humain = new Humain();
@@ -762,26 +978,44 @@ public class Interface {
         return humain;        
         
     }
+     
+    /**
+     * Menu des actions de tournoi
+     * 
+     */
     
     public void actionTournoi(){
         
         System.out.println("Quelle type d'action voulez vous effectuer ?");
         System.out.println("| Gerer un tournoi - 1 | Creer un tournoi - 2 |");
         
-        entree = keyboard.nextLine();
         
-        switch(entree) { 
+        try{
+        switch(scanEntierBorne(1,2)) { 
                 
-                    case "1":
+                    case 1:
                         choixTournoi();
                         break;
-                    case "2":
+                    case 2:
                         creerTournoi();
                         break;
                                          
             }
         
+        }
+        
+        catch(BorneException e){
+            
+            actionTournoi();
+            
+        }
+        
     }
+    
+    /**
+     * Methode permettant de choisir un tournoi avec lequel on veut effectuer une action
+     * 
+     */
     
     public void choixTournoi(){
         
@@ -810,31 +1044,47 @@ public class Interface {
         
     }
     
+    /**
+     * Menu des actions possibles pour un tournoi existant
+     * 
+     * @param tournoi 
+     */
+    
     public void gererTournoi(Tournoi tournoi){
         
         
         System.out.println("Quelle type d'action voulez vous effectuer pour le tournoi " + tournoi.getNom() + " ?");
         System.out.println("| Inscrire une Equipe - 1 | Cloturer les inscriptions - 2 |Lancer le tournoi - 3 |");
         
-        entree = keyboard.nextLine();
-        
-        switch(entree) { 
+        try{
+        switch(scanEntierBorne(1,3)) { 
                 
-                    case "1":
+                    case 1:
                         inscrireEquipe(tournoi);
                         break;
-                    case "2":
+                    case 2:
                         cloreInscriptionsTournoi(tournoi);
                         break;
-                    case "3":
+                    case 3:
                         lancerTournoi(tournoi);
                         break;
                                          
             }
         
+        }
+        catch(BorneException e){
+            
+            gererTournoi(tournoi);
+            
+        }
         
     }
     
+    /**
+     * Methode permettant d'inscrire une equipe a un tournoi
+     * 
+     * @param tournoi 
+     */
     public void inscrireEquipe(Tournoi tournoi){
         
         Equipe equipe = new Equipe();
@@ -846,6 +1096,13 @@ public class Interface {
         equipe.inscription(tournoi, charge.bar.getBarman());
         
     }
+    
+    
+    /**
+     * Methode permetant de créer une equipe
+     * 
+     * @return 
+     */
     
     public Equipe creationEquipe(){
         
@@ -864,6 +1121,12 @@ public class Interface {
         
     }
     
+    /**
+     * Methode permetant de creer un joueur
+     * 
+     * @return retoure le joueur créé
+     */
+    
     public Joueur creationJoueur1(){
         
         Humain humain = new Humain();
@@ -875,6 +1138,12 @@ public class Interface {
         return new Joueur(humain);        
                 
     }
+    
+    /**
+     * Methode permetant de creer un joueur
+     * 
+     * @return retoure le joueur créé
+     */
     
     public Joueur creationJoueur2(){
        
@@ -889,6 +1158,12 @@ public class Interface {
         
     }
     
+    /**
+     * Methode permettant de choisir un nom d'équipe
+     * 
+     * @return retourne le nom choisi
+     */
+    
     public String creationNomEquipe(){
         
         System.out.println("Quel est le nom de cette equipe ? (maximum 9 caracteres)");
@@ -899,6 +1174,11 @@ public class Interface {
         
     }
     
+    /**
+     * Methode permetant de cloturer les inscription d'un tournoi
+     * 
+     * @param tournoi 
+     */
     
     public void cloreInscriptionsTournoi(Tournoi tournoi){
         
@@ -907,11 +1187,22 @@ public class Interface {
         
     }
     
+    /**
+     * Methode permettant de lancer les matchs d'un tournoi
+     * 
+     * @param tournoi 
+     */
+    
     public void lancerTournoi(Tournoi tournoi){
         
         charge.bar.getBarman().deroulementTournoi(tournoi);
         
     }
+    
+    /**
+     * Methode permetant de créer un tournoi
+     * 
+     */
     
     public void creerTournoi(){
         
@@ -930,6 +1221,14 @@ public class Interface {
         charge.bar.getPatronne().creationTournoi(nom, prix);
         
     }
+    
+    /**
+     * Methode permetant de choisir le signe distinctif d'un server
+     * 
+     * @param a variable correspondant au sexe
+     * @param b variable correspondant au signe
+     * @return retourne le signe distinctif
+     */
     
     public SigneServeur conversionListeStrVersSigneServeur(int a, int b){
         
@@ -973,6 +1272,14 @@ public class Interface {
         return signe;
         
     }
+    
+    /**
+     * Methode permetant de choisir le signe distinctif d'un client
+     * 
+     * @param a variable correspondant au sexe
+     * @param b variable correspondant au signe
+     * @return retourne le signe distinctif
+     */
     
     public SigneClient conversionListeStrVersSigneClient(int a, int b){
         
@@ -1045,51 +1352,15 @@ public class Interface {
         
         return boisson;
     }
+   
     
-    public int conversionListeStrVersInt(String entree){
-        
-        
-        int i = 0;
-        int nombre = -1;
-
-         
-            switch(entree) {
-                case "0":
-                    nombre = 0;
-                    break;
-                case "1":
-                    nombre = 1;
-                    break;
-                case "2":
-                    nombre = 2;
-                    break;
-                case "3":
-                    nombre = 3;
-                    break;
-                case "4":
-                    nombre = 4;
-                    break;
-                case "5":
-                    nombre = 5;
-                    break;
-                case "6":
-                    nombre = 6;
-                    break;
-                case "7":
-                    nombre = 7;
-                    break;
-                case "8":
-                    nombre = 8;
-                    break;
-                case "9":
-                    nombre = 9;
-                    break;
-
-        }
-        
-    return nombre;
-
-}
+    /**
+     * Methode permettant de traiter les entiers entrés par l'utilisateur
+     * 
+     * @param entree entier entré par l'utilisateur
+     * @return entier traité
+     */
+    
     
     public int conversionStrVersInt(String entree){
         
@@ -1097,10 +1368,10 @@ public class Interface {
         int nombre = 0;
         double result = 0;
 
-        for(int i = 1; i < puissance; i++){
+        for(int i = 0; i < puissance; i++){
             
             char chiffre = entree.charAt(i);
-                                 
+
             switch(chiffre) {
                 case '0':
                     nombre = 0;
@@ -1137,13 +1408,36 @@ public class Interface {
 
         }
             
-            result = result + nombre*Math.pow((double) 10, (double) (puissance - i));
-            
+            result = result + nombre*Math.pow((double) 10, (double) (puissance - i - 1));
             
         }
+      
+    if ((result == 0) && (entree != "0")){
+        
+        result = -1;
+        
+    }
         
     return (int) result;
 
 }
+    
+    
+    public int scanEntierBorne(int min, int max) throws BorneException{
+        
+        int entier = 0;
+        
+        String chaine = keyboard.nextLine();
+        
+        entier = conversionStrVersInt(chaine);
+        
+        if (entier < min || entier > max){
+            
+            throw new BorneException();
+            
+        }
+        
+        return entier;
+    }
     
 }

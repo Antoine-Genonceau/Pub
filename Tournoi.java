@@ -80,6 +80,13 @@ public class Tournoi {
         
     }
     
+    /**
+     * Cette methode verifie si un joueur c'est déja inscrit
+     * 
+     * @param equipe
+     * @return 
+     */
+    
     public boolean chercheJoueur(Equipe equipe){
         
         boolean bool = true;

@@ -10,6 +10,8 @@ import java.util.ArrayList;
 /**
  *
  * @author Toine
+ * 
+ * L'objet charge contient les informations chargées
  */
 public class Charge {
     
