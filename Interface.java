@@ -88,8 +88,6 @@ public class Interface {
         System.out.println("Que voullez vous faire ?");
         System.out.println("| Afficher données - 1 | Créer données - 2 | Effectuer une action - 3 |");
         
-        entree = keyboard.nextLine();
-        
         try{
 
         switch(scanEntierBorne(1,3)) {
@@ -211,10 +209,7 @@ public class Interface {
         entree = keyboard.nextLine();
         String prenom = entree;
         
-        System.out.println("Porte monnaie :");
-        entree = keyboard.nextLine();
-        
-        int porteMonnaie = conversionStrVersInt(entree);
+        int porteMonnaie = demandeEntier("Porte monnaie :");
         
         System.out.println("Cri :");
         entree = keyboard.nextLine();
@@ -268,10 +263,7 @@ public class Interface {
         entree = keyboard.nextLine();
         String prenom = entree;
         
-        System.out.println("Porte monnaie :");
-        entree = keyboard.nextLine();
-        
-        int porteMonnaie = conversionStrVersInt(entree);
+        int porteMonnaie = demandeEntier("Porte monnaie :");
         
         System.out.println("Cri :");
         entree = keyboard.nextLine();
@@ -297,9 +289,7 @@ public class Interface {
         entree = keyboard.nextLine();
         Boisson boissonFavBis = charge.boissons.get(conversionStrVersInt(entree));
         
-        System.out.println("Niveau alcool :");
-        entree = keyboard.nextLine();
-        int niveauAlcool = conversionStrVersInt(entree);
+        int niveauAlcool = demandeEntier("Niveau alcool :");
         
         System.out.println("Sexe : | Homme - 1 | Femme - 2 |");
         entree = keyboard.nextLine();
@@ -414,11 +404,7 @@ public class Interface {
         
         for (int i = 0; i < charge.boissons.size(); i++){
             
-                       
-            System.out.println("nombre de " + charge.boissons.get(i).getNom() + ":");
-            entree = keyboard.nextLine();
-            
-            StockBoisson stockBoisson = new StockBoisson(charge.boissons.get(i), conversionStrVersInt(entree));
+            StockBoisson stockBoisson = new StockBoisson(charge.boissons.get(i), demandeEntier("nombre de " + charge.boissons.get(i).getNom() + ":"));
             
             commande.getStock().add(stockBoisson);
             
@@ -489,10 +475,14 @@ public class Interface {
             System.out.print(charge.bar.getClients().get(i) + " - " + i + " | ");
             
         }
-        
-        entree = keyboard.nextLine();
-        
-        charge.bar.getPatronne().rappelOrdre(charge.bar.getClients().get(conversionStrVersInt(entree)));
+        try{
+        charge.bar.getPatronne().rappelOrdre(charge.bar.getClients().get(scanEntierBorne(0, charge.bar.getClients().size() - 1)));
+        }
+        catch(BorneException e){
+            
+            manuel();
+            
+        }
         
     }
     
@@ -507,7 +497,6 @@ public class Interface {
         
         System.out.println("Quelle type d'action voulez vous effectuer ?");
         System.out.println("| Se présenter - 1 | Commander auprès du barman - 2 | Commander aupres d'un serveur - 3 |");
-        entree = keyboard.nextLine();
         
         try{
         switch(scanEntierBorne(1,3)) { 
@@ -541,8 +530,6 @@ public class Interface {
         
         System.out.println("Quelle genre de commande voulez vous passer ?");
         System.out.println("| Commander un verre pour soi - 1 | Commander pour soi et d'autres personnes - 2 | Commander pour d'autres personnes - 3 |");
-        
-        entree = keyboard.nextLine();
         
         try{
         switch(scanEntierBorne(1,3)) { 
@@ -748,10 +735,14 @@ public class Interface {
             System.out.print(charge.bar.getServeurs().get(i).getPrenom() + " - " + i + " | ");
             
         }
-        
-        entree = keyboard.nextLine();
-        
-        serveur = charge.bar.getServeurs().get(conversionStrVersInt(entree));
+        try{
+        serveur = charge.bar.getServeurs().get(scanEntierBorne(0, charge.bar.getServeurs().size() - 1));
+        }
+        catch(BorneException e){
+            
+            choixServeur();
+            
+        }
         
         return serveur;
         
@@ -807,9 +798,8 @@ public class Interface {
         
         System.out.print(charge.bar.getPatronne().getPrenom() + " - " + num + 1 + " | ");
         
-        entree = keyboard.nextLine();
-        
-        int choix = conversionStrVersInt(entree);
+        try{
+        int choix = scanEntierBorne(0, num + 1);
         
         if (choix <= lastClient){
             
@@ -832,6 +822,14 @@ public class Interface {
         if (choix == num + 1){
             
             humain = charge.bar.getPatronne();
+            
+        }
+        
+        }
+        
+        catch(BorneException e){
+            
+            choixHumain();
             
         }
                 
@@ -889,9 +887,9 @@ public class Interface {
         
         System.out.print(charge.bar.getPatronne().getPrenom() + " - " + num + 1 + " | ");
         
-        entree = keyboard.nextLine();
+        try{
         
-        int choix = conversionStrVersInt(entree);
+        int choix = scanEntierBorne(0, num + 1);
         
         if (choix <= lastClient){
             
@@ -916,7 +914,12 @@ public class Interface {
             humain = charge.bar.getPatronne();
             
         }
-                
+        }
+        catch(BorneException e){
+            
+            choixHumainConsomateur();
+            
+        }
         return humain;        
         
     }
@@ -957,9 +960,9 @@ public class Interface {
             
         }
         
-        entree = keyboard.nextLine();
+        try{
         
-        int choix = conversionStrVersInt(entree);
+        int choix = scanEntierBorne(0, num - 1);
         
         if (choix <= lastClient){
             
@@ -973,7 +976,12 @@ public class Interface {
             
         }
         
-        
+        }
+        catch(BorneException e){
+            
+            choixJoueur();
+            
+        }
                 
         return humain;        
         
@@ -1035,9 +1043,14 @@ public class Interface {
                 
             }
             
-            entree = keyboard.nextLine();
-            
-            gererTournoi(charge.bar.getBarman().getTournois().get(conversionStrVersInt(entree)));           
+            try{
+            gererTournoi(charge.bar.getBarman().getTournois().get(scanEntierBorne(0, charge.bar.getBarman().getTournois().size() - 1))); 
+            }
+            catch(BorneException e){
+                
+                choixTournoi();
+                
+            }
             
         }
         
@@ -1166,11 +1179,7 @@ public class Interface {
     
     public String creationNomEquipe(){
         
-        System.out.println("Quel est le nom de cette equipe ? (maximum 9 caracteres)");
-        
-        entree = keyboard.nextLine();
-        
-        return entree;
+        return demandeChaine10("Quel est le nom de cette equipe ? (maximum 9 caracteres)");
         
     }
     
@@ -1212,11 +1221,7 @@ public class Interface {
         
         String nom = entree;
         
-        System.out.println("Quel prix voulez vous choisir pour l'inscription ?");
-        
-        entree = keyboard.nextLine();
-        
-        int prix = conversionStrVersInt(entree);                
+        int prix = demandeEntier("Quel prix voulez vous choisir pour l'inscription ?");                
                 
         charge.bar.getPatronne().creationTournoi(nom, prix);
         
@@ -1438,6 +1443,88 @@ public class Interface {
         }
         
         return entier;
+    }
+    
+    public int scanEntier() throws EntierException{
+        
+        int entier = 0;
+        
+        String chaine = keyboard.nextLine();
+        
+        boolean entierTest = true;
+        
+        for (int i = 0; i < chaine.length(); i++){
+            
+            if (chaine.charAt(i) != '0' && chaine.charAt(i) != '1' && chaine.charAt(i) != '2' && chaine.charAt(i) != '3' && chaine.charAt(i) != '4' && chaine.charAt(i) != '5' && chaine.charAt(i) != '6' && chaine.charAt(i) != '7' && chaine.charAt(i) != '8' && chaine.charAt(i) != '9'){
+                
+                entierTest = false;
+            }
+        }
+        
+        if (!entierTest){
+            
+            throw new EntierException();
+            
+        }
+        
+        entier = conversionStrVersInt(chaine);
+        
+        return entier;
+    }
+    
+    public int demandeEntier(String question){
+        
+        System.out.println(question);
+        
+        int entier = 0;
+        
+        try{
+            
+            entier = scanEntier();
+            
+        }
+        catch(EntierException e){
+            
+            demandeEntier(question);
+            
+        }
+        
+        
+        return entier;
+    }
+    
+    public String scanChaine10() throws Chaine10Exception{
+        
+        String chaine = keyboard.nextLine();
+        
+        if(chaine.length() > 10){
+            
+            throw new Chaine10Exception();
+            
+        }
+        
+        return chaine;
+    }
+    
+    public String demandeChaine10(String question){
+        
+        System.out.println(question);
+        
+        String chaine10 = "";
+        
+        try{
+            
+            chaine10 = scanChaine10();
+            
+        }
+        catch(Chaine10Exception e){
+            
+            demandeEntier(question);
+            
+        }
+        
+        
+        return chaine10;
     }
     
 }
