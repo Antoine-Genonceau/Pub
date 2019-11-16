@@ -34,4 +34,10 @@ public class Joueur {
         
     }
     
+    public boolean equals(Joueur pJoueur){
+        
+        return identite.equals(pJoueur.getIdentite());
+        
+    }
+    
 }

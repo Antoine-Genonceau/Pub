@@ -149,7 +149,7 @@ public class Loader {
         Joueur A9 = new Joueur(bono);
         
         Equipe A = new Equipe("les fous", A1, A2);
-        Equipe B = new Equipe("Sedan", B1, B2);
+        Equipe B = new Equipe("Sedan", A1, B2);
         Equipe C = new Equipe("Paris fC", C1, C2);
         
         A.inscription(jacqueschirac.getTournois().get(0), jacqueschirac);

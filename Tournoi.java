@@ -80,6 +80,23 @@ public class Tournoi {
         
     }
     
+    public boolean chercheJoueur(Equipe equipe){
+        
+        boolean bool = true;
+        
+        for (int i = 0; i < equipes.size(); i++){
+            
+            if (equipe.getJoueur1().equals(equipes.get(i).getJoueur1()) || equipe.getJoueur1().equals(equipes.get(i).getJoueur2())|| equipe.getJoueur2().equals(equipes.get(i).getJoueur1())|| equipe.getJoueur2().equals(equipes.get(i).getJoueur2())){
+                
+                bool = false;
+                
+            }
+            
+        }
+        
+        return bool;
+    }
+    
     /**
      * 
      * Cette methode indique si une équipe à le droits de s'inscrire au tournoi
@@ -94,9 +111,19 @@ public class Tournoi {
         
         if (compteServeur() + equipe.compteServeur() > barman.getPatronne().getBar().getServeurs().size() - 1){
             
+            barman.parler("Désolé on a déjà trop de serveurs inscrits au tournoi");
+            
             bool = false;
             
-        }        
+        } 
+        
+        if (!(chercheJoueur(equipe))){
+            
+            barman.parler("Désolé mais vous n'avez pas le droit de vous inscrire deux fois");
+            
+            bool = false;
+            
+        }
         
         return bool;
         
@@ -136,11 +163,6 @@ public class Tournoi {
                    
                 }
                 
-                else{
-                    
-                    barman.parler("Désolé on a déjà trop de serveurs inscrits au tournoi");
-                }
-
             }
             
             else{barman.parler("Désolé mais vous êtes déjà incrits");}

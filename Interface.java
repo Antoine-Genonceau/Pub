@@ -23,11 +23,8 @@ public class Interface {
         while(!entree.equals("quit")){
             
             menuGeneral();
-            
-            
-            
-        }
-        
+              
+        }        
         
         System.out.print("\nAu revoir, à bientot !\n");
         
@@ -155,7 +152,7 @@ public class Interface {
         System.out.println("Porte monnaie :");
         entree = keyboard.nextLine();
         
-        int porteMonnaie = conversionListeStrVersInt(entree);
+        int porteMonnaie = conversionStrVersInt(entree);
         
         System.out.println("Cri :");
         entree = keyboard.nextLine();
@@ -164,7 +161,7 @@ public class Interface {
         System.out.println("Sexe : | Homme - 1 | Femme - 2 |");
         entree = keyboard.nextLine();
         
-        int sexe = conversionListeStrVersInt(entree);
+        int sexe = conversionStrVersInt(entree);
         int signe = 0;
         
         switch(entree) { 
@@ -172,12 +169,12 @@ public class Interface {
                     case "1":
                         System.out.println("Taille des biceps : | Gros biceps - 1 | Moyens biceps - 2 | Petits biceps - 3 |");
                         entree = keyboard.nextLine();
-                        signe = conversionListeStrVersInt(entree);
+                        signe = conversionStrVersInt(entree);
                         break;
                     case "2":
                         System.out.println("Coefficient de seduction : | Haute seduction - 1 | Moyenne seduction - 2 | Basse seduction - 3 |");
                         entree = keyboard.nextLine();
-                        signe = conversionListeStrVersInt(entree);
+                        signe = conversionStrVersInt(entree);
                         break;
         }
         
@@ -207,7 +204,7 @@ public class Interface {
         System.out.println("Porte monnaie :");
         entree = keyboard.nextLine();
         
-        int porteMonnaie = conversionListeStrVersInt(entree);
+        int porteMonnaie = conversionStrVersInt(entree);
         
         System.out.println("Cri :");
         entree = keyboard.nextLine();
@@ -221,7 +218,7 @@ public class Interface {
         }
         System.out.println("");
         entree = keyboard.nextLine();
-        Boisson boissonFav = charge.boissons.get(conversionListeStrVersInt(entree));
+        Boisson boissonFav = charge.boissons.get(conversionStrVersInt(entree));
         
         System.out.println("Boisson de secours :");
         for (int i = 0; i < charge.boissons.size(); i++){
@@ -231,16 +228,16 @@ public class Interface {
         }
         System.out.println("");
         entree = keyboard.nextLine();
-        Boisson boissonFavBis = charge.boissons.get(conversionListeStrVersInt(entree));
+        Boisson boissonFavBis = charge.boissons.get(conversionStrVersInt(entree));
         
         System.out.println("Niveau alcool :");
         entree = keyboard.nextLine();
-        int niveauAlcool = conversionListeStrVersInt(entree);
+        int niveauAlcool = conversionStrVersInt(entree);
         
         System.out.println("Sexe : | Homme - 1 | Femme - 2 |");
         entree = keyboard.nextLine();
         
-        int sexe = conversionListeStrVersInt(entree);
+        int sexe = conversionStrVersInt(entree);
         int signe = 0;
         
         switch(entree) { 
@@ -248,12 +245,12 @@ public class Interface {
                     case "1":
                         System.out.println("Couleur du t-shirt : | Blanc - 1 | Bleu - 2 | Noir - 3 | Rouge - 4 | Vert - 5 |");
                         entree = keyboard.nextLine();
-                        signe = conversionListeStrVersInt(entree);
+                        signe = conversionStrVersInt(entree);
                         break;
                     case "2":
                         System.out.println("Bijoux : | Bague - 1 | Boucle d'oreille - 2 | Bracellet - 3 | Collier - 4 | Montre - 5 |");
                         entree = keyboard.nextLine();
-                        signe = conversionListeStrVersInt(entree);
+                        signe = conversionStrVersInt(entree);
                         break;
         }
         
@@ -326,7 +323,7 @@ public class Interface {
             System.out.println("nombre de " + charge.boissons.get(i).getNom() + ":");
             entree = keyboard.nextLine();
             
-            StockBoisson stockBoisson = new StockBoisson(charge.boissons.get(i), conversionListeStrVersInt(entree));
+            StockBoisson stockBoisson = new StockBoisson(charge.boissons.get(i), conversionStrVersInt(entree));
             
             commande.getStock().add(stockBoisson);
             
@@ -379,7 +376,7 @@ public class Interface {
         
         entree = keyboard.nextLine();
         
-        charge.bar.getPatronne().rappelOrdre(charge.bar.getClients().get(conversionListeStrVersInt(entree)));
+        charge.bar.getPatronne().rappelOrdre(charge.bar.getClients().get(conversionStrVersInt(entree)));
         
     }
     
@@ -556,7 +553,7 @@ public class Interface {
         
         entree = keyboard.nextLine();
         
-        serveur = charge.bar.getServeurs().get(conversionListeStrVersInt(entree));
+        serveur = charge.bar.getServeurs().get(conversionStrVersInt(entree));
         
         return serveur;
         
@@ -608,7 +605,7 @@ public class Interface {
         
         entree = keyboard.nextLine();
         
-        int choix = conversionListeStrVersInt(entree);
+        int choix = conversionStrVersInt(entree);
         
         if (choix <= lastClient){
             
@@ -684,7 +681,7 @@ public class Interface {
         
         entree = keyboard.nextLine();
         
-        int choix = conversionListeStrVersInt(entree);
+        int choix = conversionStrVersInt(entree);
         
         if (choix <= lastClient){
             
@@ -746,7 +743,7 @@ public class Interface {
         
         entree = keyboard.nextLine();
         
-        int choix = conversionListeStrVersInt(entree);
+        int choix = conversionStrVersInt(entree);
         
         if (choix <= lastClient){
             
@@ -806,7 +803,7 @@ public class Interface {
             
             entree = keyboard.nextLine();
             
-            gererTournoi(charge.bar.getBarman().getTournois().get(conversionListeStrVersInt(entree)));           
+            gererTournoi(charge.bar.getBarman().getTournois().get(conversionStrVersInt(entree)));           
             
         }
         
@@ -928,7 +925,7 @@ public class Interface {
         
         entree = keyboard.nextLine();
         
-        int prix = conversionListeStrVersInt(entree);                
+        int prix = conversionStrVersInt(entree);                
                 
         charge.bar.getPatronne().creationTournoi(nom, prix);
         
@@ -1091,6 +1088,61 @@ public class Interface {
         }
         
     return nombre;
+
+}
+    
+    public int conversionStrVersInt(String entree){
+        
+        int puissance = entree.length();
+        int nombre = 0;
+        double result = 0;
+
+        for(int i = 1; i < puissance; i++){
+            
+            char chiffre = entree.charAt(i);
+                                 
+            switch(chiffre) {
+                case '0':
+                    nombre = 0;
+                    break;
+                case '1':
+                    nombre = 1;
+                    break;
+                case '2':
+                    nombre = 2;
+                    break;
+                case '3':
+                    nombre = 3;
+                    break;
+                case '4':
+                    nombre = 4;
+                    break;
+                case '5':
+                    nombre = 5;
+                    break;
+                case '6':
+                    nombre = 6;
+                    break;
+                case '7':
+                    nombre = 7;
+                    break;
+                case '8':
+                    nombre = 8;
+                    break;
+                case '9':
+                    nombre = 9;
+                    break;
+                    
+                    
+
+        }
+            
+            result = result + nombre*Math.pow((double) 10, (double) (puissance - i));
+            
+            
+        }
+        
+    return (int) result;
 
 }
     
