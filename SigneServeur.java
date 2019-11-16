@@ -18,8 +18,8 @@ public enum SigneServeur {
     petitBiceps("biceps", "petit", "Crevette", 1, "minus"),
     normalBiceps("biceps", "normal", "Bien batît", 10, "mon petit"),
     hauteSeduction("Seduction", "Haute", "Canon", 100, "la miss"),
-    moyenneSeduction("Seduction", "Haute", "Mignonne", 10, "poulette"),
-    basseSeduction("Seduction", "Haute", "Gentille", 1, "ma petite");
+    moyenneSeduction("Seduction", "Moyenne", "Mignonne", 10, "poulette"),
+    basseSeduction("Seduction", "Basse", "Gentille", 1, "ma petite");
     
     private String type = "";
     private String valeur = "";
