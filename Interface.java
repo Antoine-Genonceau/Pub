@@ -618,7 +618,7 @@ public class Interface {
         
         if (choix <= lastServeur && choix > lastClient){
             
-            humain = charge.bar.getServeurs().get(choix);
+            humain = charge.bar.getServeurs().get(choix - lastClient - 1);
             
         }
         
@@ -694,7 +694,7 @@ public class Interface {
         
         if (choix <= lastServeur && choix > lastClient){
             
-            humain = charge.bar.getServeurs().get(choix);
+            humain = charge.bar.getServeurs().get(choix - lastClient - 1);
             
         }
         
@@ -713,10 +713,224 @@ public class Interface {
         return humain;        
         
     }
+     
+     public Humain choixJoueur(){
+        
+        Humain humain = new Humain();
+        
+        int num = 0;
+        
+        int lastClient = 0;
+        
+        System.out.println("Clients :");
+                
+        for (int i = 0; i < charge.bar.getClients().size(); i++){
+            
+            System.out.print(charge.bar.getClients().get(i).getPrenom() + " - " + num + " | ");
+            
+            num++;
+            
+        }
+        
+        lastClient = num - 1;
+        
+        System.out.println("Serveurs :");
+        
+        for (int i = 0; i < charge.bar.getServeurs().size(); i++){
+            
+            System.out.print(charge.bar.getServeurs().get(i).getPrenom() + " - " + num + " | ");
+            
+            num++;
+            
+        }
+        
+        entree = keyboard.nextLine();
+        
+        int choix = conversionListeStrVersInt(entree);
+        
+        if (choix <= lastClient){
+            
+            humain = charge.bar.getClients().get(choix);
+            
+        }
+        
+        else{
+            
+            humain = charge.bar.getServeurs().get(choix - lastClient - 1);
+            
+        }
+        
+        
+                
+        return humain;        
+        
+    }
     
     public void actionTournoi(){
         
+        System.out.println("Quelle type d'action voulez vous effectuer ?");
+        System.out.println("| Gerer un tournoi - 1 | Creer un tournoi - 2 |");
+        
+        entree = keyboard.nextLine();
+        
+        switch(entree) { 
+                
+                    case "1":
+                        choixTournoi();
+                        break;
+                    case "2":
+                        creerTournoi();
+                        break;
+                                         
+            }
+        
+    }
+    
+    public void choixTournoi(){
+        
+        if (charge.bar.getBarman().getTournois().size() == 0){
+            
+            System.out.println("Il n'existe pour l'instant aucun tournoi !");
+            
+        }
+        
+        else{
+            
+            System.out.println("Quel tournoi souhaitez vous gerer ?");
+            
+            for (int i = 0; i < charge.bar.getBarman().getTournois().size(); i++){
+                
+                System.out.println( charge.bar.getBarman().getTournois().get(i).getNom() + " - " + i + " | ");    
+                
+            }
+            
+            entree = keyboard.nextLine();
+            
+            gererTournoi(charge.bar.getBarman().getTournois().get(conversionListeStrVersInt(entree)));           
+            
+        }
+        
+        
+    }
+    
+    public void gererTournoi(Tournoi tournoi){
+        
+        
+        System.out.println("Quelle type d'action voulez vous effectuer pour le tournoi " + tournoi.getNom() + " ?");
+        System.out.println("| Inscrire une Equipe - 1 | Cloturer les inscriptions - 2 |Lancer le tournoi - 3 |");
+        
+        entree = keyboard.nextLine();
+        
+        switch(entree) { 
+                
+                    case "1":
+                        inscrireEquipe(tournoi);
+                        break;
+                    case "2":
+                        cloreInscriptionsTournoi(tournoi);
+                        break;
+                    case "3":
+                        lancerTournoi(tournoi);
+                        break;
+                                         
+            }
+        
+        
+    }
+    
+    public void inscrireEquipe(Tournoi tournoi){
+        
+        Equipe equipe = new Equipe();
+        
+        equipe = creationEquipe();
+        
+        equipe.toString();
+        
+        equipe.inscription(tournoi, charge.bar.getBarman());
+        
+    }
+    
+    public Equipe creationEquipe(){
+        
+        Joueur joueur1 = new Joueur();
+        
+        joueur1 = creationJoueur1();
+        
+        Joueur joueur2 = new Joueur();
+        
+        joueur2 = creationJoueur2();
+        
+        String nom = creationNomEquipe();
+        
+        return new Equipe(joueur1, joueur2, nom);
+        
+        
+    }
+    
+    public Joueur creationJoueur1(){
+        
+        Humain humain = new Humain();
+        
+        System.out.println("Qui choisissez vous comme joueur numero 1 pour cette equipe ?");
+        
+        humain = choixJoueur();
+        
+        return new Joueur(humain);        
+                
+    }
+    
+    public Joueur creationJoueur2(){
        
+        Humain humain = new Humain();
+        
+        System.out.println("Qui choisissez vous comme joueur numero 2 pour cette equipe ?");
+        
+        humain = choixJoueur();
+        
+        return new Joueur(humain);        
+               
+        
+    }
+    
+    public String creationNomEquipe(){
+        
+        System.out.println("Quel est le nom de cette equipe ? (maximum 9 caracteres)");
+        
+        entree = keyboard.nextLine();
+        
+        return entree;
+        
+    }
+    
+    
+    public void cloreInscriptionsTournoi(Tournoi tournoi){
+        
+        
+        charge.bar.getBarman().fermetureInscription(tournoi);
+        
+    }
+    
+    public void lancerTournoi(Tournoi tournoi){
+        
+        charge.bar.getBarman().deroulementTournoi(tournoi);
+        
+    }
+    
+    public void creerTournoi(){
+        
+        System.out.println("Quel nom voulez vous choisir ?");
+        
+        entree = keyboard.nextLine();
+        
+        String nom = entree;
+        
+        System.out.println("Quel prix voulez vous choisir pour l'inscription ?");
+        
+        entree = keyboard.nextLine();
+        
+        int prix = conversionListeStrVersInt(entree);                
+                
+        charge.bar.getPatronne().creationTournoi(nom, prix);
         
     }
     
@@ -724,33 +938,33 @@ public class Interface {
         
         SigneServeur signe = SigneServeur.grosBiceps;;
         
-        switch(entree) { 
+        switch(a) { 
                 
-            case "1":
-                switch(entree) { 
+            case 1:
+                switch(b) { 
                 
-                    case "1":
+                    case 1:
                         signe = SigneServeur.grosBiceps;
                         break;
-                    case "2":
+                    case 2:
                         signe = SigneServeur.normalBiceps;
                         break;
-                    case "3":
+                    case 3:
                         signe = SigneServeur.petitBiceps;
                         break;
                         
             }
                 break;
-            case "2":
-                switch(entree) { 
+            case 2:
+                switch(b) { 
                 
-                    case "1":
+                    case 1:
                         signe = SigneServeur.hauteSeduction;
                         break;
-                    case "2":
+                    case 2:
                         signe = SigneServeur.moyenneSeduction;
                         break;
-                    case "3":
+                    case 3:
                         signe = SigneServeur.basseSeduction;
                         break;
                         
@@ -767,45 +981,45 @@ public class Interface {
         
         SigneClient signe = SigneClient.bague;
         
-        switch(entree) { 
+        switch(a) { 
                 
-            case "1":
-                switch(entree) { 
+            case 1:
+                switch(b) { 
                 
-                    case "1":
+                    case 1:
                         signe = SigneClient.tShirtBlanc;
                         break;
-                    case "2":
+                    case 2:
                         signe = SigneClient.tShirtBleu;
                         break;
-                    case "3":
+                    case 3:
                         signe = SigneClient.tShirtNoir;
                         break;
-                    case "4":
+                    case 4:
                         signe = SigneClient.tShirtRouge;
                         break;
-                    case "5":
+                    case 5:
                         signe = SigneClient.tShirtVert;
                         break;
                         
             }
                 break;
-            case "2":
-                switch(entree) { 
+            case 2:
+                switch(b) { 
                 
-                    case "1":
+                    case 1:
                         signe = SigneClient.bague;
                         break;
-                    case "2":
+                    case 2:
                         signe = SigneClient.boucleOreille;
                         break;
-                    case "3":
+                    case 3:
                         signe = SigneClient.bracellet;
                         break;
-                    case "4":
+                    case 4:
                         signe = SigneClient.collier;
                         break;
-                    case "5":
+                    case 5:
                         signe = SigneClient.montre;
                         break;
                         

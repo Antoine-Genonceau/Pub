@@ -48,23 +48,41 @@ public class Barman extends Humain{
     ///////////////////////////////////***********Fonctions Tournoi*************//////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
-    public void fermetureInscription(){
+    public void fermetureInscription(Tournoi tournoi){
         
         if (tournois.size() != 0){
             
-            tournois.get(0).fermetureInscription();
+            for (int i = 0; i < tournois.size(); i++){                
+                
+                if (tournoi.equals(tournois.get(i))){
+                    
+                    tournois.get(i).fermetureInscription();
+                    
+                }
+                
+                                
+            }
+            
             
         }
         
     }
     
-    public void deroulementTournoi(){
+    public void deroulementTournoi(Tournoi tournoi){
         
         if (tournois.size() != 0 ){
             
-            if (!(tournois.get(0).getInscriptionsOuvertes())){
+            for (int i = 0; i < tournois.size(); i++){
+                
+                if (tournoi.equals(tournois.get(i))){
             
-                tournois.get(0).deroulementTournoi();
+                    if (!(tournois.get(i).getInscriptionsOuvertes())){
+            
+                        tournois.get(i).deroulementTournoi();
+            
+                    }
+            
+                }
             
             }
             

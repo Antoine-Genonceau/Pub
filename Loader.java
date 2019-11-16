@@ -138,8 +138,8 @@ public class Loader {
         
         mariecurie.creationTournoi("Tournoi des As", 5);
          
-        Joueur A1 = new Joueur(thomasvoeckler);
-        Joueur A2 = new Joueur(isabelleautissier);
+        Joueur A1 = new Joueur(bono);
+        Joueur A2 = new Joueur(scarlettjohansson);
         Joueur B1 = new Joueur(arthurrimbaud);
         Joueur B2 = new Joueur(jeannielongo);
         Joueur C1 = new Joueur(bono);
@@ -152,11 +152,11 @@ public class Loader {
         Equipe B = new Equipe("Sedan", B1, B2);
         Equipe C = new Equipe("Paris fC", C1, C2);
         
-        A.inscription("Tournoi des As", jacqueschirac);
-        B.inscription("Tournoi des As", jacqueschirac);        
-        C.inscription("Tournoi des As", jacqueschirac);
-        jacqueschirac.fermetureInscription();
-        jacqueschirac.deroulementTournoi();
+        A.inscription(jacqueschirac.getTournois().get(0), jacqueschirac);
+        B.inscription(jacqueschirac.getTournois().get(0), jacqueschirac);        
+        C.inscription(jacqueschirac.getTournois().get(0), jacqueschirac);
+        jacqueschirac.fermetureInscription(jacqueschirac.getTournois().get(0));
+        jacqueschirac.deroulementTournoi(jacqueschirac.getTournois().get(0));
         
         System.out.println(lesixroses);
         

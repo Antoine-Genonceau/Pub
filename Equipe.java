@@ -108,15 +108,15 @@ public class Equipe {
      * @param barman barman auprès duquel l'équipe effectue sa demande d'inscription
      */
     
-    public void inscription(String nomTournoi, Barman barman){
+    public void inscription(Tournoi tournoi, Barman barman){
         
         boolean done = false;
         
-        joueur1.getIdentite().parler("Bonjour on voudrais s'inscrire au tournoi " + nomTournoi + ", on est l'équipe " + nom);
+        joueur1.getIdentite().parler("Bonjour on voudrais s'inscrire au tournoi " + tournoi.getNom() + ", on est l'équipe " + nom);
         
         for (int i = 0; i < barman.getTournois().size(); i++){
             
-            if (barman.getTournois().get(i).getNom().equals(nomTournoi)){
+            if (barman.getTournois().get(i).equals(tournoi)){
                 
                 barman.getTournois().get(i).ajoutEquipe(this);
                 

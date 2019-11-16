@@ -18,6 +18,9 @@ public class Pub {
      */
     public static void main(String[] args) {
         
+        Loader load = new Loader();
+        
+        load.CreationLeSixRoses();
         
         Interface interfaceUtilisateur = new Interface();
         
