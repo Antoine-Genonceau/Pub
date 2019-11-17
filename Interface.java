@@ -216,23 +216,65 @@ public class Interface {
         String cri = entree;
         
         System.out.println("Sexe : | Homme - 1 | Femme - 2 |");
-        entree = keyboard.nextLine();
         
-        int sexe = conversionStrVersInt(entree);
         int signe = 0;
+        int sexe = 0;
         
-        switch(entree) { 
+        boolean conforme1 = false;
+        boolean conforme2 = false;
+        boolean conforme3 = false;
+        
+        while(!conforme1){
+        
+        try{
+        
+        switch(scanEntierBorne(1,2)) { 
                 
-                    case "1":
+                    case 1:
+                        
+                        sexe = 1;
+                        
+                        while(!conforme2){
+                                                
+                        try{
                         System.out.println("Taille des biceps : | Gros biceps - 1 | Moyens biceps - 2 | Petits biceps - 3 |");
-                        entree = keyboard.nextLine();
-                        signe = conversionStrVersInt(entree);
+                        signe = scanEntierBorne(1,3);
+                        }
+                        catch(BorneException e){                            
+                            
+                        }
+                        
+                        conforme2 = true;
+                        
+                        }
                         break;
-                    case "2":
+                    case 2:
+                        
+                        sexe = 2;
+                        
+                        while(conforme3){
+                        
+                        try{
                         System.out.println("Coefficient de seduction : | Haute seduction - 1 | Moyenne seduction - 2 | Basse seduction - 3 |");
-                        entree = keyboard.nextLine();
-                        signe = conversionStrVersInt(entree);
+                        signe = scanEntierBorne(1, 3);
+                        }
+                        catch(BorneException e){                            
+                            
+                        }
+                        
+                        conforme3 = true;
+                        
+                        }
                         break;
+        }
+        
+        }
+        catch(BorneException e){
+            
+        }
+        
+        conforme1 = true;
+        
         }
         
         SigneServeur signeServeur = conversionListeStrVersSigneServeur(sexe, signe);
@@ -292,25 +334,56 @@ public class Interface {
         int niveauAlcool = demandeEntier("Niveau alcool :");
         
         System.out.println("Sexe : | Homme - 1 | Femme - 2 |");
-        entree = keyboard.nextLine();
         
-        int sexe = conversionStrVersInt(entree);
         int signe = 0;
+        int sexe = 0;
         
-        switch(entree) { 
+        boolean conforme1 = false;
+        boolean conforme2 = false;
+        boolean conforme3 = false;
+        
+        while(!conforme1){
+        
+        try{
+        
+        switch(scanEntierBorne(1,2)) { 
                 
-                    case "1":
+                    case 1:
+                        while(!conforme2){
+                        try{
                         System.out.println("Couleur du t-shirt : | Blanc - 1 | Bleu - 2 | Noir - 3 | Rouge - 4 | Vert - 5 |");
-                        entree = keyboard.nextLine();
-                        signe = conversionStrVersInt(entree);
+                        signe = scanEntierBorne(1,5);
+                        }
+                        catch(BorneException e){
+                            
+                            
+                        }
+                        conforme2 = true;
+                        }
                         break;
-                    case "2":
+                    case 2:
+                        while(!conforme3){
+                        try{
                         System.out.println("Bijoux : | Bague - 1 | Boucle d'oreille - 2 | Bracellet - 3 | Collier - 4 | Montre - 5 |");
-                        entree = keyboard.nextLine();
-                        signe = conversionStrVersInt(entree);
+                        signe = scanEntierBorne(1,5);
+                        }
+                        catch(BorneException e){
+                            
+                            
+                        }
+                        conforme2 = true;
+                        }
                         break;
         }
         
+        }
+        
+        catch(BorneException e){
+            
+            
+        }
+        conforme1 = true;
+        }
         SigneClient signeClient = conversionListeStrVersSigneClient(sexe, signe);
         
         Client client = new Client(surnom, prenom, porteMonnaie, cri, boissonFav, boissonFavBis, niveauAlcool, signeClient);
@@ -704,15 +777,13 @@ public class Interface {
     
     public void ajoutAutres(ArrayList<Humain> liste){
         
-        entree = "O";
+        String reponse = "O";
         
-        while(!(entree.equals("N"))){
+        while(!(reponse.equals("N"))){
             
             liste.add(choixHumainConsomateur());
             
-            System.out.println("Voulez vous offrir un verre à quelqu'un d'autres ? (O = oui / N = non)");
-            
-            entree = keyboard.nextLine();
+            reponse = demandeON("Voulez vous offrir un verre à quelqu'un d'autres ? (O = oui / N = non)");
             
         }
         
@@ -1427,6 +1498,9 @@ public class Interface {
 
 }
     
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////Getion des Exceptions//////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
     public int scanEntierBorne(int min, int max) throws BorneException{
         
@@ -1519,12 +1593,53 @@ public class Interface {
         }
         catch(Chaine10Exception e){
             
-            demandeEntier(question);
+            demandeChaine10(question);
             
         }
         
         
         return chaine10;
+    }
+    
+    public String scanON() throws ONException{
+        
+        String chaine = keyboard.nextLine();
+        
+        boolean conforme = false;
+        
+        if (chaine.equals("O") || chaine.equals("N")){
+            
+            conforme = true;
+        }
+        
+        if(!conforme){
+            
+            throw new ONException();
+            
+        }
+        
+        return chaine;
+    }
+    
+    public String demandeON(String question){
+        
+        System.out.println(question);
+        
+        String chaineON = "";
+        
+        try{
+            
+            chaineON = scanON();
+            
+        }
+        catch(ONException e){
+            
+            demandeON(question);
+            
+        }
+        
+        
+        return chaineON;
     }
     
 }
