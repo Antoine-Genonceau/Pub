@@ -56,9 +56,9 @@ public class Interface {
     
     public void chargerBarLeSixRoses(){
         
-        LeSixRoses lesixroses = new LeSixRoses();
+        LeRetro lesixroses = new LeRetro();
         
-        charge = lesixroses.CreationLeSixRoses();
+        charge = lesixroses.CreationLeRetro();
         
         System.out.println("bar bien chargé !");
         
@@ -129,7 +129,7 @@ public class Interface {
     
     
     public void menuGeneral() throws IOException{      
-                
+         
         while(!charge.chargement){
         
             try{
