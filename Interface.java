@@ -18,7 +18,6 @@ public class Interface {
     
     private Charge charge = new Charge();
     private Scanner keyboard = new Scanner(System.in);
-    private String entree = "vide";
     
     /**
      * Cette methode est le coeur de l'interface
@@ -27,13 +26,14 @@ public class Interface {
     
     public void processus(){
         
-        while(!entree.equals("quit")){
-            
-            menuGeneral();
-              
-        }        
+        boolean power = true;
         
-        System.out.print("\nAu revoir, à bientot !\n");
+        while(power){
+          
+            menuGeneral();
+            
+        }
+        
         
     }
     
@@ -84,6 +84,8 @@ public class Interface {
                 menuGeneral();
                 
                 }
+            
+        }
         
         System.out.println("Que voullez vous faire ?");
         System.out.println("| Afficher données - 1 | Créer données - 2 | Effectuer une action - 3 |");
@@ -104,6 +106,7 @@ public class Interface {
             
             }
         
+        
         }
         
         catch(BorneException e){
@@ -111,8 +114,7 @@ public class Interface {
             menuGeneral();
         }
         
-    
-        }   
+           
     }
     
     /**
@@ -200,20 +202,14 @@ public class Interface {
         
         System.out.println("Cretion Serveur :");
         
-                
-        System.out.println("Surnom :");
-        entree = keyboard.nextLine();
-        String surnom = entree;
         
-        System.out.println("Prenom :");
-        entree = keyboard.nextLine();
-        String prenom = entree;
+        String surnom = demandeChaine("Surnom :");
+       
+        String prenom = demandeChaine("Prenom :");
         
         int porteMonnaie = demandeEntier("Porte monnaie :");
         
-        System.out.println("Cri :");
-        entree = keyboard.nextLine();
-        String cri = entree;
+        String cri = demandeChaine("Cri :");
         
         System.out.println("Sexe : | Homme - 1 | Femme - 2 |");
         
@@ -225,7 +221,7 @@ public class Interface {
         boolean conforme3 = false;
         
         while(!conforme1){
-        
+        conforme1 = true;
         try{
         
         switch(scanEntierBorne(1,2)) { 
@@ -235,16 +231,16 @@ public class Interface {
                         sexe = 1;
                         
                         while(!conforme2){
-                                                
+                        conforme2 = true;          
                         try{
                         System.out.println("Taille des biceps : | Gros biceps - 1 | Moyens biceps - 2 | Petits biceps - 3 |");
                         signe = scanEntierBorne(1,3);
                         }
-                        catch(BorneException e){                            
-                            
+                        catch(BorneException a){                            
+                            conforme2 = false;
                         }
                         
-                        conforme2 = true;
+                        
                         
                         }
                         break;
@@ -252,17 +248,18 @@ public class Interface {
                         
                         sexe = 2;
                         
-                        while(conforme3){
+                        while(!conforme3){
+                        conforme3 = true;
                         
                         try{
                         System.out.println("Coefficient de seduction : | Haute seduction - 1 | Moyenne seduction - 2 | Basse seduction - 3 |");
                         signe = scanEntierBorne(1, 3);
                         }
-                        catch(BorneException e){                            
-                            
+                        catch(BorneException b){                            
+                            conforme3 = false;
+                        
                         }
                         
-                        conforme3 = true;
                         
                         }
                         break;
@@ -271,9 +268,9 @@ public class Interface {
         }
         catch(BorneException e){
             
+            conforme1 = false;
+            
         }
-        
-        conforme1 = true;
         
         }
         
@@ -296,45 +293,58 @@ public class Interface {
         
         System.out.println("Cretion Client :");
         
-                
-        System.out.println("Surnom :");
-        entree = keyboard.nextLine();
-        String surnom = entree;
-        
-        System.out.println("Prenom :");
-        entree = keyboard.nextLine();
-        String prenom = entree;
+        String surnom = demandeChaine("Surnom :");
+   
+        String prenom = demandeChaine("Prenom :");
         
         int porteMonnaie = demandeEntier("Porte monnaie :");
+      
+        String cri = demandeChaine("Cri :");
         
-        System.out.println("Cri :");
-        entree = keyboard.nextLine();
-        String cri = entree;
-        
+        Boisson boissonFavBis = new Boisson();
+        Boisson boissonFav = new Boisson();
+        boolean bfConforme = false;
+        while(!bfConforme){
+            bfConforme = true;
         System.out.println("Boisson Favorie :");
         for (int i = 0; i < charge.boissons.size(); i++){
             
             System.out.print(charge.boissons.get(i).getNom() + " - " +  i +" | ");
             
         }
-        System.out.println("");
-        entree = keyboard.nextLine();
-        Boisson boissonFav = charge.boissons.get(conversionStrVersInt(entree));
+        try{        
+        boissonFav = charge.boissons.get(scanEntierBorne(0, charge.boissons.size() - 1));
+        }
+        catch(BorneException c){
+            bfConforme = false;
+        }
         
+        }
+        
+        boolean bfbConforme = false;
+        
+        while(!bfbConforme){
+        bfbConforme = true;
+        try{
         System.out.println("Boisson de secours :");
         for (int i = 0; i < charge.boissons.size(); i++){
             
             System.out.print(charge.boissons.get(i).getNom() + " - " +  i +" | ");
             
+        }        
+        boissonFavBis = charge.boissons.get(scanEntierBorne(0, charge.boissons.size()-1));
         }
-        System.out.println("");
-        entree = keyboard.nextLine();
-        Boisson boissonFavBis = charge.boissons.get(conversionStrVersInt(entree));
+        catch(BorneException d){
+            
+            bfbConforme = false;
+            
+        }
+        }
+        
         
         int niveauAlcool = demandeEntier("Niveau alcool :");
         
-        System.out.println("Sexe : | Homme - 1 | Femme - 2 |");
-        
+                
         int signe = 0;
         int sexe = 0;
         
@@ -344,34 +354,43 @@ public class Interface {
         
         while(!conforme1){
         
+            System.out.println("Sexe : | Homme - 1 | Femme - 2 |");
+            
+            conforme1 = true;
+            
         try{
         
+            
         switch(scanEntierBorne(1,2)) { 
                 
                     case 1:
+                        sexe = 1;
                         while(!conforme2){
+                            conforme2 = true;
                         try{
                         System.out.println("Couleur du t-shirt : | Blanc - 1 | Bleu - 2 | Noir - 3 | Rouge - 4 | Vert - 5 |");
                         signe = scanEntierBorne(1,5);
                         }
-                        catch(BorneException e){
+                        catch(BorneException a){
                             
-                            
+                            conforme2 = false;
                         }
-                        conforme2 = true;
+                        
                         }
                         break;
                     case 2:
+                        sexe = 2;
                         while(!conforme3){
+                            conforme3 = true;
                         try{
                         System.out.println("Bijoux : | Bague - 1 | Boucle d'oreille - 2 | Bracellet - 3 | Collier - 4 | Montre - 5 |");
                         signe = scanEntierBorne(1,5);
                         }
-                        catch(BorneException e){
+                        catch(BorneException b){
                             
-                            
+                            conforme3 = false;
                         }
-                        conforme2 = true;
+                        
                         }
                         break;
         }
@@ -380,9 +399,9 @@ public class Interface {
         
         catch(BorneException e){
             
-            
+            conforme1 = false;
         }
-        conforme1 = true;
+        
         }
         SigneClient signeClient = conversionListeStrVersSigneClient(sexe, signe);
         
@@ -1286,11 +1305,7 @@ public class Interface {
     
     public void creerTournoi(){
         
-        System.out.println("Quel nom voulez vous choisir ?");
-        
-        entree = keyboard.nextLine();
-        
-        String nom = entree;
+        String nom = demandeChaine("Quel nom voulez vous choisir ?");
         
         int prix = demandeEntier("Quel prix voulez vous choisir pour l'inscription ?");                
                 
@@ -1309,6 +1324,10 @@ public class Interface {
     public SigneServeur conversionListeStrVersSigneServeur(int a, int b){
         
         SigneServeur signe = SigneServeur.grosBiceps;;
+        
+        
+        System.out.println("Print a : " + a + " | Print b: " + b);
+        
         
         switch(a) { 
                 
@@ -1508,6 +1527,14 @@ public class Interface {
         
         String chaine = keyboard.nextLine();
         
+        
+        try{
+            quitTest(chaine);
+        }
+        catch(QuitException q){
+            
+        }
+        
         entier = conversionStrVersInt(chaine);
         
         if (entier < min || entier > max){
@@ -1525,6 +1552,12 @@ public class Interface {
         
         String chaine = keyboard.nextLine();
         
+        try{
+            quitTest(chaine);
+        }
+        catch(QuitException q){
+            
+        }
         boolean entierTest = true;
         
         for (int i = 0; i < chaine.length(); i++){
@@ -1548,21 +1581,28 @@ public class Interface {
     
     public int demandeEntier(String question){
         
-        System.out.println(question);
+        boolean done = false;
         
         int entier = 0;
+                
+        while(!done){
         
-        try{
+            done = true;
             
-            entier = scanEntier();
+            System.out.println(question);
+                            
+            try{
             
-        }
-        catch(EntierException e){
+                entier = scanEntier();
             
-            demandeEntier(question);
+            }
+            catch(EntierException e){
             
-        }
+                done = false;
+            
+            }
         
+        }
         
         return entier;
     }
@@ -1570,6 +1610,14 @@ public class Interface {
     public String scanChaine10() throws Chaine10Exception{
         
         String chaine = keyboard.nextLine();
+        
+        
+        try{
+            quitTest(chaine);
+        }
+        catch(QuitException q){
+            
+        }
         
         if(chaine.length() > 10){
             
@@ -1586,25 +1634,51 @@ public class Interface {
         
         String chaine10 = "";
         
-        try{
-            
-            chaine10 = scanChaine10();
-            
-        }
-        catch(Chaine10Exception e){
-            
-            demandeChaine10(question);
-            
-        }
+        boolean done = false;
         
+        while(!done){
+            
+            done = true;
+        
+            try{
+            
+                chaine10 = scanChaine10();
+            
+            }
+            catch(Chaine10Exception e){
+            
+                done = false;
+            
+            }
+        
+        }
         
         return chaine10;
+    }
+    
+    public void quitTest(String chaine) throws QuitException{
+        
+        if (chaine.equals("quit")){
+            
+            throw new QuitException();
+            
+        }
+        
     }
     
     public String scanON() throws ONException{
         
         String chaine = keyboard.nextLine();
         
+        try{
+            
+            quitTest(chaine);
+            
+        }
+        catch(QuitException q){
+            
+            
+        }
         boolean conforme = false;
         
         if (chaine.equals("O") || chaine.equals("N")){
@@ -1627,19 +1701,53 @@ public class Interface {
         
         String chaineON = "";
         
-        try{
-            
-            chaineON = scanON();
-            
-        }
-        catch(ONException e){
-            
-            demandeON(question);
-            
-        }
+        boolean done = false;
         
+        while(!done){
+            
+            done = true;
+        
+            try{                
+            
+                chaineON = scanON();
+            
+            }
+            catch(ONException e){
+            
+                done = false;
+            
+            }
+        
+        }
         
         return chaineON;
     }
     
+    public String scanChaine(){
+        
+        String chaine = keyboard.nextLine();
+        
+        try{
+            
+            quitTest(chaine);
+            
+        }
+        catch(QuitException q){
+            
+            
+        }
+        
+        return chaine;
+    }
+    
+    public String demandeChaine(String demande){
+        
+        System.out.println(demande);
+        
+        String reponse = scanChaine();
+        
+        return reponse;
+    }
+    
+        
 }
