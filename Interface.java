@@ -65,7 +65,7 @@ public class Interface {
         
     }
     
-    public void chargerSauvegarde() throws IOException{
+    public void chargerSauvegarde(String nom) throws IOException{
         
         ObjectInputStream ois;
         ObjectOutputStream oos;
@@ -73,11 +73,13 @@ public class Interface {
         ois = new ObjectInputStream(
               new BufferedInputStream(
                 new FileInputStream(
-                  new File("hello.txt"))));
+                  new File("./src./pub./sauvegardes/" + nom))));
             
       try {
           
           charge = (Charge)ois.readObject();
+          
+          System.out.println("La sauvegarde : " + nom + " a bien été chargée !");
         
        
         
@@ -94,22 +96,28 @@ public class Interface {
     
     public void creerSauvegarde() throws IOException{
         
-        String nom = demandeChaine("Quel nom voulez vous donner a cette sauvegarde ?");
+        String questionSauvegarde = demandeON("Voulez vous sauvegarder les modifications ? ( O = oui / N = non)");
         
-        ObjectInputStream ois;
-        ObjectOutputStream oos;
-        try {
-        oos = new ObjectOutputStream(
-                new BufferedOutputStream(
-                    new FileOutputStream(
-                    new File(nom + ".txt"))));
+        if (questionSauvegarde.equals("O")){
+        
+            String nom = demandeChaine("Quel nom voulez vous donner a cette sauvegarde ? (tapez '" + charge.nom +"' pour ecraser la sauvegarde actuelle.)");
+        
+            ObjectInputStream ois;
+            ObjectOutputStream oos;
+            try {
+            oos = new ObjectOutputStream(
+                    new BufferedOutputStream(
+                        new FileOutputStream(
+                        new File("./src./pub./sauvegardes/" + nom + ".txt"))));
         	
-            oos.writeObject(new Charge(charge.bar, charge.fournisseur, charge.boissons, nom));
+                oos.writeObject(new Charge(charge.bar, charge.fournisseur, charge.boissons, nom));
             
-            oos.close();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
+                oos.close();
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+        
         }
         
     }
@@ -124,19 +132,22 @@ public class Interface {
                 
         while(!charge.chargement){
         
-            System.out.println("Bonjour, pour commencer veulliez choisir au bar à charger !");
-            System.out.println("| Le six roses - 1 |");
-        
             try{
             
-            switch(scanEntierBorne(1,1)) {
-                
-            case 1:
-                chargerSauvegarde();
-                break;   
+            System.out.println("Bonjour, pour commencer veulliez choisir un bar à charger !");
+            File file = new File("./src./pub./sauvegardes");
+            File[] files = file.listFiles();
             
+            for (int i = 0;i < files.length; i++){
+                
+                System.out.println("| " + files[i].getName() + " - " + i + " |");
+                
             }
-        
+            
+            int choix = scanEntierBorne(-3, files.length - 1);    
+            
+            chargerSauvegarde(files[choix].getName());
+            
         }           
                 
         catch(BorneException e){
@@ -144,7 +155,7 @@ public class Interface {
                 menuGeneral();
                 
                 }
-            
+           
         }
         
         System.out.println("Que voullez vous faire ?");
@@ -1567,7 +1578,7 @@ public class Interface {
             
         }
       
-    if ((result == 0) && (entree != "0")){
+    if ((result == 0) && !(entree.equals("0"))){
         
         result = -1;
         
