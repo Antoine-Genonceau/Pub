@@ -20,5 +20,6 @@ public class Couleur {
 	public static Couleur Pique = new Couleur ("Pique");
 	public static Couleur Carreau = new Couleur ("Carreau");
 	public static Couleur Trefle = new Couleur ("Trefle");
+        public static Couleur Blanc = new Couleur("");
 }
 

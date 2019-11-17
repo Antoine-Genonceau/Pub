@@ -19,6 +19,7 @@ public class Figure {
 	public static Figure Dame = new Figure("Dame");
 	public static Figure Roi = new Figure("Roi");
 	public static Figure As = new Figure("As");
+        public static Figure Blanc = new Figure("");
         
 	public Figure ( String nomFigure ){
 		this.nom = nomFigure ;
