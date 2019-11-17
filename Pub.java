@@ -19,9 +19,9 @@ public class Pub {
      */
     public static void main(String[] args) throws IOException {
         
-        Loader load = new Loader();
+        /*Loader load = new Loader();
         
-        load.CreationLeSixRoses();
+        load.CreationLeSixRoses();*/
         
         Interface interfaceUtilisateur = new Interface();
         

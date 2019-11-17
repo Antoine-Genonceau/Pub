@@ -100,7 +100,7 @@ public class Interface {
         
         if (questionSauvegarde.equals("O")){
         
-            String nom = demandeChaine("Quel nom voulez vous donner a cette sauvegarde ? (tapez '" + charge.nom +"' pour ecraser la sauvegarde actuelle.)");
+            String nom = demandeNomFichier("Quel nom voulez vous donner a cette sauvegarde ? (tapez '" + charge.nom +"' pour ecraser la sauvegarde actuelle.)");
         
             ObjectInputStream ois;
             ObjectOutputStream oos;
@@ -1701,8 +1701,6 @@ public class Interface {
     
     public String demandeChaine10(String question) throws IOException{
         
-        System.out.println(question);
-        
         String chaine10 = "";
         
         boolean done = false;
@@ -1712,6 +1710,8 @@ public class Interface {
             done = true;
         
             try{
+                
+                System.out.println(question);
             
                 chaine10 = scanChaine10();
             
@@ -1767,8 +1767,6 @@ public class Interface {
     
     public String demandeON(String question) throws IOException{
         
-        System.out.println(question);
-        
         String chaineON = "";
         
         boolean done = false;
@@ -1777,7 +1775,9 @@ public class Interface {
             
             done = true;
         
-            try{                
+            try{           
+                
+                System.out.println(question);
             
                 chaineON = scanON();
             
@@ -1807,6 +1807,72 @@ public class Interface {
         }
         
         return chaine;
+    }
+    
+    public String scanNomFichier() throws IOException, NomFichierException{
+        
+        String chaine = keyboard.nextLine();
+        
+        try{
+            
+            quitTest(chaine);
+            
+        }
+        catch(QuitException q){
+            
+        }
+        
+        boolean conforme = true;
+        
+        if (chaine.length() > 200){
+            
+            conforme = false;
+        }
+        
+        for (int i = 0; i < chaine.length(); i++){
+            
+            if (chaine.charAt(i) == '<' || chaine.charAt(i) == '>' || chaine.charAt(i) == ':' || chaine.charAt(i) == '/' || chaine.charAt(i) == '\\' || chaine.charAt(i) == '"' || chaine.charAt(i) == '|' || chaine.charAt(i) == '?' || chaine.charAt(i) == '!' || chaine.charAt(i) == '*'){
+                
+                conforme = false;                
+                
+            }
+            
+        }
+        
+        if (!conforme){
+            
+            throw new NomFichierException();
+        }
+        
+        return chaine;
+    }
+    
+    public String demandeNomFichier(String question) throws IOException{
+                        
+        String chaineNomFichier = "";
+        
+        boolean done = false;
+        
+        while(!done){
+            
+            done = true;
+        
+            try{                
+            
+                System.out.println(question);
+                
+                chaineNomFichier = scanNomFichier();
+            
+            }
+            catch(NomFichierException e){
+            
+                done = false;
+            
+            }
+        
+        }
+        
+        return chaineNomFichier;
     }
     
     public String demandeChaine(String demande) throws IOException{
