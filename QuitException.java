@@ -5,14 +5,20 @@
  */
 package pub;
 
+import java.io.IOException;
+
 /**
  *
  * @author Toine
  */
 public class QuitException extends Exception{
     
-    public QuitException(){
+    public QuitException(Interface inter) throws IOException{
         
+            inter.creerSauvegarde();
+            System.out.print("\nAu revoir, à bientot !\n");
+        
+            System.exit(0);
         
         }
 }

@@ -1604,11 +1604,6 @@ public class Interface {
         }
         catch(QuitException q){
             
-            creerSauvegarde();
-            System.out.print("\nAu revoir, à bientot !\n");
-        
-            System.exit(0);
-            
         }
         
         entier = conversionStrVersInt(chaine);
@@ -1632,11 +1627,6 @@ public class Interface {
             quitTest(chaine);
         }
         catch(QuitException q){
-            
-            creerSauvegarde();
-            System.out.print("\nAu revoir, à bientot !\n");
-        
-            System.exit(0);
             
         }
         boolean entierTest = true;
@@ -1698,10 +1688,6 @@ public class Interface {
         }
         catch(QuitException q){
             
-            creerSauvegarde();
-            System.out.print("\nAu revoir, à bientot !\n");
-        
-            System.exit(0);
         }
         
         if(chaine.length() > 10){
@@ -1741,11 +1727,11 @@ public class Interface {
         return chaine10;
     }
     
-    public void quitTest(String chaine) throws QuitException{
+    public void quitTest(String chaine) throws QuitException, IOException{
         
         if (chaine.equals("quit")){
             
-            throw new QuitException();
+            throw new QuitException(this);
             
         }
         
@@ -1761,11 +1747,6 @@ public class Interface {
             
         }
         catch(QuitException q){
-            
-            creerSauvegarde();
-            System.out.print("\nAu revoir, à bientot !\n");
-        
-            System.exit(0);
             
         }
         boolean conforme = false;
@@ -1823,10 +1804,6 @@ public class Interface {
         }
         catch(QuitException q){
             
-            creerSauvegarde();
-            System.out.print("\nAu revoir, à bientot !\n");
-        
-            System.exit(0);
         }
         
         return chaine;
