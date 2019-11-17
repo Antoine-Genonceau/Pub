@@ -5,6 +5,7 @@
  */
 package pub;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -14,7 +15,7 @@ import java.util.ArrayList;
  * Objet Table, une table contient 4 places, et un numero, on s'y installe dans l'ordre des aiguilles d'une montre
  * 
  */
-public class Table {
+public class Table implements Serializable{
     
     private int nombrePlacesLibres;
     private int numero;

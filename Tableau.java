@@ -5,6 +5,7 @@
  */
 package pub;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -14,7 +15,7 @@ import java.util.ArrayList;
  * 
  * 
  */
-public class Tableau {
+public class Tableau implements Serializable{
     
     private ArrayList<ArrayList<TableauCase>> tableau;
     private ArrayList<Equipe> listeEquipe;

@@ -5,13 +5,15 @@
  */
 package pub;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Toine
  * 
  * Une boisson à un nom, une unite d'alcool, un prix d'achat et un prix de vente
  */
-public class Boisson {
+public class Boisson implements Serializable{
     
     private String nom;
     private int uniteAlcool;    /*si 0 boisson sans alcool*/

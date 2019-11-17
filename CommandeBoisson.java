@@ -5,6 +5,7 @@
  */
 package pub;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -13,7 +14,7 @@ import java.util.ArrayList;
  * 
  * Une CommandeBoisson contient un StockBoisson et une liste de consomateurs correspondants
  */
-public class CommandeBoisson {
+public class CommandeBoisson implements Serializable{
     
     private StockBoisson stockBoisson;
     private ArrayList<Humain> listeConsomateur;

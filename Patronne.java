@@ -5,6 +5,7 @@
  */
 package pub;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -15,7 +16,7 @@ import java.util.ArrayList;
  * La patronne a tous les aspects d'une cliente mais elle possede un bar
  * 
  */
-public class Patronne extends Client{
+public class Patronne extends Client implements Serializable{
     
     private Bar bar;
     

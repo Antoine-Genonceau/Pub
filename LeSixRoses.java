@@ -144,7 +144,7 @@ public class LeSixRoses {
         
         jacqueschirac.envoieCommandeFournisseur(premiereCommande, euroDrink);
         
-        return new Charge(lesixroses, euroDrink, listeBoissons);
+        return new Charge(lesixroses, euroDrink, listeBoissons, "Le Six Roses");
         
     }
 }

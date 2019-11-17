@@ -5,6 +5,7 @@
  */
 package pub;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -14,7 +15,7 @@ import java.util.ArrayList;
  * Cet objet correspond au stock d'une boisson spécifique
  * 
  */
-public class StockBoisson {
+public class StockBoisson implements Serializable{
     
     private Boisson boisson;
     private int nombre;

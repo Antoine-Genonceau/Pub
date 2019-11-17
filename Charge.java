@@ -6,6 +6,7 @@
 package pub;
 
 import java.util.ArrayList;
+import java.io.Serializable;
 
 /**
  *
@@ -13,12 +14,13 @@ import java.util.ArrayList;
  * 
  * L'objet charge contient les informations chargées
  */
-public class Charge {
+public class Charge implements Serializable{
     
     Bar bar;
     Fournisseur fournisseur;
     ArrayList<Boisson> boissons;
     boolean chargement;
+    String nom;
     
     public Charge(){
         
@@ -26,16 +28,18 @@ public class Charge {
         fournisseur = new Fournisseur();
         boissons = new ArrayList<>();
         chargement = false;
+        nom = new String();
         
     }
     
-    public Charge(Bar pBar, Fournisseur pFournisseur, ArrayList<Boisson> pBoissons){
+    public Charge(Bar pBar, Fournisseur pFournisseur, ArrayList<Boisson> pBoissons, String pNom){
         
         bar = pBar;
         fournisseur = pFournisseur;
         boissons = pBoissons;
         chargement = true;
+        nom = pNom;
         
-    }
-    
+    }    
+        
 }

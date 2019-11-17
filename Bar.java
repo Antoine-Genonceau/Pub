@@ -5,6 +5,7 @@
  */
 package pub;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -24,7 +25,7 @@ import java.util.ArrayList;
  * 
  * 
  */
-public class Bar {
+public class Bar implements Serializable{
     
     private String nom;
     private ArrayList<Table> tables;

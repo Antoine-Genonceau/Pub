@@ -5,11 +5,13 @@
  */
 package pub;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Toine
  */
-public enum SigneClient {
+public enum SigneClient implements Serializable{
     
     tShirtNoir("tee-shirt", "noir", "Tee-Shirt Noir", "un"),
     tShirtBlanc("tee-shirt", "blanc", "Tee-Shirt Blanc", "un"),

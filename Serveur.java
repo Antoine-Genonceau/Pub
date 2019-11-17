@@ -5,6 +5,8 @@
  */
 package pub;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Toine
@@ -13,7 +15,7 @@ package pub;
  * Il ont un barman référent au quel ils s'adressent pour avoir les boisson demandées par les clients et lui remettre l'argent des payments
  * 
  */
-public class Serveur extends Humain{
+public class Serveur extends Humain implements Serializable{
     
     private SigneServeur signe;
     private Barman barman;    

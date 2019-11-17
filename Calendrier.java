@@ -5,6 +5,7 @@
  */
 package pub;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import static java.util.Collections.shuffle;
 
@@ -14,7 +15,7 @@ import static java.util.Collections.shuffle;
  * Un calendrier contient la liste des matchs devants avoir lieux pour réaliser un tournoi
  * 
  */
-public class Calendrier {
+public class Calendrier implements Serializable{
     
     private ArrayList<Equipe[]> calendrier;
     

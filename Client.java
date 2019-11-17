@@ -5,13 +5,15 @@
  */
 package pub;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Toine
  * 
  * Un client à une boisson favorite et une de secours, un niveau d'alcool, et signe distinctif, un tee-shirt pour les hommes et un bijoux pour les femmes
  */
-public class Client extends Humain{
+public class Client extends Humain implements Serializable{
     
     private Boisson boissonFav;
     private Boisson boissonFavBis;

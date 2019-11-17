@@ -5,11 +5,13 @@
  */
 package pub;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Toine
  */
-public enum SigneServeur {
+public enum SigneServeur implements Serializable{
     
     
     

@@ -5,11 +5,13 @@
  */
 package pub;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Toine
  */
-public class Caisse {
+public class Caisse implements Serializable{
     
     private int liquidite;
     

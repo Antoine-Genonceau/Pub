@@ -5,6 +5,7 @@
  */
 package pub;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -14,7 +15,7 @@ import java.util.ArrayList;
  * L'objet Equipe est composé de deux joueurs, d'un nom et d'un nombre de points durant une manche
  * 
  */
-public class Equipe {
+public class Equipe implements Serializable{
     
     private Joueur joueur1;
     private Joueur joueur2;

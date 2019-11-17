@@ -5,6 +5,8 @@
  */
 package pub;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Toine
@@ -12,7 +14,7 @@ package pub;
  * Une case de tableau contient une Equipe, un numéro d'équipe, un nombre de points, un classement
  * 
  */
-public class TableauCase {
+public class TableauCase implements Serializable{
     
     private Equipe equipe;
     private int numero;

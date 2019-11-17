@@ -5,13 +5,15 @@
  */
 package pub;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Toine
  * 
  * Le fournisseur à un stock et une caisse, il ressoit une commande d'un barman et est payé par la patronne
  */
-public class Fournisseur extends Humain{
+public class Fournisseur extends Humain implements Serializable{
     
     private Stock stock;
     

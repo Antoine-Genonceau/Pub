@@ -5,6 +5,7 @@
  */
 package pub;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -13,7 +14,7 @@ import java.util.ArrayList;
  * 
  * Un Barman gere une caisse et un stock, il detient le la blacklist et à une patronne
  */
-public class Barman extends Humain{
+public class Barman extends Humain implements Serializable{
     
     private Caisse caisse;
     private Stock stock;

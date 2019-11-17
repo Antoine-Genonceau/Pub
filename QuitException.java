@@ -14,8 +14,5 @@ public class QuitException extends Exception{
     public QuitException(){
         
         
-        System.out.print("\nAu revoir, à bientot !\n");
-        
-        System.exit(0);
-    }
+        }
 }

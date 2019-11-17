@@ -5,13 +5,14 @@
  */
 package pub;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Toine
  */
-public class Commande {
+public class Commande implements Serializable{
     
     private ArrayList<CommandeBoisson> commande;
     

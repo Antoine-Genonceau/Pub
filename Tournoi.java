@@ -5,6 +5,7 @@
  */
 package pub;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -15,7 +16,7 @@ import java.util.ArrayList;
  * les equipes doivent s'insrcire auprès du barman avant le début du tournoi
  * 
  */
-public class Tournoi {
+public class Tournoi implements Serializable{
     
     private ArrayList<Equipe> equipes;
     private Tableau tableau;

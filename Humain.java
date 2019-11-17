@@ -5,6 +5,7 @@
  */
 package pub;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
@@ -19,7 +20,7 @@ import java.util.ArrayList;
  * Il a aussi un droit d'access au bar, il en a bessoin pour pouvoir effectuer des actions dans un bar
  * 
  */
-public class Humain {
+public class Humain implements Serializable{
     private String surnom;
     private String prenom;
     private int porteMonnaie;

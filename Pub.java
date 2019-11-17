@@ -5,6 +5,7 @@
  */
 package pub;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -16,7 +17,7 @@ public class Pub {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         
         Loader load = new Loader();
         

@@ -5,6 +5,7 @@
  */
 package pub;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -14,7 +15,7 @@ import java.util.ArrayList;
  * L'objet Stock est une liste de StockBoisson
  * 
  */
-public class Stock {
+public class Stock implements Serializable{
     
     private ArrayList<StockBoisson> stock;
     

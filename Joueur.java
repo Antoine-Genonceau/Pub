@@ -5,6 +5,8 @@
  */
 package pub;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Toine
@@ -12,7 +14,7 @@ package pub;
  * Un joueur à une identite
  * 
  */
-public class Joueur {
+public class Joueur implements Serializable{
     
     private Humain identite;
     

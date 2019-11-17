@@ -6,7 +6,18 @@
 package pub;
 
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.Scanner; 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 /**
  *
@@ -24,7 +35,7 @@ public class Interface {
      * 
      */
     
-    public void processus(){
+    public void processus() throws IOException{
         
         boolean power = true;
         
@@ -54,13 +65,62 @@ public class Interface {
         
     }
     
+    public void chargerSauvegarde() throws IOException{
+        
+        ObjectInputStream ois;
+        ObjectOutputStream oos;
+        
+        ois = new ObjectInputStream(
+              new BufferedInputStream(
+                new FileInputStream(
+                  new File("hello.txt"))));
+            
+      try {
+          
+          charge = (Charge)ois.readObject();
+        
+       
+        
+      } catch (ClassNotFoundException e) {
+        e.printStackTrace();
+      }
+	
+      ois.close();
+        	
+     
+        
+        
+    }
+    
+    public void creerSauvegarde() throws IOException{
+        
+        String nom = demandeChaine("Quel nom voulez vous donner a cette sauvegarde ?");
+        
+        ObjectInputStream ois;
+        ObjectOutputStream oos;
+        try {
+        oos = new ObjectOutputStream(
+                new BufferedOutputStream(
+                    new FileOutputStream(
+                    new File(nom + ".txt"))));
+        	
+            oos.writeObject(new Charge(charge.bar, charge.fournisseur, charge.boissons, nom));
+            
+            oos.close();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+    }
+    
     /**
      * Menu général on demande à l'utilisateur ce qu'il souhaite faire
      * 
      */
     
     
-    public void menuGeneral(){      
+    public void menuGeneral() throws IOException{      
                 
         while(!charge.chargement){
         
@@ -72,7 +132,7 @@ public class Interface {
             switch(scanEntierBorne(1,1)) {
                 
             case 1:
-                chargerBarLeSixRoses();
+                chargerSauvegarde();
                 break;   
             
             }
@@ -122,7 +182,7 @@ public class Interface {
      * 
      */
     
-    public void afficherDonnee(){
+    public void afficherDonnee() throws IOException{
         
         System.out.println("Quelle type de donnée voulez vous afficher ?");
         System.out.println("| Bar - 1 | Fournisseur - 2 | Serveurs - 3 | Clients - 4 | Barman - 5 | Patronne - 6 |");
@@ -167,7 +227,7 @@ public class Interface {
      * 
      */
     
-    public void creerDonnee(){
+    public void creerDonnee() throws IOException{
         
         System.out.println("Quelle type de donnée voulez vous créer ?");
         System.out.println("| Serveur - 1 | Client - 2 |");
@@ -198,7 +258,7 @@ public class Interface {
      * 
      */
     
-    public void creationServeur(){
+    public void creationServeur() throws IOException{
         
         System.out.println("Cretion Serveur :");
         
@@ -289,7 +349,7 @@ public class Interface {
      * 
      */
     
-    public void creationClient(){
+    public void creationClient() throws IOException{
         
         System.out.println("Cretion Client :");
         
@@ -419,7 +479,7 @@ public class Interface {
      */
     
     
-    public void action(){
+    public void action() throws IOException{
         
         System.out.println("Quelle type d'action voulez vous effectuer ?");
         System.out.println("| Gestion Bar - 1 | Action Bar - 2 | Action Tournoi -3 |");
@@ -455,7 +515,7 @@ public class Interface {
      * 
      */
     
-    public void actionBar(){
+    public void actionBar() throws IOException{
         
         System.out.println("Quelle type d'action voulez vous effectuer ?");
         System.out.println("| Commander des boissons au fournisseur - 1 | Rappeller à l'ordre un client trop alcoolisé - 2 |");
@@ -488,7 +548,7 @@ public class Interface {
      * 
      */
     
-    public void commandeFournisseur(){
+    public void commandeFournisseur() throws IOException{
         
         System.out.println("Commande :");
         
@@ -511,7 +571,7 @@ public class Interface {
      * 
      */
     
-    public void rappelOrdre(){
+    public void rappelOrdre() throws IOException{
         
         System.out.println("Quelle type de rappel à l'ordre voulez vous effectuer ?");
         System.out.println("| Automatique - 1 | Manuel - 2 |");
@@ -558,7 +618,7 @@ public class Interface {
      * 
      */
     
-    public void manuel(){
+    public void manuel() throws IOException{
         
         System.out.println("Quel client voulez vous rappeller à l'ordre ?");
         
@@ -583,7 +643,7 @@ public class Interface {
      * 
      */
     
-    public void actionHumain(){
+    public void actionHumain() throws IOException{
         
         Humain humain = choixHumain();
         
@@ -618,7 +678,7 @@ public class Interface {
      * @param humain individu passant la commande
      */
     
-    public void commanderBarman(Humain humain){
+    public void commanderBarman(Humain humain) throws IOException{
         
         System.out.println("Quelle genre de commande voulez vous passer ?");
         System.out.println("| Commander un verre pour soi - 1 | Commander pour soi et d'autres personnes - 2 | Commander pour d'autres personnes - 3 |");
@@ -651,7 +711,7 @@ public class Interface {
      * @param humain individu passant la commande
      */
     
-    public void commanderServeur(Humain humain){
+    public void commanderServeur(Humain humain) throws IOException{
         
         Serveur serveur = new Serveur();
         
@@ -723,7 +783,7 @@ public class Interface {
      * @param barman barman auquel il s'adresse
      */
     
-    public void commanderAvec(Humain humain, Barman barman){
+    public void commanderAvec(Humain humain, Barman barman) throws IOException{
         
         ArrayList<Humain> avec = new ArrayList<>();
         
@@ -742,7 +802,7 @@ public class Interface {
      * @param serveur serveur auquel il s'adresse
      */
     
-    public void commanderAvec(Humain humain, Serveur serveur){
+    public void commanderAvec(Humain humain, Serveur serveur) throws IOException{
         
         ArrayList<Humain> avec = new ArrayList<>();
         
@@ -761,7 +821,7 @@ public class Interface {
      * @param barman barman auquel il s'adresse
      */
     
-    public void commanderAutres(Humain humain, Barman barman){
+    public void commanderAutres(Humain humain, Barman barman) throws IOException{
         
         ArrayList<Humain> avec = new ArrayList<>();
         
@@ -778,7 +838,7 @@ public class Interface {
      * @param serveur serveur auquel il s'adresse
      */
     
-    public void commanderAutres(Humain humain, Serveur serveur){
+    public void commanderAutres(Humain humain, Serveur serveur) throws IOException{
         
         ArrayList<Humain> avec = new ArrayList<>();
         
@@ -794,7 +854,7 @@ public class Interface {
      * @param liste liste d'individus
      */
     
-    public void ajoutAutres(ArrayList<Humain> liste){
+    public void ajoutAutres(ArrayList<Humain> liste) throws IOException{
         
         String reponse = "O";
         
@@ -814,7 +874,7 @@ public class Interface {
      * @return retourne le serveur choisi
      */
     
-    public Serveur choixServeur(){
+    public Serveur choixServeur() throws IOException{
         
         System.out.println("Aupres de quel serveur souhaitez vous commander ?");
         
@@ -844,7 +904,7 @@ public class Interface {
      * @return individu choisi
      */
     
-    public Humain choixHumain(){
+    public Humain choixHumain() throws IOException{
         
         Humain humain = new Humain();
         
@@ -933,7 +993,7 @@ public class Interface {
      * @return  individu choisi
      */
     
-     public Humain choixHumainConsomateur(){
+     public Humain choixHumainConsomateur() throws IOException{
         
         Humain humain = new Humain();
         
@@ -1020,7 +1080,7 @@ public class Interface {
       * @return retourne l'individu choisit
       */
      
-     public Humain choixJoueur(){
+     public Humain choixJoueur() throws IOException{
         
         Humain humain = new Humain();
         
@@ -1082,7 +1142,7 @@ public class Interface {
      * 
      */
     
-    public void actionTournoi(){
+    public void actionTournoi() throws IOException{
         
         System.out.println("Quelle type d'action voulez vous effectuer ?");
         System.out.println("| Gerer un tournoi - 1 | Creer un tournoi - 2 |");
@@ -1115,7 +1175,7 @@ public class Interface {
      * 
      */
     
-    public void choixTournoi(){
+    public void choixTournoi() throws IOException{
         
         if (charge.bar.getBarman().getTournois().size() == 0){
             
@@ -1153,7 +1213,7 @@ public class Interface {
      * @param tournoi 
      */
     
-    public void gererTournoi(Tournoi tournoi){
+    public void gererTournoi(Tournoi tournoi) throws IOException{
         
         
         System.out.println("Quelle type d'action voulez vous effectuer pour le tournoi " + tournoi.getNom() + " ?");
@@ -1188,7 +1248,7 @@ public class Interface {
      * 
      * @param tournoi 
      */
-    public void inscrireEquipe(Tournoi tournoi){
+    public void inscrireEquipe(Tournoi tournoi) throws IOException{
         
         Equipe equipe = new Equipe();
         
@@ -1207,7 +1267,7 @@ public class Interface {
      * @return 
      */
     
-    public Equipe creationEquipe(){
+    public Equipe creationEquipe() throws IOException{
         
         Joueur joueur1 = new Joueur();
         
@@ -1230,7 +1290,7 @@ public class Interface {
      * @return retoure le joueur créé
      */
     
-    public Joueur creationJoueur1(){
+    public Joueur creationJoueur1() throws IOException{
         
         Humain humain = new Humain();
         
@@ -1248,7 +1308,7 @@ public class Interface {
      * @return retoure le joueur créé
      */
     
-    public Joueur creationJoueur2(){
+    public Joueur creationJoueur2() throws IOException{
        
         Humain humain = new Humain();
         
@@ -1267,7 +1327,7 @@ public class Interface {
      * @return retourne le nom choisi
      */
     
-    public String creationNomEquipe(){
+    public String creationNomEquipe() throws IOException{
         
         return demandeChaine10("Quel est le nom de cette equipe ? (maximum 9 caracteres)");
         
@@ -1303,7 +1363,7 @@ public class Interface {
      * 
      */
     
-    public void creerTournoi(){
+    public void creerTournoi() throws IOException{
         
         String nom = demandeChaine("Quel nom voulez vous choisir ?");
         
@@ -1521,7 +1581,7 @@ public class Interface {
     //////////////////////////////////////////////////Getion des Exceptions//////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
-    public int scanEntierBorne(int min, int max) throws BorneException{
+    public int scanEntierBorne(int min, int max) throws BorneException, IOException{
         
         int entier = 0;
         
@@ -1532,6 +1592,11 @@ public class Interface {
             quitTest(chaine);
         }
         catch(QuitException q){
+            
+            creerSauvegarde();
+            System.out.print("\nAu revoir, à bientot !\n");
+        
+            System.exit(0);
             
         }
         
@@ -1546,7 +1611,7 @@ public class Interface {
         return entier;
     }
     
-    public int scanEntier() throws EntierException{
+    public int scanEntier() throws EntierException, IOException{
         
         int entier = 0;
         
@@ -1556,6 +1621,11 @@ public class Interface {
             quitTest(chaine);
         }
         catch(QuitException q){
+            
+            creerSauvegarde();
+            System.out.print("\nAu revoir, à bientot !\n");
+        
+            System.exit(0);
             
         }
         boolean entierTest = true;
@@ -1579,7 +1649,7 @@ public class Interface {
         return entier;
     }
     
-    public int demandeEntier(String question){
+    public int demandeEntier(String question) throws IOException{
         
         boolean done = false;
         
@@ -1607,7 +1677,7 @@ public class Interface {
         return entier;
     }
     
-    public String scanChaine10() throws Chaine10Exception{
+    public String scanChaine10() throws Chaine10Exception, IOException{
         
         String chaine = keyboard.nextLine();
         
@@ -1617,6 +1687,10 @@ public class Interface {
         }
         catch(QuitException q){
             
+            creerSauvegarde();
+            System.out.print("\nAu revoir, à bientot !\n");
+        
+            System.exit(0);
         }
         
         if(chaine.length() > 10){
@@ -1628,7 +1702,7 @@ public class Interface {
         return chaine;
     }
     
-    public String demandeChaine10(String question){
+    public String demandeChaine10(String question) throws IOException{
         
         System.out.println(question);
         
@@ -1666,7 +1740,7 @@ public class Interface {
         
     }
     
-    public String scanON() throws ONException{
+    public String scanON() throws ONException, IOException{
         
         String chaine = keyboard.nextLine();
         
@@ -1677,6 +1751,10 @@ public class Interface {
         }
         catch(QuitException q){
             
+            creerSauvegarde();
+            System.out.print("\nAu revoir, à bientot !\n");
+        
+            System.exit(0);
             
         }
         boolean conforme = false;
@@ -1695,7 +1773,7 @@ public class Interface {
         return chaine;
     }
     
-    public String demandeON(String question){
+    public String demandeON(String question) throws IOException{
         
         System.out.println(question);
         
@@ -1723,7 +1801,7 @@ public class Interface {
         return chaineON;
     }
     
-    public String scanChaine(){
+    public String scanChaine() throws IOException{
         
         String chaine = keyboard.nextLine();
         
@@ -1734,13 +1812,16 @@ public class Interface {
         }
         catch(QuitException q){
             
-            
+            creerSauvegarde();
+            System.out.print("\nAu revoir, à bientot !\n");
+        
+            System.exit(0);
         }
         
         return chaine;
     }
     
-    public String demandeChaine(String demande){
+    public String demandeChaine(String demande) throws IOException{
         
         System.out.println(demande);
         

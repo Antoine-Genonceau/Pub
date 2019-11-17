@@ -5,13 +5,15 @@
  */
 package pub;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Toine
  * 
  * Un client blacklisté à droit à trois rappel avant de risquer d'etre viré
  */
-public class BlackListed {
+public class BlackListed implements Serializable{
     
     private Client client;
     

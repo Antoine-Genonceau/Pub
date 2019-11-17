@@ -5,6 +5,7 @@
  */
 package pub;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -13,7 +14,7 @@ import java.util.ArrayList;
  * 
  * La blackliste contient les clients blacklistés
  */
-public class BlackList {
+public class BlackList implements Serializable{
     
     private ArrayList<BlackListed> listeNoire;
     
