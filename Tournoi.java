@@ -25,15 +25,19 @@ public class Tournoi implements Serializable{
     private String nom;
     private int prix;
     private Barman barman;
+    private boolean termine;
+    private SyntheseTournoi synthese;
     
     public Tournoi(String pNom, int pPrix, Barman pBarman){
         
         equipes = new ArrayList();
         cagnotte = 0;
         inscriptionsOuvertes = true;
+        termine = false;
         nom = pNom;
         prix = pPrix;
         barman = pBarman;
+        synthese = new SyntheseTournoi();
         
     }
     
@@ -49,6 +53,8 @@ public class Tournoi implements Serializable{
         inscriptionsOuvertes = false;
         
         tableau = new Tableau(equipes, barman);
+        
+        synthese.setNombreJoueurs(equipes.size() * 2);
         
     }
     
@@ -234,6 +240,7 @@ public class Tournoi implements Serializable{
                 scoreA = scoreA + 1;                
                 System.out.println("\n" + A + " : " + scoreA + "   " + B + " : " + scoreB + "\n");
                 B.tourneeAdversaire(A, barman);
+                synthese.setNombreConsomations(synthese.getNombreConsomations() + 4);
             
                 
             }
@@ -243,6 +250,7 @@ public class Tournoi implements Serializable{
                 scoreB = scoreB + 1;
                 System.out.println("\n" + A + " : " + scoreA + "   " + B + " : " + scoreB + "\n");
                 A.tourneeAdversaire(B, barman);
+                synthese.setNombreConsomations(synthese.getNombreConsomations() + 4);
             
                 
             }
@@ -274,24 +282,36 @@ public class Tournoi implements Serializable{
     
     public void deroulementTournoi(){
         
-        barman.parler("LE TOURNOI EST LANCE !");
+        if (!termine){
         
-        Calendrier calendrier = new Calendrier(equipes);
+            barman.parler("LE TOURNOI EST LANCE !");
         
-        for (int i = 0; i < calendrier.getClendrier().size(); i++){                      
+            Calendrier calendrier = new Calendrier(equipes);
+        
+            for (int i = 0; i < calendrier.getClendrier().size(); i++){                      
             
-            barman.parler("Prochain match : " + calendrier.getClendrier().get(i)[0].getNom()+ " VS " + calendrier.getClendrier().get(i)[1].getNom() );
-            match(calendrier.getClendrier().get(i)[0], calendrier.getClendrier().get(i)[1]);
-            tableau.calculTotal();
-            tableau.calculClassement();
-            barman.parler("VOICI LE NOUVEAU TABLEAU :");
-            tableau.afficheTabClassement();
+                barman.parler("Prochain match : " + calendrier.getClendrier().get(i)[0].getNom()+ " VS " + calendrier.getClendrier().get(i)[1].getNom() );
+                match(calendrier.getClendrier().get(i)[0], calendrier.getClendrier().get(i)[1]);
+                tableau.calculTotal();
+                tableau.calculClassement();
+                barman.parler("VOICI LE NOUVEAU TABLEAU :");
+                tableau.afficheTabClassement();
             
+            }
+        
+            barman.parler("LE TOURNOI EST TERMINE");
+        
+            remisePrix();
+        
+            termine = true;
+        
         }
         
-        barman.parler("LE TOURNOI EST TERMINE");
-        
-        remisePrix();
+        else{
+            
+            System.out.println("Ce tournoi à déjà eu lieux !");
+            
+        }
     }
     
     /**
@@ -319,6 +339,24 @@ public class Tournoi implements Serializable{
         
     }
     
+    
+    public void afficheSynthese(){
+        
+        if (termine){
+        
+            System.out.println("Synthese du tournoi '" + nom + "' : ");
+        
+            System.out.println("Nombre de joueurs ayant participés : " + synthese.getNombreJoueurs());
+            System.out.println("Nombre de consomations engendrées par le tournoi : " + synthese.getNombreConsomations());
+        
+        }
+        
+        else{
+            
+            System.out.println("La synthese sera disponible à la fin du tournoi");
+            
+        }
+    }
     
     
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

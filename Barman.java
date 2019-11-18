@@ -57,7 +57,17 @@ public class Barman extends Humain implements Serializable{
                 
                 if (tournoi.equals(tournois.get(i))){
                     
-                    tournois.get(i).fermetureInscription();
+                    if (tournois.get(i).getEquipes().size() > 1){
+                        
+                        tournois.get(i).fermetureInscription();
+                        
+                    }
+                    
+                    else{
+                        
+                        System.out.println("Les inscriptions ne peuvent pas se clore avant qu'au moins deux equipes ne se soit inscrites !");
+                        
+                    }
                     
                 }
                 
@@ -81,6 +91,12 @@ public class Barman extends Humain implements Serializable{
             
                         tournois.get(i).deroulementTournoi();
             
+                    }
+                    
+                    else{
+                        
+                        System.out.println("Les inscriptions ne sont pas encore closes !");
+                        
                     }
             
                 }
