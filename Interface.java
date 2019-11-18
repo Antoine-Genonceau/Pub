@@ -76,9 +76,9 @@ public class Interface {
     
     public void chargerBarLeSixRoses(){
         
-        LeRetro lesixroses = new LeRetro();
+        LeSixRoses lesixroses = new LeSixRoses();
         
-        charge = lesixroses.CreationLeRetro();
+        charge = lesixroses.CreationLeSixRoses();
         
         System.out.println("bar bien chargé !");
         
@@ -160,8 +160,8 @@ public class Interface {
      */
     
     
-    public void menuGeneral() throws IOException{      
-         
+    public void menuGeneral() throws IOException{    
+        
         while(!charge.chargement){
         
             try{
@@ -1261,10 +1261,10 @@ public class Interface {
         
         
         System.out.println("Quelle type d'action voulez vous effectuer pour le tournoi " + tournoi.getNom() + " ?");
-        System.out.println("| Inscrire une Equipe - 1 | Cloturer les inscriptions - 2 | Lancer le tournoi - 3 | Afficher synthese - 4 |");
+        System.out.println("| Inscrire une Equipe - 1 | Cloturer les inscriptions - 2 | Lancer le tournoi - 3 | Gerer les matchs - 4 | Afficher synthese - 5 |");
         
         try{
-        switch(scanEntierBorne(1,4)) { 
+        switch(scanEntierBorne(1,5)) { 
                 
                     case 1:
                         inscrireEquipe(tournoi);
@@ -1276,6 +1276,9 @@ public class Interface {
                         lancerTournoi(tournoi);
                         break;
                     case 4:
+                        gererMatchs(tournoi);
+                        break;                        
+                    case 5:
                         tournoi.afficheSynthese();
                         break;
                                          
@@ -1287,6 +1290,83 @@ public class Interface {
             gererTournoi(tournoi);
             
         }
+        
+    }
+    
+    public void gererMatchs(Tournoi tournoi) throws IOException{
+        
+        System.out.println("Quelle type d'action voulez vous effectuer pour les matchs du tournoi " + tournoi.getNom() + " ?");
+        System.out.println("| Lancer un nouveau match - 1 | Afficher les résultats et matchs déjà passés - 2 |");
+        
+        try{
+        switch(scanEntierBorne(1,2)) { 
+                
+                    case 1:
+                        lancerMatch(tournoi);
+                        break;
+                    case 2:
+                        afficherMatchs(tournoi);
+                        break;
+                                                             
+            }
+        
+        }
+        catch(BorneException e){
+            
+            gererTournoi(tournoi);
+            
+        }
+        
+        
+    }
+    
+    public void lancerMatch(Tournoi tournoi) throws IOException{
+        
+        if (tournoi.getCalendrier().getCalendrier().size() != 0 ){
+        
+            System.out.println("Quelle type d'action voulez vous effectuer pour les matchs du tournoi " + tournoi.getNom() + " ?");
+        
+            for (int i = 0; i < tournoi.getCalendrier().getCalendrier().size(); i++){
+            
+                System.out.println("| " + tournoi.getCalendrier().getCalendrier().get(i)[0] + " VS " + tournoi.getCalendrier().getCalendrier().get(i)[1] + " - " + i + " |");
+            
+            }
+        
+            try{
+          
+        
+                tournoi.deroulementMatch(tournoi.getCalendrier().getCalendrier().get(scanEntierBorne(0, tournoi.getCalendrier().getCalendrier().size())));
+                
+         
+            }
+            catch(BorneException e){
+            
+                gererTournoi(tournoi);
+            
+            }
+        
+        }
+        
+        else{
+            
+            System.out.println("Ce tournoi est terminé !");
+            
+        }
+    }
+    
+    public void afficherMatchs(Tournoi tournoi){
+        
+        System.out.println("Matchs déjà joués :");
+        
+        for (int i = 0; i < tournoi.getMatchPasses().getCalendrier().size(); i++){
+            
+            System.out.println("| " + tournoi.getMatchPasses().getCalendrier().get(i)[0] + " VS " + tournoi.getMatchPasses().getCalendrier().get(i)[1] + " |");
+            
+        }
+        
+        System.out.println("Résultats :");
+        
+        tournoi.getTableau().afficheTabClassement();
         
     }
     
@@ -1393,15 +1473,51 @@ public class Interface {
         
     }
     
+    
+    public void lancerTournoi(Tournoi tournoi) throws IOException{
+    
+    System.out.println("Choix du mode pour le tournoi " + tournoi.getNom() + " ?");
+        System.out.println("| Automatique - 1 | Manuel - 2 |");
+        
+        try{
+        switch(scanEntierBorne(1,2)) { 
+                
+                    case 1:
+                        lancerTournoiAuto(tournoi);
+                        break;
+                    case 2:
+                        lancerTournoiManuel(tournoi);
+                        break;
+                    
+                                         
+            }
+        
+        }
+        catch(BorneException e){
+            
+            lancerTournoi(tournoi);
+            
+        }
+        
+    }
+    
+    
     /**
      * Methode permettant de lancer les matchs d'un tournoi
      * 
      * @param tournoi 
      */
     
-    public void lancerTournoi(Tournoi tournoi){
+    public void lancerTournoiAuto(Tournoi tournoi){
         
-        charge.bar.getBarman().deroulementTournoi(tournoi);
+        charge.bar.getBarman().deroulementTournoiAuto(tournoi);
+        
+    }
+    
+    
+    public void lancerTournoiManuel(Tournoi tournoi){
+        
+        charge.bar.getBarman().deroulementTournoiManuel(tournoi);
         
     }
     

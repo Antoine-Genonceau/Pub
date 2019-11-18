@@ -18,6 +18,13 @@ import static java.util.Collections.shuffle;
 public class Calendrier implements Serializable{
     
     private ArrayList<Equipe[]> calendrier;
+    private boolean vierge;
+    
+    public Calendrier(){
+        
+        calendrier = new ArrayList<>();
+        vierge = true;
+    }
     
     /**
      * Creation du calendrier toutes les equipes doivent se rencontrer
@@ -28,6 +35,7 @@ public class Calendrier implements Serializable{
     public Calendrier(ArrayList<Equipe> listeEquipe){
         
         calendrier = new ArrayList<>();
+        vierge = false;
             
         for (int i = 0; i < listeEquipe.size() - 1; i++){
             
@@ -48,10 +56,16 @@ public class Calendrier implements Serializable{
             
     }
     
-    public ArrayList<Equipe[]> getClendrier(){
+    public ArrayList<Equipe[]> getCalendrier(){
         
         return calendrier;
         
     }
     
+    
+    public boolean getVierge(){
+        
+        return vierge;
+        
+    }
 }

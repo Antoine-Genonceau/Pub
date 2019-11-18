@@ -5,11 +5,13 @@
  */
 package pub;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Toine
  */
-public class SyntheseTournoi {
+public class SyntheseTournoi implements Serializable{
     
     private int nombreConsomations;
     private int nombreJoueurs;

@@ -79,7 +79,7 @@ public class Barman extends Humain implements Serializable{
         
     }
     
-    public void deroulementTournoi(Tournoi tournoi){
+    public void deroulementTournoiAuto(Tournoi tournoi){
         
         if (tournois.size() != 0 ){
             
@@ -89,7 +89,35 @@ public class Barman extends Humain implements Serializable{
             
                     if (!(tournois.get(i).getInscriptionsOuvertes())){
             
-                        tournois.get(i).deroulementTournoi();
+                        tournois.get(i).deroulementTournoiAuto();
+            
+                    }
+                    
+                    else{
+                        
+                        System.out.println("Les inscriptions ne sont pas encore closes !");
+                        
+                    }
+            
+                }
+            
+            }
+            
+        }
+        
+    }
+    
+    public void deroulementTournoiManuel(Tournoi tournoi){
+        
+        if (tournois.size() != 0 ){
+            
+            for (int i = 0; i < tournois.size(); i++){
+                
+                if (tournoi.equals(tournois.get(i))){
+            
+                    if (!(tournois.get(i).getInscriptionsOuvertes())){
+            
+                        tournois.get(i).deroulementTournoiManuel();
             
                     }
                     

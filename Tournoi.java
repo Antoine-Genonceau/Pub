@@ -27,6 +27,8 @@ public class Tournoi implements Serializable{
     private Barman barman;
     private boolean termine;
     private SyntheseTournoi synthese;
+    private Calendrier calendrier;
+    private Calendrier matchPasses;
     
     public Tournoi(String pNom, int pPrix, Barman pBarman){
         
@@ -38,7 +40,8 @@ public class Tournoi implements Serializable{
         prix = pPrix;
         barman = pBarman;
         synthese = new SyntheseTournoi();
-        
+        calendrier = new Calendrier();
+        matchPasses = new Calendrier();
     }
     
     /**
@@ -280,18 +283,20 @@ public class Tournoi implements Serializable{
      * 
      */
     
-    public void deroulementTournoi(){
+    public void deroulementTournoiAuto(){
         
         if (!termine){
         
             barman.parler("LE TOURNOI EST LANCE !");
         
-            Calendrier calendrier = new Calendrier(equipes);
+            calendrier = new Calendrier(equipes);
         
-            for (int i = 0; i < calendrier.getClendrier().size(); i++){                      
+            for (int i = 0; i < calendrier.getCalendrier().size(); i++){                      
             
-                barman.parler("Prochain match : " + calendrier.getClendrier().get(i)[0].getNom()+ " VS " + calendrier.getClendrier().get(i)[1].getNom() );
-                match(calendrier.getClendrier().get(i)[0], calendrier.getClendrier().get(i)[1]);
+                barman.parler("Prochain match : " + calendrier.getCalendrier().get(i)[0].getNom()+ " VS " + calendrier.getCalendrier().get(i)[1].getNom() );
+                match(calendrier.getCalendrier().get(i)[0], calendrier.getCalendrier().get(i)[1]);
+                matchPasses.getCalendrier().add(calendrier.getCalendrier().get(i));
+                calendrier.getCalendrier().remove(i);
                 tableau.calculTotal();
                 tableau.calculClassement();
                 barman.parler("VOICI LE NOUVEAU TABLEAU :");
@@ -312,6 +317,71 @@ public class Tournoi implements Serializable{
             System.out.println("Ce tournoi à déjà eu lieux !");
             
         }
+    }
+    
+    public void deroulementTournoiManuel(){
+        
+        if (!termine){
+        
+            barman.parler("LE TOURNOI EST LANCE !");
+        
+            calendrier = new Calendrier(equipes);
+        
+        
+        }
+        
+        else{
+            
+            System.out.println("Ce tournoi à déjà eu lieux !");
+            
+        }
+    }
+    
+    public void deroulementMatch(Equipe[] match){
+        
+        if (!termine){
+        
+            if (!calendrier.getVierge()){
+                
+                int indice = calendrier.getCalendrier().indexOf(match);
+                
+                barman.parler("Prochain match : " + calendrier.getCalendrier().get(indice)[0].getNom()+ " VS " + calendrier.getCalendrier().get(indice)[1].getNom() );
+                match(calendrier.getCalendrier().get(indice)[0], calendrier.getCalendrier().get(indice)[1]);
+                calendrier.getCalendrier().remove(indice);
+                matchPasses.getCalendrier().add(match);
+                tableau.calculTotal();
+                tableau.calculClassement();
+                barman.parler("VOICI LE NOUVEAU TABLEAU :");
+                tableau.afficheTabClassement();
+                
+                if (calendrier.getCalendrier().size() == 0){                    
+                    
+                    barman.parler("LE TOURNOI EST TERMINE");
+        
+                    remisePrix();
+        
+                    termine = true;                    
+                    
+                }
+                                
+            }
+            
+            else{
+                
+                System.out.println("Ce tournoi n'a pas encore débuté");
+                
+            }
+        
+        }
+        
+        else{
+            
+            System.out.println("Ce tournoi est terminé !");
+            
+        }
+        
+        
+        
     }
     
     /**
@@ -398,6 +468,18 @@ public class Tournoi implements Serializable{
     public int getPrix(){
         
         return prix;
+        
+    }
+    
+    public Calendrier getCalendrier(){
+        
+        return calendrier;
+        
+    }
+    
+    public Calendrier getMatchPasses(){
+        
+        return matchPasses;
         
     }
     

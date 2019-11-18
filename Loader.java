@@ -156,7 +156,7 @@ public class Loader {
         B.inscription(jacqueschirac.getTournois().get(0), jacqueschirac);        
         C.inscription(jacqueschirac.getTournois().get(0), jacqueschirac);
         jacqueschirac.fermetureInscription(jacqueschirac.getTournois().get(0));
-        jacqueschirac.deroulementTournoi(jacqueschirac.getTournois().get(0));
+        jacqueschirac.deroulementTournoiAuto(jacqueschirac.getTournois().get(0));
         
         System.out.println(lesixroses);
         
