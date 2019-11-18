@@ -1260,10 +1260,10 @@ public class Interface {
         
         
         System.out.println("Quelle type d'action voulez vous effectuer pour le tournoi " + tournoi.getNom() + " ?");
-        System.out.println("| Inscrire une Equipe - 1 | Cloturer les inscriptions - 2 |Lancer le tournoi - 3 |");
+        System.out.println("| Inscrire une Equipe - 1 | Cloturer les inscriptions - 2 | Lancer le tournoi - 3 | Afficher synthese - 4 |");
         
         try{
-        switch(scanEntierBorne(1,3)) { 
+        switch(scanEntierBorne(1,4)) { 
                 
                     case 1:
                         inscrireEquipe(tournoi);
@@ -1273,6 +1273,9 @@ public class Interface {
                         break;
                     case 3:
                         lancerTournoi(tournoi);
+                        break;
+                    case 4:
+                        tournoi.afficheSynthese();
                         break;
                                          
             }

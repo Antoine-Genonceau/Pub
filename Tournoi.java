@@ -344,11 +344,11 @@ public class Tournoi implements Serializable{
         
         if (termine){
         
-            System.out.println("Synthese du tournoi '" + nom + "' : ");
+            System.out.println("\nSynthese du tournoi '" + nom + "' : \n");
         
             System.out.println("Nombre de joueurs ayant participés : " + synthese.getNombreJoueurs());
             System.out.println("Nombre de consomations engendrées par le tournoi : " + synthese.getNombreConsomations());
-        
+            System.out.println("\n");
         }
         
         else{
