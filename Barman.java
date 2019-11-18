@@ -288,7 +288,7 @@ public class Barman extends Humain implements Serializable{
      * @param client client faissant de la resistance
      */
     
-    public void prevenirPatronne(Client client){
+    public void prevenirPatronne(Client client) throws StopCommandeException{
         
         patronne.exclureClient(client);
         
@@ -300,7 +300,7 @@ public class Barman extends Humain implements Serializable{
      * @param client client blacklisté demandant à boire
      */
     
-    public void rappelClient(Client client){
+    public void rappelClient(Client client) throws StopCommandeException{
         
         
         
@@ -331,7 +331,7 @@ public class Barman extends Humain implements Serializable{
      * @return retourne la commande sans les boisson destinées à des clients blacklistés
      */
     
-    public Commande verifBlackList(Commande commande){
+    public Commande verifBlackList(Commande commande) throws StopCommandeException{
         
         for (int i = 0; i < commande.getCommande().size(); i++){
             
@@ -339,7 +339,7 @@ public class Barman extends Humain implements Serializable{
                 
                 if (verifBlackListed(commande.getCommande().get(i).getListeConsomateur().get(j))){
                     
-                    this.parler("Désolé mais " + commande.getCommande().get(i).getListeConsomateur().get(j) + " ne peut plus boire !");
+                    this.parler("Désolé mais " + commande.getCommande().get(i).getListeConsomateur().get(j).getPrenom() + " ne peut plus boire !");
                     
                     rappelClient((Client) commande.getCommande().get(i).getListeConsomateur().get(j));
                     

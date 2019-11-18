@@ -142,6 +142,13 @@ public class Tournoi implements Serializable{
             
         }
         
+        if (equipe.getJoueur1().equals(equipe.getJoueur2())){
+            
+            barman.parler("Désolé mais il faut deux joueurs différents pour faire une équipe !");
+            
+            bool = false;
+        }
+        
         return bool;
         
     }

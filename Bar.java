@@ -197,13 +197,15 @@ public class Bar implements Serializable{
      * @param pServeur 
      */
     
-    public void virerClient(Client pClient, Serveur pServeur){
+    public void virerClient(Client pClient, Serveur pServeur) throws StopCommandeException{
         
         clients.remove(pClient);
         
         pClient.setAccess(false);
         
         System.out.println("Sortie de " + pClient.getPrenom());
+        
+        throw new StopCommandeException(pClient);
                 
     }
     

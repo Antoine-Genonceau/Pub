@@ -90,7 +90,7 @@ public class Patronne extends Client implements Serializable{
      * @param client client soumis à une exclusion
      */
     
-    public void exclureClient(Client client){
+    public void exclureClient(Client client) throws StopCommandeException{
         
         boolean done = false;
         
@@ -101,10 +101,11 @@ public class Patronne extends Client implements Serializable{
             
             if (bar.getServeurs().get(i).getSigne().getValeur() == "gros"){
                 
+                this.parler(bar.getServeurs().get(i).getPrenom() + " vire moi " + client.getPrenom());
+                
                 bar.virerClient(client, bar.getServeurs().get(i)); 
                 
-                this.parler(bar.getServeurs().get(i).getPrenom() + " vire moi " + client.getPrenom());
-                               
+                                               
             }           
  
             i = i + 1;            

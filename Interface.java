@@ -668,7 +668,7 @@ public class Interface {
         
         for (int i = 0; i < charge.bar.getClients().size(); i++){
             
-            System.out.print(charge.bar.getClients().get(i) + " - " + i + " | ");
+            System.out.print(charge.bar.getClients().get(i).getPrenom() + " - " + i + " | ");
             
         }
         try{
@@ -692,10 +692,10 @@ public class Interface {
         Humain humain = choixHumain();
         
         System.out.println("Quelle type d'action voulez vous effectuer ?");
-        System.out.println("| Se présenter - 1 | Commander auprès du barman - 2 | Commander aupres d'un serveur - 3 |");
+        System.out.println("| Se présenter - 1 | Commander auprès du barman - 2 | Commander aupres d'un serveur - 3 | Commander une tournée générale - 4 |");
         
         try{
-        switch(scanEntierBorne(1,3)) { 
+        switch(scanEntierBorne(1,4)) { 
                 
             case 1:
                 humain.presentation();
@@ -705,6 +705,9 @@ public class Interface {
                 break;
             case 3:
                 commanderServeur(humain);
+                break;
+            case 4:
+                humain.tourneeGenerale(charge.bar.getBarman());
                 break;
             
                                     
@@ -972,6 +975,8 @@ public class Interface {
         
         lastClient = num - 1;
         
+        System.out.println("");
+        
         System.out.println("Serveurs :");
         
         for (int i = 0; i < charge.bar.getServeurs().size(); i++){
@@ -984,13 +989,21 @@ public class Interface {
         
         lastServeur = num - 1;
         
+        System.out.println("");
+        
         System.out.println("Barman :");
         
         System.out.print(charge.bar.getBarman().getPrenom() + " - " + num + " | ");
         
+        System.out.println("");
+        
         System.out.println("Patronne :");
         
-        System.out.print(charge.bar.getPatronne().getPrenom() + " - " + num + 1 + " | ");
+        int numP = num + 1;
+        
+        System.out.print(charge.bar.getPatronne().getPrenom() + " - " + numP + " | ");
+        
+        System.out.println("");
         
         try{
         int choix = scanEntierBorne(0, num + 1);
@@ -1061,6 +1074,8 @@ public class Interface {
         
         lastClient = num - 1;
         
+        System.out.println("");
+        
         System.out.println("Serveurs :");
         
         for (int i = 0; i < charge.bar.getServeurs().size(); i++){
@@ -1073,13 +1088,21 @@ public class Interface {
         
         lastServeur = num - 1;
         
+        System.out.println("");
+        
         System.out.println("Barman :");
         
         System.out.print(charge.bar.getBarman().getPrenom() + " - " + num + " | ");
         
+        System.out.println("");
+        
         System.out.println("Patronne :");
         
-        System.out.print(charge.bar.getPatronne().getPrenom() + " - " + num + 1 + " | ");
+        int numP = num + 1;
+        
+        System.out.print(charge.bar.getPatronne().getPrenom() + " - " + num + " | ");
+        
+        System.out.println("");
         
         try{
         
@@ -1144,6 +1167,8 @@ public class Interface {
         
         lastClient = num - 1;
         
+        System.out.println("");
+        
         System.out.println("Serveurs :");
         
         for (int i = 0; i < charge.bar.getServeurs().size(); i++){
@@ -1153,6 +1178,8 @@ public class Interface {
             num++;
             
         }
+        
+        System.out.println("");
         
         try{
         

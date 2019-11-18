@@ -386,7 +386,7 @@ public class Humain implements Serializable{
      * @param serveur serveur auquel l'humain passe la commande
      */
     
-    private void runConsommer(ArrayList<Humain> listeConsomateur, Serveur serveur){
+    private void runConsommer(ArrayList<Humain> listeConsomateur, Serveur serveur) throws StopCommandeException{
         
        
         
@@ -536,7 +536,7 @@ public class Humain implements Serializable{
      * @param barman barman auquel l'humain s'adresse 
      */
     
-    private void runConsommer(ArrayList<Humain> listeConsomateur, Barman barman){
+    private void runConsommer(ArrayList<Humain> listeConsomateur, Barman barman) throws StopCommandeException{
         
         Commande commande = new Commande();
         
@@ -678,7 +678,7 @@ public class Humain implements Serializable{
      * @param barman la demande de tournee générale se fait aupres du barman
      */
     
-    private void runTourneeGenerale(Barman barman){
+    private void runTourneeGenerale(Barman barman) throws StopCommandeException{
         
         this.updatePopulariteTournee();
         
@@ -926,7 +926,9 @@ public class Humain implements Serializable{
         
     }
     
-    public void consommer(ArrayList<Humain> listeConsomateur, Barman barman){
+    public void consommer(ArrayList<Humain> listeConsomateur, Barman barman) throws StopCommandeException{
+        
+        try{
         
         if (access){
             
@@ -940,9 +942,17 @@ public class Humain implements Serializable{
             
         }
         
+        }
+        catch(StopCommandeException e){
+            
+            
+        }
+        
     }
     
-    public void consommer(ArrayList<Humain> listeConsomateur, Serveur serveur){
+    public void consommer(ArrayList<Humain> listeConsomateur, Serveur serveur) throws StopCommandeException{
+        
+        try{
         
         if (access){
             
@@ -956,9 +966,15 @@ public class Humain implements Serializable{
             
         }
         
+        }
+        catch(StopCommandeException e){
+            
+            
+        }
+        
     }
     
-    public void tourneeGenerale(Barman barman){
+    public void tourneeGenerale(Barman barman) throws StopCommandeException{
         
         if (access){
             
