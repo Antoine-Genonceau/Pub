@@ -27,8 +27,8 @@ import java.io.ObjectOutputStream;
  */
 public class Interface {
     
-    private Charge charge = new Charge();
-    private Scanner keyboard = new Scanner(System.in);
+    Charge charge = new Charge();
+    Scanner keyboard = new Scanner(System.in);
     
     /**
      * Cette methode est le coeur de l'interface
@@ -39,12 +39,31 @@ public class Interface {
         
         boolean power = true;
         
+        notice();
+        
         while(power){
           
             menuGeneral();
             
         }
         
+        
+    }
+    
+    /**
+     * Affiche le mode d'emploi de l'interface
+     * 
+     * @throws IOException 
+     */
+    
+    public void notice() throws IOException{
+        
+        System.out.println("Mode d'emploie :");
+        System.out.println("Vous pouvez quitter le programme à tout moment en entrant 'quit'");
+        System.out.println("Pour naviguer dans les menu vous devez entrer une des proposition");
+        System.out.println("Exemple : dans le menu suivant si vous souhaiter sélectionner l'option 'serveur' tapez '1'");
+        System.out.println("| serveur - 1 | client - 2");
+        String enter = demandeChaine("Pour démarer pressez la touche entrée...");
         
     }
     
@@ -64,6 +83,13 @@ public class Interface {
         
         
     }
+    
+    /**
+     * Chargement d'une sauvegarde
+     * 
+     * @param nom nom de la sauvegarde
+     * @throws IOException 
+     */
     
     public void chargerSauvegarde(String nom) throws IOException{
         
@@ -93,6 +119,11 @@ public class Interface {
         
         
     }
+    
+    /**
+     * Creation d'une sauvegarde
+     * 
+     */
     
     public void creerSauvegarde() throws IOException{
         
@@ -222,6 +253,7 @@ public class Interface {
             case 6:
                 System.out.println(charge.bar.getPatronne());
                 break;
+            
             
             }
         }
@@ -1501,6 +1533,13 @@ public class Interface {
         return signe;
         
     }
+    
+    /**
+     * Selection d'une boisson
+     * 
+     * @param entree nom de la boisson
+     * @return 
+     */
     
     public Boisson conversionListeStrVersBoisson(String entree){
         

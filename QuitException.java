@@ -15,7 +15,11 @@ public class QuitException extends Exception{
     
     public QuitException(Interface inter) throws IOException{
         
+        if (inter.charge.chargement){
+        
             inter.creerSauvegarde();
+            
+        }
             System.out.print("\nAu revoir, à bientot !\n");
         
             System.exit(0);
