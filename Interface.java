@@ -60,9 +60,10 @@ public class Interface {
         
         System.out.println("Mode d'emploie :");
         System.out.println("Vous pouvez quitter le programme à tout moment en entrant 'quit'");
-        System.out.println("Pour naviguer dans les menu vous devez entrer une des proposition");
+        System.out.println("Vous pouvez sauvegarder vos modifications lorsque vous quittez après avoir chargé une sauvegarde.");
+        System.out.println("Pour naviguer dans les menu vous devez entrer une des proposition.");
         System.out.println("Exemple : dans le menu suivant si vous souhaiter sélectionner l'option 'serveur' tapez '1'");
-        System.out.println("| serveur - 1 | client - 2");
+        System.out.println("| serveur - 1 | client - 2 |");
         String enter = demandeChaine("Pour démarer pressez la touche entrée...");
         
     }
