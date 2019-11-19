@@ -248,14 +248,15 @@ public class Tournoi implements Serializable{
         
         int scoreA = 0;
         int scoreB = 0;
-        double rand = 0;
+        double rand = 0;      
         
+        Cible cible = new Cible();
+               
         while(scoreA != 2 && scoreB != 2){
             
-            rand = Math.random();
-            
-            
-            if (rand > 0.5){
+            MancheFlechette301 manche = new MancheFlechette301();           
+                                   
+            if (manche.manche(A, B, cible).equals(A)){
                 
                 scoreA = scoreA + 1;                
                 System.out.println("\n" + A + " : " + scoreA + "   " + B + " : " + scoreB + "\n");
