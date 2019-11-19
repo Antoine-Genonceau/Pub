@@ -51,13 +51,23 @@ public class Tournoi implements Serializable{
         
     public void fermetureInscription(){
         
-        barman.parler("LES INSCRIPTIONS POUR LE TOURNOI " + nom + " SONT CLOSES");
+        if (inscriptionsOuvertes){
         
-        inscriptionsOuvertes = false;
+            barman.parler("LES INSCRIPTIONS POUR LE TOURNOI " + nom + " SONT CLOSES");
         
-        tableau = new Tableau(equipes, barman);
+            inscriptionsOuvertes = false;
         
-        synthese.setNombreJoueurs(equipes.size() * 2);
+            tableau = new Tableau(equipes, barman);
+        
+            synthese.setNombreJoueurs(equipes.size() * 2);
+        
+        }
+        
+        else{
+            
+            System.out.println("Les inscriptions sont déjà closes !");
+            
+        }
         
     }
     
@@ -232,7 +242,7 @@ public class Tournoi implements Serializable{
      * @param B equipe B
      */
     
-    public void match(Equipe A, Equipe B){
+    public void match(Equipe A, Equipe B) throws StopCommandeException{
         
         System.out.println("\n" + "Debut du match entre " + A.getNom()+ " et " + B.getNom() + "\n");
         
@@ -290,7 +300,7 @@ public class Tournoi implements Serializable{
      * 
      */
     
-    public void deroulementTournoiAuto(){
+    public void deroulementTournoiAuto() throws StopCommandeException{
         
         if (!termine){
         
@@ -344,7 +354,7 @@ public class Tournoi implements Serializable{
         }
     }
     
-    public void deroulementMatch(Equipe[] match){
+    public void deroulementMatch(Equipe[] match) throws StopCommandeException{
         
         if (!termine){
         

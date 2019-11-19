@@ -53,7 +53,7 @@ public class Equipe implements Serializable{
      * @param barman barman auquel on fait la demande
      */
     
-    public void tourneeAdversaire(Equipe equipeAd, Barman barman){
+    public void tourneeAdversaire(Equipe equipeAd, Barman barman) throws StopCommandeException{
         
         ArrayList<Humain> joueurs = new ArrayList<>();
         

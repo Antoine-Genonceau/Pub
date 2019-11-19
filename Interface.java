@@ -35,7 +35,7 @@ public class Interface {
      * 
      */
     
-    public void processus() throws IOException{
+    public void processus() throws IOException, StopCommandeException{
         
         boolean power = true;
         
@@ -160,7 +160,7 @@ public class Interface {
      */
     
     
-    public void menuGeneral() throws IOException{    
+    public void menuGeneral() throws IOException, StopCommandeException{    
         
         while(!charge.chargement){
         
@@ -243,10 +243,22 @@ public class Interface {
                 System.out.println(charge.fournisseur.toString());
                 break;
             case 3:
-                System.out.println(charge.bar.getServeurs());
+                
+                for (int i = 0; i < charge.bar.getServeurs().size(); i++){
+                    
+                    System.out.println(charge.bar.getServeurs().get(i));
+                    
+                }
+                
                 break;
             case 4:
-                System.out.println(charge.bar.getClients());
+                
+                for (int i = 0; i < charge.bar.getClients().size(); i++){
+                    
+                    System.out.println(charge.bar.getClients().get(i));
+                    
+                }
+                
                 break;
             case 5:
                 System.out.println(charge.bar.getBarman());
@@ -523,7 +535,7 @@ public class Interface {
      */
     
     
-    public void action() throws IOException{
+    public void action() throws IOException, StopCommandeException{
         
         System.out.println("Quelle type d'action voulez vous effectuer ?");
         System.out.println("| Gestion Bar - 1 | Action Bar - 2 | Action Tournoi -3 |");
@@ -687,7 +699,7 @@ public class Interface {
      * 
      */
     
-    public void actionHumain() throws IOException{
+    public void actionHumain() throws IOException, StopCommandeException{
         
         Humain humain = choixHumain();
         
@@ -725,7 +737,7 @@ public class Interface {
      * @param humain individu passant la commande
      */
     
-    public void commanderBarman(Humain humain) throws IOException{
+    public void commanderBarman(Humain humain) throws IOException, StopCommandeException{
         
         System.out.println("Quelle genre de commande voulez vous passer ?");
         System.out.println("| Commander un verre pour soi - 1 | Commander pour soi et d'autres personnes - 2 | Commander pour d'autres personnes - 3 |");
@@ -758,7 +770,7 @@ public class Interface {
      * @param humain individu passant la commande
      */
     
-    public void commanderServeur(Humain humain) throws IOException{
+    public void commanderServeur(Humain humain) throws IOException, StopCommandeException{
         
         Serveur serveur = new Serveur();
         
@@ -796,7 +808,7 @@ public class Interface {
      * @param barman barman auquel il s'adresse
      */
     
-    public void commanderSeul(Humain humain, Barman barman){
+    public void commanderSeul(Humain humain, Barman barman) throws StopCommandeException{
         
         ArrayList<Humain> seul = new ArrayList<>();
         
@@ -813,7 +825,7 @@ public class Interface {
      * @param serveur serveur auquel il s'adresse
      */
     
-    public void commanderSeul(Humain humain, Serveur serveur){
+    public void commanderSeul(Humain humain, Serveur serveur) throws StopCommandeException{
         
         ArrayList<Humain> seul = new ArrayList<>();
         
@@ -830,7 +842,7 @@ public class Interface {
      * @param barman barman auquel il s'adresse
      */
     
-    public void commanderAvec(Humain humain, Barman barman) throws IOException{
+    public void commanderAvec(Humain humain, Barman barman) throws IOException, StopCommandeException{
         
         ArrayList<Humain> avec = new ArrayList<>();
         
@@ -849,7 +861,7 @@ public class Interface {
      * @param serveur serveur auquel il s'adresse
      */
     
-    public void commanderAvec(Humain humain, Serveur serveur) throws IOException{
+    public void commanderAvec(Humain humain, Serveur serveur) throws IOException, StopCommandeException{
         
         ArrayList<Humain> avec = new ArrayList<>();
         
@@ -868,7 +880,7 @@ public class Interface {
      * @param barman barman auquel il s'adresse
      */
     
-    public void commanderAutres(Humain humain, Barman barman) throws IOException{
+    public void commanderAutres(Humain humain, Barman barman) throws IOException, StopCommandeException{
         
         ArrayList<Humain> avec = new ArrayList<>();
         
@@ -885,7 +897,7 @@ public class Interface {
      * @param serveur serveur auquel il s'adresse
      */
     
-    public void commanderAutres(Humain humain, Serveur serveur) throws IOException{
+    public void commanderAutres(Humain humain, Serveur serveur) throws IOException, StopCommandeException{
         
         ArrayList<Humain> avec = new ArrayList<>();
         
@@ -1315,6 +1327,14 @@ public class Interface {
         catch(BorneException e){
             
             gererTournoi(tournoi);
+            
+        }
+        
+        if (demandeON("Vous voulez vous effectuer une nouvelle action pour ce tournoi ? ( 'O' = oui / 'N' = non)").equals("O")){
+            
+            
+            gererTournoi(tournoi);
+            
             
         }
         
