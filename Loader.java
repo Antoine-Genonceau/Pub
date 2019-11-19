@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class Loader {
     
-    public void CreationLeSixRoses(){
+    public void CreationLeSixRoses() throws StopCommandeException{
         
         
         Boisson chimaybleue = new Boisson("chimaybleu", 9, 2, 5);

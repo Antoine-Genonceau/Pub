@@ -58,11 +58,11 @@ public class Interface {
     
     public void notice() throws IOException{
         
-        System.out.println("Mode d'emploie :");
+        System.out.println("Mode d'emploi :");
         System.out.println("Vous pouvez quitter le programme à tout moment en entrant 'quit'");
-        System.out.println("Vous pouvez sauvegarder vos modifications lorsque vous quittez après avoir chargé une sauvegarde.");
-        System.out.println("Pour naviguer dans les menu vous devez entrer une des proposition.");
-        System.out.println("Exemple : dans le menu suivant si vous souhaiter sélectionner l'option 'serveur' tapez '1'");
+        System.out.println("Vous pouvez sauvegarder vos modifications lorsque vous quittez le programme, après avoir chargé une sauvegarde.");
+        System.out.println("Pour naviguer dans les menus vous devez entrer une des propositions.");
+        System.out.println("Exemple : Dans le menu suivant, si vous souhaitez sélectionner l'option 'serveur' tapez '1'");
         System.out.println("| serveur - 1 | client - 2 |");
         String enter = demandeChaine("Pour démarer pressez la touche entrée...");
         
@@ -80,7 +80,7 @@ public class Interface {
         
         charge = lesixroses.CreationLeSixRoses();
         
-        System.out.println("bar bien chargé !");
+        System.out.println("Bar bien chargé !");
         
         
     }
@@ -95,7 +95,6 @@ public class Interface {
     public void chargerSauvegarde(String nom) throws IOException{
         
         ObjectInputStream ois;
-        ObjectOutputStream oos;
         
         ois = new ObjectInputStream(
               new BufferedInputStream(
@@ -134,7 +133,6 @@ public class Interface {
         
             String nom = demandeNomFichier("Quel nom voulez vous donner a cette sauvegarde ? (tapez '" + charge.nom +"' pour ecraser la sauvegarde actuelle.)");
         
-            ObjectInputStream ois;
             ObjectOutputStream oos;
             try {
             oos = new ObjectOutputStream(
@@ -166,7 +164,7 @@ public class Interface {
         
             try{
             
-            System.out.println("Bonjour, pour commencer veulliez choisir un bar à charger !");
+            System.out.println("Bonjour, pour commencer veulliez choisir une sauvegarde à charger !");
             File file = new File("./src./pub./sauvegardes");
             File[] files = file.listFiles();
             
@@ -316,7 +314,7 @@ public class Interface {
     
     public void creationServeur() throws IOException{
         
-        System.out.println("Cretion Serveur :");
+        System.out.println("Creation Serveur :");
         
         
         String surnom = demandeChaine("Surnom :");
@@ -407,7 +405,7 @@ public class Interface {
     
     public void creationClient() throws IOException{
         
-        System.out.println("Cretion Client :");
+        System.out.println("Creation Client :");
         
         String surnom = demandeChaine("Surnom :");
    
@@ -537,7 +535,7 @@ public class Interface {
     
     public void action() throws IOException, StopCommandeException{
         
-        System.out.println("Quelle type d'action voulez vous effectuer ?");
+        System.out.println("Quel type d'action voulez vous effectuer ?");
         System.out.println("| Gestion Bar - 1 | Action Bar - 2 | Action Tournoi -3 |");
         
         try{
@@ -573,7 +571,7 @@ public class Interface {
     
     public void actionBar() throws IOException{
         
-        System.out.println("Quelle type d'action voulez vous effectuer ?");
+        System.out.println("Quel type d'action voulez vous effectuer ?");
         System.out.println("| Commander des boissons au fournisseur - 1 | Rappeller à l'ordre un client trop alcoolisé - 2 |");
         
         try{
@@ -629,7 +627,7 @@ public class Interface {
     
     public void rappelOrdre() throws IOException{
         
-        System.out.println("Quelle type de rappel à l'ordre voulez vous effectuer ?");
+        System.out.println("Quel type de rappel à l'ordre voulez vous effectuer ?");
         System.out.println("| Automatique - 1 | Manuel - 2 |");
         
         try{
@@ -663,7 +661,7 @@ public class Interface {
         
         if (!charge.bar.getPatronne().checkEtatClient()){
             
-            System.out.println("Aucun client n'as bessoin d'être rappellé à l'ordre.");
+            System.out.println("Aucun client n'a bessoin d'être rappellé à l'ordre.");
             
         }
         
@@ -703,8 +701,8 @@ public class Interface {
         
         Humain humain = choixHumain();
         
-        System.out.println("Quelle type d'action voulez vous effectuer ?");
-        System.out.println("| Se présenter - 1 | Commander auprès du barman - 2 | Commander aupres d'un serveur - 3 | Commander une tournée générale - 4 |");
+        System.out.println("Quel type d'action voulez vous effectuer ?");
+        System.out.println("| Se présenter - 1 | Commander auprès du barman - 2 | Commander auprès d'un serveur - 3 | Commander une tournée générale - 4 |");
         
         try{
         switch(scanEntierBorne(1,4)) { 
@@ -739,7 +737,7 @@ public class Interface {
     
     public void commanderBarman(Humain humain) throws IOException, StopCommandeException{
         
-        System.out.println("Quelle genre de commande voulez vous passer ?");
+        System.out.println("Quel genre de commande voulez vous passer ?");
         System.out.println("| Commander un verre pour soi - 1 | Commander pour soi et d'autres personnes - 2 | Commander pour d'autres personnes - 3 |");
         
         try{
@@ -776,7 +774,7 @@ public class Interface {
         
         serveur = choixServeur();
         
-        System.out.println("Quelle genre de commande voulez vous passer ?");
+        System.out.println("Quel genre de commande voulez vous passer ?");
         System.out.println("| Commander un verre pour soi - 1 | Commander pour soi et d'autres personnes - 2 | Commander pour d'autres personnes - 3 |");
         
         try{
@@ -921,7 +919,7 @@ public class Interface {
             
             liste.add(choixHumainConsomateur());
             
-            reponse = demandeON("Voulez vous offrir un verre à quelqu'un d'autres ? (O = oui / N = non)");
+            reponse = demandeON("Voulez vous offrir un verre à quelqu'un d'autre ? (O = oui / N = non)");
             
         }
         
@@ -935,7 +933,7 @@ public class Interface {
     
     public Serveur choixServeur() throws IOException{
         
-        System.out.println("Aupres de quel serveur souhaitez vous commander ?");
+        System.out.println("Auprès de quel serveur souhaitez vous commander ?");
         
         Serveur serveur = new Serveur();
         
@@ -1225,9 +1223,9 @@ public class Interface {
      * 
      */
     
-    public void actionTournoi() throws IOException{
+    public void actionTournoi() throws IOException, StopCommandeException{
         
-        System.out.println("Quelle type d'action voulez vous effectuer ?");
+        System.out.println("Quel type d'action voulez vous effectuer ?");
         System.out.println("| Gerer un tournoi - 1 | Creer un tournoi - 2 |");
         
         
@@ -1258,7 +1256,7 @@ public class Interface {
      * 
      */
     
-    public void choixTournoi() throws IOException{
+    public void choixTournoi() throws IOException, StopCommandeException{
         
         if (charge.bar.getBarman().getTournois().size() == 0){
             
@@ -1296,11 +1294,11 @@ public class Interface {
      * @param tournoi 
      */
     
-    public void gererTournoi(Tournoi tournoi) throws IOException{
+    public void gererTournoi(Tournoi tournoi) throws IOException, StopCommandeException{
         
         
-        System.out.println("Quelle type d'action voulez vous effectuer pour le tournoi " + tournoi.getNom() + " ?");
-        System.out.println("| Inscrire une Equipe - 1 | Cloturer les inscriptions - 2 | Lancer le tournoi - 3 | Gerer les matchs - 4 | Afficher synthese - 5 |");
+        System.out.println("Quel type d'action voulez vous effectuer pour le tournoi '" + tournoi.getNom() + "' ?");
+        System.out.println("| Inscrire une Equipe - 1 | Clôturer les inscriptions - 2 | Lancer le tournoi - 3 | Gerer les matchs - 4 | Afficher synthese - 5 |");
         
         try{
         switch(scanEntierBorne(1,5)) { 
@@ -1330,7 +1328,7 @@ public class Interface {
             
         }
         
-        if (demandeON("Vous voulez vous effectuer une nouvelle action pour ce tournoi ? ( 'O' = oui / 'N' = non)").equals("O")){
+        if (demandeON("Voulez vous effectuer une nouvelle action pour ce tournoi ? ( 'O' = oui / 'N' = non)").equals("O")){
             
             
             gererTournoi(tournoi);
@@ -1340,10 +1338,10 @@ public class Interface {
         
     }
     
-    public void gererMatchs(Tournoi tournoi) throws IOException{
+    public void gererMatchs(Tournoi tournoi) throws IOException, StopCommandeException{
         
-        System.out.println("Quelle type d'action voulez vous effectuer pour les matchs du tournoi " + tournoi.getNom() + " ?");
-        System.out.println("| Lancer un nouveau match - 1 | Afficher les résultats et matchs déjà passés - 2 |");
+        System.out.println("Quel type d'action voulez vous effectuer pour les matchs du tournoi '" + tournoi.getNom() + "' ?");
+        System.out.println("| Lancer un match - 1 | Afficher les résultats et matchs déjà passés - 2 |");
         
         try{
         switch(scanEntierBorne(1,2)) { 
@@ -1367,11 +1365,11 @@ public class Interface {
         
     }
     
-    public void lancerMatch(Tournoi tournoi) throws IOException{
+    public void lancerMatch(Tournoi tournoi) throws IOException, StopCommandeException{
         
         if (tournoi.getCalendrier().getCalendrier().size() != 0 ){
         
-            System.out.println("Quelle type d'action voulez vous effectuer pour les matchs du tournoi " + tournoi.getNom() + " ?");
+            System.out.println("Quel type d'action voulez vous effectuer pour les matchs du tournoi '" + tournoi.getNom() + "' ?");
         
             for (int i = 0; i < tournoi.getCalendrier().getCalendrier().size(); i++){
             
@@ -1521,9 +1519,9 @@ public class Interface {
     }
     
     
-    public void lancerTournoi(Tournoi tournoi) throws IOException{
+    public void lancerTournoi(Tournoi tournoi) throws IOException, StopCommandeException{
     
-    System.out.println("Choix du mode pour le tournoi " + tournoi.getNom() + " ?");
+    System.out.println("Choix du mode pour le tournoi '" + tournoi.getNom() + "' :");
         System.out.println("| Automatique - 1 | Manuel - 2 |");
         
         try{
@@ -1555,7 +1553,7 @@ public class Interface {
      * @param tournoi 
      */
     
-    public void lancerTournoiAuto(Tournoi tournoi){
+    public void lancerTournoiAuto(Tournoi tournoi) throws StopCommandeException{
         
         charge.bar.getBarman().deroulementTournoiAuto(tournoi);
         
@@ -1594,10 +1592,6 @@ public class Interface {
     public SigneServeur conversionListeStrVersSigneServeur(int a, int b){
         
         SigneServeur signe = SigneServeur.grosBiceps;;
-        
-        
-        System.out.println("Print a : " + a + " | Print b: " + b);
-        
         
         switch(a) { 
                 

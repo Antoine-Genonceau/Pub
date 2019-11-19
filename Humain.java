@@ -278,18 +278,22 @@ public class Humain implements Serializable{
             
         
         }
+        
+        if (somme > 0){
          
-        this.porteMonnaie = this.porteMonnaie - somme;  
+            this.porteMonnaie = this.porteMonnaie - somme;  
         
-        this.updatePopularite(somme);
+            this.updatePopularite(somme);
         
-        serveur.parler("Ok ça fait " + somme + " €");
+            serveur.parler("Ok ça fait " + somme + " €");
         
-        this.parler("Voila !");
+            this.parler("Voila !");
         
-        serveur.parler("Merci");
+            serveur.parler("Merci");
         
-        serveur.encaissement(somme, commande); 
+            serveur.encaissement(somme, commande); 
+        
+        }
         
     }
     
@@ -311,16 +315,20 @@ public class Humain implements Serializable{
             
         
         }
+        
+        if (somme > 0){
          
-        barman.parler(somme + " € s’il te plaît");
+            barman.parler(somme + " € s’il te plaît");
             
-        this.porteMonnaie = this.porteMonnaie - somme;  
+            this.porteMonnaie = this.porteMonnaie - somme;  
         
-        this.parler("Voila !");
+            this.parler("Voila !");
             
-        barman.encaissement(somme); 
+            barman.encaissement(somme); 
         
-        barman.parler("Merci");
+            barman.parler("Merci");
+        
+        }
           
     }
     
@@ -969,6 +977,13 @@ public class Humain implements Serializable{
         }
         catch(StopCommandeException e){
             
+            if (!(e.client.equals(this))){
+            
+                listeConsomateur.remove(e.client);
+                
+                consommer(listeConsomateur, serveur);   
+            
+            }
             
         }
         

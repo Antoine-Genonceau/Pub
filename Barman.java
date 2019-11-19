@@ -79,7 +79,7 @@ public class Barman extends Humain implements Serializable{
         
     }
     
-    public void deroulementTournoiAuto(Tournoi tournoi){
+    public void deroulementTournoiAuto(Tournoi tournoi) throws StopCommandeException{
         
         if (tournois.size() != 0 ){
             

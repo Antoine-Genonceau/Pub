@@ -11,8 +11,11 @@ package pub;
  */
 public class StopCommandeException extends Exception{
     
-    public StopCommandeException(Humain client){
+    Humain client;
+    
+    public StopCommandeException(Humain pClient){
         
+        client = pClient;
         
     }
     
