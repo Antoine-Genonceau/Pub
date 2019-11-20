@@ -11,7 +11,7 @@ package pub;
  */
 public class MancheFlechette301 {
     
-    public Equipe manche(Equipe A, Equipe B, Cible cible){
+    public Equipe manche(Equipe A, Equipe B, Cible cible) throws BorneException{
         
         int scoreA = 301;
         int scoreB = 301;
@@ -20,26 +20,36 @@ public class MancheFlechette301 {
         
         Equipe gagnant = new Equipe();
         
+        System.out.println("\nNouvelle manche:\n             " + A.getNom() + " : " + scoreA + "   |   " + B.getNom() + " : " + scoreB + "\n");
+        
         while((scoreA != 0) && (scoreB != 0) && round < 20){
             
             round++;
             
             switch(etat){
                 case 1:
+                    System.out.println("\nProchain Lanceur : " + A.getJoueur1().getIdentite().getPrenom());
                     scoreA = lancer(A, 1, scoreA, cible);
                     break;
                 case 2:
+                    System.out.println("\nProchain Lanceur : " + B.getJoueur1().getIdentite().getPrenom());
                     scoreB = lancer(B, 1, scoreB, cible);
                     break;
                 case 3:
+                    System.out.println("\nProchain Lanceur : " + A.getJoueur2().getIdentite().getPrenom());
                     scoreA = lancer(A, 2, scoreA, cible);
                     break;
                 case 4:
+                    System.out.println("\nProchain Lanceur : " + B.getJoueur2().getIdentite().getPrenom());
                     scoreB = lancer(B, 2, scoreB, cible);
                     break;    
                 
                 
             }
+            
+            
+            System.out.println("\n             " + A.getNom() + " : " + scoreA + "   |   " + B.getNom() + " : " + scoreB + "          round " + round + "\n");
+                    
             
             etat++;
             
@@ -55,10 +65,16 @@ public class MancheFlechette301 {
             
             gagnant = A;
             
+            
+            System.out.println(A.getNom() + " Gagne la manche !");
+                    
+            
         }
         else{
             
             gagnant = B;
+            
+            System.out.println(B.getNom() + " Gagne la manche !");
             
         }
         
@@ -66,7 +82,7 @@ public class MancheFlechette301 {
         
     }
     
-    public int lancer(Equipe equipe, int joueur, int points, Cible cible){
+    public int lancer(Equipe equipe, int joueur, int points, Cible cible) throws BorneException{
         
         int newPoints = points;
         
@@ -78,27 +94,41 @@ public class MancheFlechette301 {
             
             while (flechettesRestantes > 0 && !depassement){
                 
-                int pointsFleche = cible.calculPoints(equipe.getJoueur1().lance(newPoints, cible)[0], equipe.getJoueur1().lance(newPoints, cible)[1]);
+                int polaire[] = equipe.getJoueur1().lance(newPoints, cible);
                 
-                System.out.println("Lancer de "+ equipe.getJoueur1().getIdentite().getPrenom() + " : " + cible.calculCases(equipe.getJoueur1().lance(newPoints, cible)[0], equipe.getJoueur1().lance(newPoints, cible)[1]));
+                int pointsFleche = cible.calculPoints(polaire[0], polaire[1]);
+                
+                System.out.println("Lancer de "+ equipe.getJoueur1().getIdentite().getPrenom() + " : " + cible.calculCases(polaire[0], polaire[1]));
                 
                 if (pointsFleche > newPoints){
                     
                     System.out.println("Depassement !");
                     
-                    System.out.println("Score equipe " + equipe.getNom() + " : " + newPoints);
-                    
                     flechettesRestantes = 0;
+                    
+                    depassement = true;
                     
                 }
                 
                 else{
                     
-                    flechettesRestantes = flechettesRestantes - 1;
                     
-                    newPoints = newPoints - pointsFleche;
                     
-                    System.out.println("Score equipe " + equipe.getNom() + " : " + newPoints);
+                    if(pointsFleche == newPoints){
+                        
+                        newPoints = 0;
+                    
+                        flechettesRestantes = 0;
+                        
+                    }
+                    
+                    else{
+                    
+                        flechettesRestantes = flechettesRestantes - 1;
+                    
+                        newPoints = newPoints - pointsFleche;
+                    
+                    }
                     
                 }
                 
@@ -111,19 +141,21 @@ public class MancheFlechette301 {
             
              int flechettesRestantes = 3;
             
-            while (flechettesRestantes > 0 && !depassement){
+            while (flechettesRestantes > 0 && !depassement){                
                 
-                int pointsFleche = cible.calculPoints(equipe.getJoueur2().lance(newPoints, cible)[0], equipe.getJoueur2().lance(newPoints, cible)[1]);
+                int polaire[] = equipe.getJoueur2().lance(newPoints, cible);
                 
-                System.out.println("Lancer de "+ equipe.getJoueur2().getIdentite().getPrenom() + " : " + cible.calculCases(equipe.getJoueur2().lance(newPoints, cible)[0], equipe.getJoueur2().lance(newPoints, cible)[1]));
+                int pointsFleche = cible.calculPoints(polaire[0], polaire[1]);
+                
+                System.out.println("Lancer de "+ equipe.getJoueur1().getIdentite().getPrenom() + " : " + cible.calculCases(polaire[0], polaire[1]));
                 
                 if (pointsFleche > newPoints){
                     
                     System.out.println("Depassement !");
                     
-                    System.out.println("Score equipe " + equipe.getNom() + " : " + newPoints);
-                    
                     flechettesRestantes = 0;
+                    
+                    depassement = true;
                     
                 }
                 
@@ -131,7 +163,7 @@ public class MancheFlechette301 {
                     
                     if(pointsFleche == newPoints){
                         
-                        System.out.println("Score equipe " + equipe.getNom() + " : " + newPoints);
+                        newPoints = 0;
                     
                         flechettesRestantes = 0;
                         
@@ -142,8 +174,6 @@ public class MancheFlechette301 {
                         flechettesRestantes = flechettesRestantes - 1;
                     
                         newPoints = newPoints - pointsFleche;
-                    
-                        System.out.println("Score equipe " + equipe.getNom() + " : " + newPoints);
                     
                     }
                     

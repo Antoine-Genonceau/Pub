@@ -242,7 +242,7 @@ public class Tournoi implements Serializable{
      * @param B equipe B
      */
     
-    public void match(Equipe A, Equipe B) throws StopCommandeException{
+    public void match(Equipe A, Equipe B) throws StopCommandeException, BorneException{
         
         System.out.println("\n" + "Debut du match entre " + A.getNom()+ " et " + B.getNom() + "\n");
         
@@ -283,6 +283,7 @@ public class Tournoi implements Serializable{
                
         if (scoreA > scoreB){
             
+            System.out.println("\n");
             barman.parler("L'équipe " + A + " L'emporte face à l'équipe " + B);
             
         }
@@ -301,10 +302,11 @@ public class Tournoi implements Serializable{
      * 
      */
     
-    public void deroulementTournoiAuto() throws StopCommandeException{
+    public void deroulementTournoiAuto() throws StopCommandeException, BorneException{
         
         if (!termine){
-        
+            
+            System.out.println("\n");
             barman.parler("LE TOURNOI EST LANCE !");
         
             calendrier = new Calendrier(equipes);
@@ -355,7 +357,7 @@ public class Tournoi implements Serializable{
         }
     }
     
-    public void deroulementMatch(Equipe[] match) throws StopCommandeException{
+    public void deroulementMatch(Equipe[] match) throws StopCommandeException, BorneException{
         
         if (!termine){
         
@@ -363,6 +365,7 @@ public class Tournoi implements Serializable{
                 
                 int indice = calendrier.getCalendrier().indexOf(match);
                 
+                System.out.println("\n");
                 barman.parler("Prochain match : " + calendrier.getCalendrier().get(indice)[0].getNom()+ " VS " + calendrier.getCalendrier().get(indice)[1].getNom() );
                 match(calendrier.getCalendrier().get(indice)[0], calendrier.getCalendrier().get(indice)[1]);
                 calendrier.getCalendrier().remove(indice);
@@ -410,6 +413,7 @@ public class Tournoi implements Serializable{
         
         Equipe gagnant = tableau.getGagnant();
         
+        System.out.println("\n");
         barman.parler("Bravo à l'équipe " + gagnant.getNom() + " qui remporte le tournoi " + nom);
         
         int recompense = cagnotte / 2;

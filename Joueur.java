@@ -5,7 +5,9 @@
  */
 package pub;
 
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -62,9 +64,9 @@ public class Joueur implements Serializable{
         
         int alpha = polaire[1];
         
-        int erreurR = ThreadLocalRandom.current().nextInt(-3, 4);
+        int erreurR = ThreadLocalRandom.current().nextInt(-1, 2);
 
-        int erreurAlpha = ThreadLocalRandom.current().nextInt(-3, 4);        
+        int erreurAlpha = ThreadLocalRandom.current().nextInt(-1, 2);        
         
         int tab[] = {r + erreurR, alpha + erreurAlpha};
         
@@ -80,11 +82,21 @@ public class Joueur implements Serializable{
         
         int alpha = polaire[1];
         
-        int erreurR = ThreadLocalRandom.current().nextInt(-1, 2);
-
-        /*int erreurAlpha = ThreadLocalRandom.current().nextInt(-1, 2);  */        
+        int erreurR = 0;
+        
+        if (ThreadLocalRandom.current().nextInt(-1, 2) == 0){
+            
+            erreurR = ThreadLocalRandom.current().nextInt(-1, 2);
+            
+        }
         
         int erreurAlpha = 0;
+        
+        if (ThreadLocalRandom.current().nextInt(-3, 2) == 0){
+            
+            erreurAlpha = ThreadLocalRandom.current().nextInt(-1, 2);
+            
+        }
         
         int tab[] = {r + erreurR, alpha + erreurAlpha};
         
@@ -92,8 +104,120 @@ public class Joueur implements Serializable{
         
     }
     
+    public int[] lanceManuel(Cible cible) throws BorneException{
+        
+        int r = 0;
+        int alpha = 0;
+        boolean conforme = false;
+        boolean conformeSimple = false;
+        boolean conformeDouble = false;
+        boolean conformeTriple = false;
+        
+        while(!conforme){
+            
+            conforme = true;
+            
+            try{
+                
+            System.out.print("Quelle case visez vous ?");
+            System.out.println("| Simple - 1 | Double - 2 | Triple - 3 | Bull - 4 | Eye-Bull - 5 | Hors-cible - 6 |");
+        
+            int choix = scanEntierBorne(1,6);
+        
+            switch(choix){
+            
+                case 1:
+                    
+                    r = 7;
+                    
+                    while(!conformeSimple){
+                        
+                        conformeSimple = true;
+                        
+                        try{
+                            
+                        System.out.println("Entrez la valeur du simple que vous visez");
+                        alpha = cible.cases.indexOf(scanEntierBorne(1,20));
+                        
+                        }
+                        catch(BorneException s){  
+                            
+                            conformeSimple = false;
+                        }
+                    
+                    }
+                    break;
+                case 2:
+                    
+                    r = 10;
+                    
+                    while(!conformeDouble){
+                        
+                        conformeDouble = true;
+                        
+                        try{
+                            
+                        System.out.println("Entrez la valeur du double que vous visez");
+                        alpha = cible.cases.indexOf(scanEntierBorne(1,20));
+                        
+                        }
+                        catch(BorneException d){ 
+                            
+                            conformeDouble = false;
+                        }
+                    
+                    }
+                    break;
+                case 3:
+                    
+                    r = 5;
+                    
+                    while(!conformeTriple){
+                        
+                        conformeTriple = true;
+                        
+                        try{
+                            
+                        System.out.println("Entrez la valeur du triple que vous visez");
+                        alpha = cible.cases.indexOf(scanEntierBorne(1,20));
+                        
+                        }
+                        catch(BorneException t){ 
+                            
+                            conformeTriple = false;
+                        }
+                    
+                    }
+                    break;   
+                    
+                case 4:
+                    r = 1;                
+                    break;
+                case 5:
+                    r = 0;
+                    break;
+                case 6:
+                    r = 11;
+                    break;
+            
+        }
+            }
+            
+            catch(BorneException e){
+                
+                conforme = false;
+                
+            }
+        }
+        
+        int polaire[] = {r, alpha};
+        
+        return polaire;
+        
+    }
     
-    public int[] lance(int points, Cible cible){
+    
+    public int[] lance(int points, Cible cible) throws BorneException{
         
         int polaire[] = {0, 0};
         
@@ -117,6 +241,7 @@ public class Joueur implements Serializable{
         
         if(niveau == NiveauFlechette.manuel){
             
+            polaire = lanceManuel(cible);
             
         }
         
@@ -131,6 +256,8 @@ public class Joueur implements Serializable{
         
         int alpha = 0;
         
+        boolean done = false;
+        
         double score = (double) Points;
         
         if (score >= 60){
@@ -138,6 +265,8 @@ public class Joueur implements Serializable{
             r = 5;
             
             alpha = cible.cases.indexOf(20);
+            
+            done = true;
             
         }
         
@@ -149,6 +278,8 @@ public class Joueur implements Serializable{
             
             alpha = cible.cases.indexOf(caseCible);
             
+            done = true;
+            
         }
         
         if ((score / 2) == ((int) (score / 2)) && (score / 2) < 20){
@@ -158,6 +289,8 @@ public class Joueur implements Serializable{
             r = 10;
             
             alpha = cible.cases.indexOf(caseCible);
+            
+            done = true;
             
         }
         
@@ -169,6 +302,8 @@ public class Joueur implements Serializable{
             
             alpha = cible.cases.indexOf(caseCible);
             
+            done = true;
+            
         }
         
         if (score == 25){
@@ -176,6 +311,8 @@ public class Joueur implements Serializable{
             r = 1;
             
             alpha = 0;
+            
+            done = true;
             
         }
         
@@ -185,6 +322,18 @@ public class Joueur implements Serializable{
             
             alpha = 0;
             
+            done = true;
+            
+        }
+        
+        if (!done){
+            
+                       
+            int polaireBis[] = caseCible301(Points - 1, cible);
+            
+            r = polaireBis[0];
+            alpha = polaireBis[1];
+                        
         }
         
         int polaire[] = {r,alpha};
@@ -211,5 +360,83 @@ public class Joueur implements Serializable{
         return identite.equals(pJoueur.getIdentite());
         
     }
+    
+    public int scanEntierBorne(int min, int max) throws BorneException{
+        
+        int entier = 0;
+        
+        Scanner keyboard = new Scanner(System.in);
+        String chaine = keyboard.nextLine();
+                
+        entier = conversionStrVersInt(chaine);
+        
+        if (entier < min || entier > max){
+            
+            throw new BorneException();
+            
+        }
+        
+        return entier;
+    }
+    
+    public int conversionStrVersInt(String entree){
+        
+        int puissance = entree.length();
+        int nombre = 0;
+        double result = 0;
+
+        for(int i = 0; i < puissance; i++){
+            
+            char chiffre = entree.charAt(i);
+
+            switch(chiffre) {
+                case '0':
+                    nombre = 0;
+                    break;
+                case '1':
+                    nombre = 1;
+                    break;
+                case '2':
+                    nombre = 2;
+                    break;
+                case '3':
+                    nombre = 3;
+                    break;
+                case '4':
+                    nombre = 4;
+                    break;
+                case '5':
+                    nombre = 5;
+                    break;
+                case '6':
+                    nombre = 6;
+                    break;
+                case '7':
+                    nombre = 7;
+                    break;
+                case '8':
+                    nombre = 8;
+                    break;
+                case '9':
+                    nombre = 9;
+                    break;
+                    
+                    
+
+        }
+            
+            result = result + nombre*Math.pow((double) 10, (double) (puissance - i - 1));
+            
+        }
+      
+    if ((result == 0) && !(entree.equals("0"))){
+        
+        result = -1;
+        
+    }
+        
+    return (int) result;
+
+}
     
 }

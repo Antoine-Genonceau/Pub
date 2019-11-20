@@ -76,9 +76,9 @@ public class Interface {
     
     public void chargerBarLeSixRoses(){
         
-        LeSixRoses lesixroses = new LeSixRoses();
+        LeRetro lesixroses = new LeRetro();
         
-        charge = lesixroses.CreationLeSixRoses();
+        charge = lesixroses.CreationLeRetro();
         
         System.out.println("Bar bien chargé !");
         
@@ -158,7 +158,9 @@ public class Interface {
      */
     
     
-    public void menuGeneral() throws IOException, StopCommandeException{    
+    public void menuGeneral() throws IOException, StopCommandeException{  
+        
+        /*chargerBarLeSixRoses();*/
         
         while(!charge.chargement){
         
@@ -1456,6 +1458,44 @@ public class Interface {
         
     }
     
+    public NiveauFlechette choixNiveau() throws IOException{
+        
+        NiveauFlechette niveau = NiveauFlechette.expert;
+        
+        try{
+        
+        System.out.println("Choix du niveau :");
+        System.out.println("| Debutant - 1 | Confirme - 2 | Expert - 3 | Manuel (Controlé par l'utilisateur) - 4 |");
+        
+        int choix = scanEntierBorne(1,4);
+        
+        switch(choix){
+            
+            case 1:
+                niveau = NiveauFlechette.debutant;
+                break;
+            case 2:
+                niveau = NiveauFlechette.confirme;
+                break;
+            case 3:
+                niveau = NiveauFlechette.expert;
+                break;
+            case 4:
+                niveau = NiveauFlechette.manuel;
+                break;               
+            
+        
+    }
+        }
+        catch(BorneException e){
+            
+            niveau = choixNiveau();
+            
+        }
+        
+        return niveau;
+    }
+    
     /**
      * Methode permetant de creer un joueur
      * 
@@ -1470,7 +1510,9 @@ public class Interface {
         
         humain = choixJoueur();
         
-        return new Joueur(humain);        
+        NiveauFlechette niveau = choixNiveau();
+        
+        return new Joueur(humain, niveau);        
                 
     }
     
@@ -1488,7 +1530,9 @@ public class Interface {
         
         humain = choixJoueur();
         
-        return new Joueur(humain);        
+        NiveauFlechette niveau = choixNiveau();
+        
+        return new Joueur(humain, niveau);        
                
         
     }
