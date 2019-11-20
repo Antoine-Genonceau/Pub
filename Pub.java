@@ -19,13 +19,9 @@ public class Pub {
      */
     public static void main(String[] args) throws IOException, StopCommandeException {
         
-        /*Loader load = new Loader();
-        
-        load.CreationLeSixRoses();*/
-        
         Interface interfaceUtilisateur = new Interface();
         
         interfaceUtilisateur.processus();
         
-    }
+    } 
 }

@@ -67,24 +67,7 @@ public class Interface {
         String enter = demandeChaine("Pour démarer pressez la touche entrée...");
         
     }
-    
-    
-    /**
-     * Chargement des informations
-     * 
-     */
-    
-    public void chargerBarLeSixRoses(){
         
-        LeRetro lesixroses = new LeRetro();
-        
-        charge = lesixroses.CreationLeRetro();
-        
-        System.out.println("Bar bien chargé !");
-        
-        
-    }
-    
     /**
      * Chargement d'une sauvegarde
      * 
@@ -159,8 +142,6 @@ public class Interface {
     
     
     public void menuGeneral() throws IOException, StopCommandeException{  
-        
-        /*chargerBarLeSixRoses();*/
         
         while(!charge.chargement){
         
