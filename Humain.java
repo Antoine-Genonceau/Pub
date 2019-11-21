@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author procy
+ * @author Toine
  * 
  * L'objet Humain est la classe mère de tous les personnages
  * 

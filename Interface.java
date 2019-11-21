@@ -1578,7 +1578,7 @@ public class Interface {
      * @param tournoi 
      */
     
-    public void lancerTournoiAuto(Tournoi tournoi) throws StopCommandeException{
+    public void lancerTournoiAuto(Tournoi tournoi) throws StopCommandeException, BorneException{
         
         charge.bar.getBarman().deroulementTournoiAuto(tournoi);
         
