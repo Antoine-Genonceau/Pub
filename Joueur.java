@@ -43,6 +43,12 @@ public class Joueur implements Serializable{
         
     }
     
+    /**
+     * Un debutant lance ses fleche au hasard
+     * 
+     * @return coordonnées polaire de la case atteinte
+     */
+    
     public int[] lanceDebutant(){
         
          int r = ThreadLocalRandom.current().nextInt(-12, 13);
@@ -55,6 +61,14 @@ public class Joueur implements Serializable{
         return tab;
         
     }
+    
+    /**
+     * Un joueur confirme atteint la case qu'il vide avec une certaine erreur
+     * 
+     * @param points point restants
+     * @param cible 
+     * @return coordonnée polaires de la case atteinte
+     */
     
     public int[] lanceConfirme(int points, Cible cible){
         
@@ -73,6 +87,14 @@ public class Joueur implements Serializable{
         return tab;
         
     }
+    
+    /**
+     * Un joueur expert atteint la case qu'il vise avec une erreur souvent nulle
+     * 
+     * @param points points restants
+     * @param cible
+     * @return coordonnée polaires de la case atteinte
+     */
     
     public int[] lanceExpert(int points, Cible cible){
         
@@ -103,6 +125,14 @@ public class Joueur implements Serializable{
         return tab;
         
     }
+    
+    /**
+     * L'utilisateur joue à la place du joueur de niveau manuel
+     * 
+     * @param cible
+     * @return coordonnées polaires de la case atteinte
+     * @throws BorneException 
+     */
     
     public int[] lanceManuel(Cible cible) throws BorneException{
         
@@ -216,6 +246,15 @@ public class Joueur implements Serializable{
         
     }
     
+    /**
+     * Lancement d'une flechette
+     * 
+     * @param points points restants
+     * @param cible
+     * @return coordonnées polaires de la case atteinte
+     * @throws BorneException 
+     */
+    
     
     public int[] lance(int points, Cible cible) throws BorneException{
         
@@ -249,6 +288,13 @@ public class Joueur implements Serializable{
         
     }
     
+    /**
+     * cette methode sert à determiner la case qu'il faut viser suivant notre score actuel durant une partie de 301
+     * 
+     * @param Points points restants
+     * @param cible
+     * @return coordonnées polaires de la case qu'il faut viser
+     */
     
     public int[] caseCible301(int Points, Cible cible){
         

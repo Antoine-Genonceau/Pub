@@ -339,6 +339,11 @@ public class Tournoi implements Serializable{
         }
     }
     
+    /**
+     * En mode manuel on crée seulement le calendrier
+     * 
+     */
+    
     public void deroulementTournoiManuel(){
         
         if (!termine){
@@ -356,6 +361,14 @@ public class Tournoi implements Serializable{
             
         }
     }
+    
+    /**
+     * Cette methode execute un match entre 2 equipes
+     * 
+     * @param match
+     * @throws StopCommandeException
+     * @throws BorneException 
+     */
     
     public void deroulementMatch(Equipe[] match) throws StopCommandeException, BorneException{
         
@@ -431,6 +444,10 @@ public class Tournoi implements Serializable{
         
     }
     
+    /**
+     * Cette methode affiche la synthese d'un tournoi
+     * 
+     */
     
     public void afficheSynthese(){
         

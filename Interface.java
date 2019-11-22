@@ -157,7 +157,7 @@ public class Interface {
                 
             }
             
-            int choix = scanEntierBorne(-3, files.length - 1);    
+            int choix = scanEntierBorne(0, files.length - 1);    
             
             chargerSauvegarde(files[choix].getName());
             

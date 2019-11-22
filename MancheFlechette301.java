@@ -8,8 +8,14 @@ package pub;
 /**
  *
  * @author Toine
+ * Manche d'une partie de flechette 301
  */
 public class MancheFlechette301 {
+    
+    /**
+     * Cette methode execute nue manche et retourne l'équipe gagnante
+     * 
+     */
     
     public Equipe manche(Equipe A, Equipe B, Cible cible) throws BorneException{
         
@@ -81,6 +87,17 @@ public class MancheFlechette301 {
         return gagnant;
         
     }
+    
+    /**
+     * Cette methode execute les potentiels 3 lancés d'un joueur et retourne le nouveau score de son equipe
+     * 
+     * @param equipe equipe qui doit lancer
+     * @param joueur joueur1 ou joueur2 de l'equipe
+     * @param points score actuel de l'équipe
+     * @param cible
+     * @return nouveau score de l'équipe
+     * @throws BorneException 
+     */
     
     public int lancer(Equipe equipe, int joueur, int points, Cible cible) throws BorneException{
         
